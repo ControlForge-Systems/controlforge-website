@@ -1,0 +1,39 @@
+name: controlforge-website
+
+networks:
+  proxy:
+    external: true
+
+services:
+  controlforge-website:
+    container_name: controlforge-website
+    image: nginx:alpine
+    build: .
+    restart: always
+    networks:
+      - proxy
+      - default
+    deploy:
+      resources:
+        limits:
+          cpus: '0.10'
+          memory: 100M
+    security_opt:
+      - no-new-privileges:true
+    volumes:
+      - ./build:/usr/share/nginx/html:ro
+      - ./nginx:/etc/nginx/conf.d:ro
+    command: /bin/sh -c "nginx -t && nginx -g 'daemon off;'"
+    healthcheck:
+      test: ['CMD', 'curl', '-f', 'http://localhost/nginx-health']
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    labels:
+      - 'traefik.enable=true'
+      - 'traefik.docker.network=proxy'
+      - 'traefik.http.routers.controlforge-website.rule=Host(`controlforge.dev`)'
+      - 'traefik.http.routers.controlforge-website.entrypoints=websecure'
+      - 'traefik.http.routers.controlforge-website.tls=true'
+      - 'traefik.http.routers.controlforge-website.tls.certresolver=myresolver'
+      - 'traefik.http.services.controlforge-website.loadbalancer.server.port=80'
