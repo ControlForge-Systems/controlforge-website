@@ -24,11 +24,6 @@ services:
       - ./build:/usr/share/nginx/html:ro
       - ./nginx:/etc/nginx/conf.d:ro
     command: /bin/sh -c "nginx -t && nginx -g 'daemon off;'"
-    healthcheck:
-      test: ['CMD', 'curl', '-f', 'http://localhost/nginx-health']
-      interval: 30s
-      timeout: 10s
-      retries: 3
     labels:
       - 'traefik.enable=true'
       - 'traefik.docker.network=proxy'

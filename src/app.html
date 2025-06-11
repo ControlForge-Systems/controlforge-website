@@ -5,9 +5,36 @@
 		<link rel="icon" href="%sveltekit.assets%/favicon-192x192.png" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>ControlForge Systems</title>
+		
+		<!-- Google Tag Manager -->
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+			
+			// Asynchronous GTM loading without document.write
+			(function() {
+				var gtmScript = document.createElement('script');
+				gtmScript.async = true;
+				gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-K8HFFCM6';
+				var firstScript = document.getElementsByTagName('script')[0];
+				firstScript.parentNode.insertBefore(gtmScript, firstScript);
+				
+				// Initialize dataLayer
+				window.dataLayer = window.dataLayer || [];
+				window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
+			})();
+		</script>
+		<!-- End Google Tag Manager -->
+		
 		%sveltekit.head%
 	</head>
 	<body data-sveltekit-preload-data="hover">
+		<!-- Google Tag Manager (noscript) -->
+		<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K8HFFCM6"
+		height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+		<!-- End Google Tag Manager (noscript) -->
+		
 		<div style="display: contents">%sveltekit.body%</div>
 	</body>
 </html>
