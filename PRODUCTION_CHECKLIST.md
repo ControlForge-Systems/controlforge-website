@@ -49,11 +49,12 @@
 - [ ] All hover effects and animations work smoothly
 
 ### 📊 **Extension Metrics & Badges**
+- [x] **Badge CORS issues fixed in nginx CSP config** ✅
 - [ ] Downloads badge displays current count
-- [ ] Rating badge shows accurate rating
+- [ ] Rating badge shows accurate rating (removed per user request)
 - [ ] GitHub stars count is updating
 - [ ] Version badge reflects latest extension version
-- [ ] Forks count is accurate
+- [ ] Forks count is accurate (removed per user request)
 - [ ] Last updated badge shows recent activity
 - [ ] All badge URLs are correctly formatted:
   - [ ] `ControlForgeSystems.controlforge-structured-text` (marketplace)
@@ -81,6 +82,7 @@
 - [ ] Page loads in under 5 seconds on mobile
 - [ ] Images are optimized and using lazy loading
 - [ ] No console errors in browser developer tools
+- [x] **CORS/CSP issues resolved for external badge images** ✅
 - [ ] Lighthouse score is 90+ for all categories
 - [ ] Core Web Vitals are in "Good" range
 
