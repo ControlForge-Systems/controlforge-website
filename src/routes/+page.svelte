@@ -1,4 +1,4 @@
-<script>
+<script lang="ts">
   let isCopying = false;
   let copied = false;
 
@@ -17,6 +17,15 @@
       isCopying = false;
       copied = false;
     });
+  }
+
+  // Fallback handler for image load errors
+  function handleImgError(event: Event) {
+    const target = event.target as HTMLElement;
+    target.style.display = 'none';
+    if (target.nextElementSibling) {
+      (target.nextElementSibling as HTMLElement).style.display = 'inline-flex';
+    }
   }
 </script>
 
@@ -195,35 +204,79 @@
         <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
           <!-- Downloads -->
           <img 
-            src="https://img.shields.io/visual-studio-marketplace/d/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Downloads&color=007ACC"
+            src="https://img.shields.io/visual-studio-marketplace/d/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Downloads&color=007ACC&cacheSeconds=3600"
             alt="Extension Download Count"
             class="h-6 xs:h-7 sm:h-8"
             loading="lazy"
+            on:error={handleImgError}
           />
+          <!-- Fallback for Downloads -->
+          <a 
+            href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded items-center hover:bg-blue-700 transition-colors"
+            style="display: none;"
+          >
+            📥 Downloads
+          </a>
           
           <!-- GitHub Stars -->
           <img 
-            src="https://img.shields.io/github/stars/ControlForge-Systems/controlforge-structured-text?style=for-the-badge&logo=github&logoColor=white&label=Stars&color=yellow"
+            src="https://img.shields.io/github/stars/ControlForge-Systems/controlforge-structured-text?style=for-the-badge&logo=github&logoColor=white&label=Stars&color=yellow&cacheSeconds=3600"
             alt="GitHub Stars"
             class="h-6 xs:h-7 sm:h-8"
             loading="lazy"
+            on:error={handleImgError}
           />
+          <!-- Fallback for Stars -->
+          <a 
+            href="https://github.com/ControlForge-Systems/controlforge-structured-text"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-yellow-500 text-black text-xs font-bold rounded items-center hover:bg-yellow-600 transition-colors"
+            style="display: none;"
+          >
+            ⭐ Stars
+          </a>
           
           <!-- Version -->
           <img 
-            src="https://img.shields.io/visual-studio-marketplace/v/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Version&color=brightgreen"
+            src="https://img.shields.io/visual-studio-marketplace/v/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Version&color=brightgreen&cacheSeconds=3600"
             alt="Extension Version"
             class="h-6 xs:h-7 sm:h-8"
             loading="lazy"
+            on:error={handleImgError}
           />
+          <!-- Fallback for Version -->
+          <a 
+            href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-green-600 text-white text-xs font-bold rounded items-center hover:bg-green-700 transition-colors"
+            style="display: none;"
+          >
+            📦 Latest
+          </a>
           
           <!-- Last Updated -->
           <img 
-            src="https://img.shields.io/visual-studio-marketplace/last-updated/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Updated&color=orange"
+            src="https://img.shields.io/visual-studio-marketplace/last-updated/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Updated&color=orange&cacheSeconds=3600"
             alt="Last Updated"
             class="h-6 xs:h-7 sm:h-8"
             loading="lazy"
+            on:error={handleImgError}
           />
+          <!-- Fallback for Last Updated -->
+          <a 
+            href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-orange-500 text-white text-xs font-bold rounded items-center hover:bg-orange-600 transition-colors"
+            style="display: none;"
+          >
+            🔄 Updated
+          </a>
         </div>
       </div>
 
