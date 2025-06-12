@@ -56,7 +56,6 @@
   <link rel="canonical" href="https://controlforge.dev/" />
 
   <script type="application/ld+json">
-    {`
     {
       "@context": "https://schema.org",
       "@type": "SoftwareApplication",
@@ -82,7 +81,6 @@
         "url": "https://controlforge.dev/"
       }
     }
-    `}
   </script>
 </svelte:head>
 
