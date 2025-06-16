@@ -5,4 +5,8 @@ Disallow: /api/
 Disallow: /.git/
 Disallow: /node_modules/
 
+# Sitemap locations
 Sitemap: https://controlforge.dev/sitemap.xml
+
+# Crawl-delay for politeness
+Crawl-delay: 1
