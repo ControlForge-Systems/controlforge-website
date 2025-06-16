@@ -16,7 +16,12 @@ body {
   color: var(--midnight-navy);
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
   color: var(--midnight-navy);
 }
@@ -60,21 +65,22 @@ html {
 
 /* Mobile navigation improvements */
 @media (max-width: 768px) {
+
   /* Prevent body scroll when mobile menu is open */
   body.menu-open {
     overflow: hidden;
   }
-  
+
   /* Ensure mobile menu is above everything */
   .mobile-menu {
     z-index: 9999;
   }
-  
+
   /* Better touch targets for mobile */
   .mobile-nav-item {
     min-height: 44px;
   }
-  
+
   /* Smooth sidebar transitions */
   .mobile-sidebar {
     transition: transform 0.3s ease-in-out;
@@ -82,13 +88,15 @@ html {
 }
 
 /* Ensure tap targets are large enough */
-button, a {
+button,
+a {
   min-height: 44px;
   min-width: 44px;
 }
 
 /* Improve focus states for accessibility */
-button:focus, a:focus {
+button:focus,
+a:focus {
   outline: 2px solid var(--control-blue);
   outline-offset: 2px;
 }
