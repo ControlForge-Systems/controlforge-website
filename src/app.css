@@ -57,3 +57,38 @@ html {
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0, 140, 255, 0.3);
 }
+
+/* Mobile navigation improvements */
+@media (max-width: 768px) {
+  /* Prevent body scroll when mobile menu is open */
+  body.menu-open {
+    overflow: hidden;
+  }
+  
+  /* Ensure mobile menu is above everything */
+  .mobile-menu {
+    z-index: 9999;
+  }
+  
+  /* Better touch targets for mobile */
+  .mobile-nav-item {
+    min-height: 44px;
+  }
+  
+  /* Smooth sidebar transitions */
+  .mobile-sidebar {
+    transition: transform 0.3s ease-in-out;
+  }
+}
+
+/* Ensure tap targets are large enough */
+button, a {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Improve focus states for accessibility */
+button:focus, a:focus {
+  outline: 2px solid var(--control-blue);
+  outline-offset: 2px;
+}
