@@ -50,11 +50,11 @@
 
 ### 📊 **Extension Metrics & Badges**
 - [x] **Badge CORS issues fixed in nginx CSP config** ✅
+- [x] **Badge rate limiting addressed with longer cache times** ✅
+- [x] **Fallback badges configured for when shields.io fails** ✅
 - [ ] Downloads badge displays current count
-- [ ] Rating badge shows accurate rating (removed per user request)
 - [ ] GitHub stars count is updating
 - [ ] Version badge reflects latest extension version
-- [ ] Forks count is accurate (removed per user request)
 - [ ] Last updated badge shows recent activity
 - [ ] All badge URLs are correctly formatted:
   - [ ] `ControlForgeSystems.controlforge-structured-text` (marketplace)

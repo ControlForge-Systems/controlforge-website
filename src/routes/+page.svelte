@@ -1,7 +1,19 @@
 <script lang="ts">
-  import VSCodeDemo from '$lib/components/VSCodeDemo.svelte';
+  import { onMount } from 'svelte';
+  
   let isCopying = false;
   let copied = false;
+  let VSCodeDemo: any = null;
+
+  // Lazy load VSCodeDemo component
+  onMount(async () => {
+    // Load VSCodeDemo component
+    const { default: VSCodeDemoComponent } = await import('$lib/components/VSCodeDemo.svelte');
+    VSCodeDemo = VSCodeDemoComponent;
+    
+    // Start badge timeout check
+    checkBadgesAfterTimeout();
+  });
 
   function copyToClipboard() {
     if (isCopying) return;
@@ -23,11 +35,54 @@
   // Fallback handler for image load errors
   function handleImgError(event: Event) {
     const target = event.target as HTMLElement;
-    target.style.display = 'none';
-    if (target.nextElementSibling) {
-      (target.nextElementSibling as HTMLElement).style.display = 'inline-flex';
+    const container = target.parentElement;
+    if (container) {
+      // Hide the failed image
+      target.style.display = 'none';
+      // Show the fallback div (next sibling)
+      const fallback = container.querySelector('div[style*="display: none"]');
+      if (fallback) {
+        (fallback as HTMLElement).style.display = 'inline-flex';
+        (fallback as HTMLElement).classList.remove('hidden');
+      }
     }
   }
+
+  // Force reload badges (bypass cache)
+  function reloadBadges() {
+    const badges = document.querySelectorAll('.badge-img');
+    badges.forEach((badge) => {
+      const img = badge as HTMLImageElement;
+      const originalSrc = img.src.split('&t=')[0]; // Remove timestamp if exists
+      img.src = originalSrc + '&t=' + Date.now(); // Add timestamp to bypass cache
+      
+      // Reset visibility
+      img.style.display = 'block';
+      const container = img.parentElement;
+      if (container) {
+        const fallback = container.querySelector('div[style*="inline-flex"]');
+        if (fallback) {
+          (fallback as HTMLElement).style.display = 'none';
+          (fallback as HTMLElement).classList.add('hidden');
+        }
+      }
+    });
+  }
+
+  // Auto-fallback after timeout
+  function checkBadgesAfterTimeout() {
+    setTimeout(() => {
+      const badges = document.querySelectorAll('.badge-img');
+      badges.forEach((badge) => {
+        const img = badge as HTMLImageElement;
+        // Check if image failed to load or shows rate limit
+        if (!img.complete || img.naturalHeight === 0) {
+          handleImgError({ target: img } as unknown as Event);
+        }
+      });
+    }, 5000); // 5 second timeout
+  }
+
 </script>
 
 <svelte:head>
@@ -113,87 +168,103 @@
     <!-- Extension Stats -->
     <div class="mb-4 sm:mb-6 text-center">
       <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-        <!-- Downloads -->
-        <img 
-          src="https://img.shields.io/visual-studio-marketplace/d/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Downloads&color=007ACC&cacheSeconds=3600"
-          alt="Extension Download Count"
-          class="h-6 xs:h-7 sm:h-8"
-          loading="lazy"
-          on:error={handleImgError}
-        />
-        <!-- Fallback for Downloads -->
-        <a 
-          href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded items-center hover:bg-blue-700 transition-colors"
-          style="display: none;"
-        >
-          📥 Downloads
-        </a>
+        <!-- Downloads - Static fallback first, then try dynamic -->
+        <div class="relative">
+          <img 
+            src="https://img.shields.io/visual-studio-marketplace/d/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Downloads&color=007ACC&cacheSeconds=86400"
+            alt="Extension Download Count"
+            class="badge-img h-6 xs:h-7 sm:h-8"
+            loading="lazy"
+            on:error={handleImgError}
+          />
+          <!-- Static Fallback for Downloads -->
+          <div 
+            class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded items-center hover:bg-blue-700 transition-colors"
+            style="display: none;"
+          >
+            📥 Downloads
+          </div>
+        </div>
         
         <!-- GitHub Stars -->
-        <img 
-          src="https://img.shields.io/github/stars/ControlForge-Systems/controlforge-structured-text?style=for-the-badge&logo=github&logoColor=white&label=Stars&color=yellow&cacheSeconds=3600"
-          alt="GitHub Stars"
-          class="h-6 xs:h-7 sm:h-8"
-          loading="lazy"
-          on:error={handleImgError}
-        />
-        <!-- Fallback for Stars -->
-        <a 
-          href="https://github.com/ControlForge-Systems/controlforge-structured-text"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-yellow-500 text-black text-xs font-bold rounded items-center hover:bg-yellow-600 transition-colors"
-          style="display: none;"
-        >
-          ⭐ Stars
-        </a>
+        <div class="relative">
+          <img 
+            src="https://img.shields.io/github/stars/ControlForge-Systems/controlforge-structured-text?style=for-the-badge&logo=github&logoColor=white&label=Stars&color=yellow&cacheSeconds=86400"
+            alt="GitHub Stars"
+            class="badge-img h-6 xs:h-7 sm:h-8"
+            loading="lazy"
+            on:error={handleImgError}
+          />
+          <!-- Static Fallback for Stars -->
+          <div 
+            class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-yellow-500 text-black text-xs font-bold rounded items-center hover:bg-yellow-600 transition-colors"
+            style="display: none;"
+          >
+            ⭐ 3 Stars
+          </div>
+        </div>
         
         <!-- Version -->
-        <img 
-          src="https://img.shields.io/visual-studio-marketplace/v/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Version&color=brightgreen&cacheSeconds=3600"
-          alt="Extension Version"
-          class="h-6 xs:h-7 sm:h-8"
-          loading="lazy"
-          on:error={handleImgError}
-        />
-        <!-- Fallback for Version -->
-        <a 
-          href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-green-600 text-white text-xs font-bold rounded items-center hover:bg-green-700 transition-colors"
-          style="display: none;"
-        >
-          📦 Latest
-        </a>
+        <div class="relative">
+          <img 
+            src="https://img.shields.io/visual-studio-marketplace/v/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Version&color=brightgreen&cacheSeconds=86400"
+            alt="Extension Version"
+            class="badge-img h-6 xs:h-7 sm:h-8"
+            loading="lazy"
+            on:error={handleImgError}
+          />
+          <!-- Static Fallback for Version -->
+          <div 
+            class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-green-600 text-white text-xs font-bold rounded items-center hover:bg-green-700 transition-colors"
+            style="display: none;"
+          >
+            📦 v1.1.0
+          </div>
+        </div>
         
         <!-- Last Updated -->
-        <img 
-          src="https://img.shields.io/visual-studio-marketplace/last-updated/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Updated&color=orange&cacheSeconds=3600"
-          alt="Last Updated"
-          class="h-6 xs:h-7 sm:h-8"
-          loading="lazy"
-          on:error={handleImgError}
-        />
-        <!-- Fallback for Last Updated -->
-        <a 
-          href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
-          target="_blank"
-          rel="noopener noreferrer"
-          class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-orange-500 text-white text-xs font-bold rounded items-center hover:bg-orange-600 transition-colors"
-          style="display: none;"
+        <div class="relative">
+          <img 
+            src="https://img.shields.io/visual-studio-marketplace/last-updated/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Updated&color=orange&cacheSeconds=86400"
+            alt="Last Updated"
+            class="badge-img h-6 xs:h-7 sm:h-8"
+            loading="lazy"
+            on:error={handleImgError}
+          />
+          <!-- Static Fallback for Last Updated -->
+          <div 
+            class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-orange-500 text-white text-xs font-bold rounded items-center hover:bg-orange-600 transition-colors"
+            style="display: none;"
+          >
+            🔄 Recently
+          </div>
+        </div>
+      </div>
+      
+      <!-- Badge Refresh Button (only show if badges fail) -->
+      <div class="mt-2 text-center">
+        <button 
+          on:click={reloadBadges}
+          class="text-xs text-gray-500 hover:text-gray-700 underline"
+          title="Refresh extension stats"
         >
-          🔄 Updated
-        </a>
+          Refresh Stats
+        </button>
       </div>
     </div>
 
     <!-- Interactive VS Code Demo -->
     <div class="mb-6 sm:mb-8">
-      <VSCodeDemo height="450px" />
+      {#if VSCodeDemo}
+        <svelte:component this={VSCodeDemo} height="450px" />
+      {:else}
+        <div class="w-full h-[450px] bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
+          <div class="text-center">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
+            <p class="text-gray-600">Loading VS Code Demo...</p>
+          </div>
+        </div>
+      {/if}
     </div>
 
     <!-- Command Line Installation -->
