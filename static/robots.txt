@@ -4,9 +4,19 @@ Disallow: /admin/
 Disallow: /api/
 Disallow: /.git/
 Disallow: /node_modules/
+Disallow: /.svelte-kit/
+Disallow: /404
+Disallow: /50x
 
 # Sitemap locations
 Sitemap: https://controlforge.dev/sitemap.xml
 
 # Crawl-delay for politeness
 Crawl-delay: 1
+
+# Allow specific bots for analytics
+User-agent: Googlebot
+Allow: /
+
+User-agent: Bingbot
+Allow: /

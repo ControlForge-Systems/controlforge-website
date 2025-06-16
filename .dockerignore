@@ -1,0 +1,62 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Git
+.git
+.gitignore
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs
+
+# Environment files
+.env*
+!.env.example
+
+# Development files
+src
+*.md
+!README.md
+
+# CI/CD
+.github
+
+# Documentation
+docs
+
+# Test files
+test
+tests
+__tests__
+*.test.*
+*.spec.*
+
+# Development scripts
+scripts/check-seo-setup.sh
+scripts/convert-code-blocks.js
+
+# Source maps
+*.map
+
+# Cache
+.cache
+.tmp
+.temp
+
+# Build artifacts (we only want the final build)
+.svelte-kit
+package
+
+# Only include what we need for production

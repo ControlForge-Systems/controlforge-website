@@ -34,3 +34,34 @@ lerna-debug.log*
 
 # Editor directories and files
 *.local
+*~
+.cache/
+*.tmp
+*.temp
+
+# OS generated files
+Thumbs.db
+ehthumbs.db
+.AppleDouble
+.LSOverride
+
+# Production deployment files (sensitive)
+*.key
+*.pem
+*.crt
+docker-compose.override.yml
+
+# Coverage reports
+coverage/
+*.lcov
+
+# Runtime data
+*.pid
+*.seed
+*.pid.lock
+
+# Backup files
+*.backup
+*.bak
+*~
+*.orig
