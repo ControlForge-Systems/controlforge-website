@@ -1,0 +1,13 @@
+# Files to exclude from Copilot context
+# (By default, include documentation)
+
+# Exclude large build outputs
+build/
+dist/
+.svelte-kit/
+node_modules/
+
+# Exclude lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock

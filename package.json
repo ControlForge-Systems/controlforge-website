@@ -5,6 +5,8 @@
 	"scripts": {
 		"dev": "vite dev",
 		"build": "vite build",
+		"build:analyze": "vite build --mode analyze",
+		"build:prod": "NODE_ENV=production vite build --minify terser",
 		"preview": "vite preview",
 		"check": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
 		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
@@ -12,7 +14,7 @@
 		"format": "prettier --write .",
 		"validate": "./scripts/pre-deployment-check.sh",
 		"prod:deploy": "pnpm prod:build && pnpm prod:deploy:copy && pnpm prod:deploy:run",
-		"prod:build": "pnpm prebuild && pnpm build",
+		"prod:build": "pnpm prebuild && pnpm build:prod",
 		"prod:deploy:copy": "rsync -avz -e 'ssh' ./* homelab:~/ssd-2tb/apps/controlforge-website --include-from='prod.deploy.files.txt' --exclude '*'",
 		"prod:deploy:run": "ssh homelab 'cd ~/ssd-2tb/apps/controlforge-website && docker compose -f prod.compose.yml up -d && docker restart controlforge-website'",
 		"prebuild": "node scripts/generate-build-info.cjs",
@@ -26,12 +28,17 @@
 		"postcss": "^8.4.36",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.2",
+		"rollup-plugin-visualizer": "^6.0.3",
 		"svelte": "^4.2.12",
 		"svelte-check": "^3.6.7",
 		"tailwindcss": "^3.4.1",
+		"terser": "^5.42.0",
 		"tslib": "^2.6.2",
 		"typescript": "^5.4.2",
-		"vite": "^5.1.6"
+		"vite": "^5.1.6",
+		"vite-bundle-analyzer": "^0.22.3",
+		"vite-plugin-devtools-json": "^0.2.0",
+		"vite-plugin-monaco-editor": "^1.1.0"
 	},
 	"type": "module",
 	"dependencies": {

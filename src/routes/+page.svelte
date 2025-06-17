@@ -10,10 +10,15 @@
     // Load VSCodeDemo component
     const { default: VSCodeDemoComponent } = await import('$lib/components/VSCodeDemo.svelte');
     VSCodeDemo = VSCodeDemoComponent;
-    
-    // Start badge timeout check
-    checkBadgesAfterTimeout();
   });
+
+  function trackGAClick(buttonName: string) {
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      'event': 'cta_click',
+      'button_name': buttonName
+    });
+  }
 
   function copyToClipboard() {
     if (isCopying) return;
@@ -22,6 +27,7 @@
     const text = 'code --install-extension controlforge.controlforge-structured-text';
     navigator.clipboard.writeText(text).then(() => {
       copied = true;
+      trackGAClick('copy_install_command'); // Track GA event for copy
       setTimeout(() => {
         isCopying = false;
         copied = false;
@@ -30,57 +36,6 @@
       isCopying = false;
       copied = false;
     });
-  }
-
-  // Fallback handler for image load errors
-  function handleImgError(event: Event) {
-    const target = event.target as HTMLElement;
-    const container = target.parentElement;
-    if (container) {
-      // Hide the failed image
-      target.style.display = 'none';
-      // Show the fallback div (next sibling)
-      const fallback = container.querySelector('div[style*="display: none"]');
-      if (fallback) {
-        (fallback as HTMLElement).style.display = 'inline-flex';
-        (fallback as HTMLElement).classList.remove('hidden');
-      }
-    }
-  }
-
-  // Force reload badges (bypass cache)
-  function reloadBadges() {
-    const badges = document.querySelectorAll('.badge-img');
-    badges.forEach((badge) => {
-      const img = badge as HTMLImageElement;
-      const originalSrc = img.src.split('&t=')[0]; // Remove timestamp if exists
-      img.src = originalSrc + '&t=' + Date.now(); // Add timestamp to bypass cache
-      
-      // Reset visibility
-      img.style.display = 'block';
-      const container = img.parentElement;
-      if (container) {
-        const fallback = container.querySelector('div[style*="inline-flex"]');
-        if (fallback) {
-          (fallback as HTMLElement).style.display = 'none';
-          (fallback as HTMLElement).classList.add('hidden');
-        }
-      }
-    });
-  }
-
-  // Auto-fallback after timeout
-  function checkBadgesAfterTimeout() {
-    setTimeout(() => {
-      const badges = document.querySelectorAll('.badge-img');
-      badges.forEach((badge) => {
-        const img = badge as HTMLImageElement;
-        // Check if image failed to load or shows rate limit
-        if (!img.complete || img.naturalHeight === 0) {
-          handleImgError({ target: img } as unknown as Event);
-        }
-      });
-    }, 5000); // 5 second timeout
   }
 
 </script>
@@ -96,14 +51,14 @@
   <meta property="og:url" content="https://controlforge.dev/" />
   <meta property="og:title" content="ControlForge Systems - Structured Text VS Code Extension" />
   <meta property="og:description" content="Modern developer tools for automation and control systems. Structured Text extension with IEC 61131-3 support." />
-  <meta property="og:image" content="/controlforge_logo_1024x1024.png" />
+  <meta property="og:image" content="/controlforge_logo_512x512_optimized.webp" />
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://controlforge.dev/" />
   <meta property="twitter:title" content="ControlForge Systems - Structured Text VS Code Extension" />
   <meta property="twitter:description" content="Modern developer tools for automation and control systems. Structured Text extension with IEC 61131-3 support." />
-  <meta property="twitter:image" content="/controlforge_logo_1024x1024.png" />
+  <meta property="twitter:image" content="/controlforge_logo_512x512_optimized.webp" />
   
   <!-- Additional SEO -->
   <meta name="robots" content="index, follow" />
@@ -151,7 +106,7 @@
         <img
           src="/controlforge_ST_icon_1024x1024.png"
           alt="Structured Text by ControlForge Logo"
-          class="w-24 h-24 xs:w-28 xs:h-28 sm:w-32 sm:h-32 object-contain"
+          class="w-32 h-32 xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain"
           loading="lazy"
           decoding="async"
         />
@@ -165,109 +120,7 @@
       </div>
     </div>
 
-    <!-- Extension Stats -->
-    <div class="mb-4 sm:mb-6 text-center">
-      <div class="flex flex-wrap items-center justify-center gap-3 sm:gap-4">
-        <!-- Downloads - Static fallback first, then try dynamic -->
-        <div class="relative">
-          <img 
-            src="https://img.shields.io/visual-studio-marketplace/d/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Downloads&color=007ACC&cacheSeconds=86400"
-            alt="Extension Download Count"
-            class="badge-img h-6 xs:h-7 sm:h-8"
-            loading="lazy"
-            on:error={handleImgError}
-          />
-          <!-- Static Fallback for Downloads -->
-          <div 
-            class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-blue-600 text-white text-xs font-bold rounded items-center hover:bg-blue-700 transition-colors"
-            style="display: none;"
-          >
-            📥 Downloads
-          </div>
-        </div>
-        
-        <!-- GitHub Stars -->
-        <div class="relative">
-          <img 
-            src="https://img.shields.io/github/stars/ControlForge-Systems/controlforge-structured-text?style=for-the-badge&logo=github&logoColor=white&label=Stars&color=yellow&cacheSeconds=86400"
-            alt="GitHub Stars"
-            class="badge-img h-6 xs:h-7 sm:h-8"
-            loading="lazy"
-            on:error={handleImgError}
-          />
-          <!-- Static Fallback for Stars -->
-          <div 
-            class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-yellow-500 text-black text-xs font-bold rounded items-center hover:bg-yellow-600 transition-colors"
-            style="display: none;"
-          >
-            ⭐ 3 Stars
-          </div>
-        </div>
-        
-        <!-- Version -->
-        <div class="relative">
-          <img 
-            src="https://img.shields.io/visual-studio-marketplace/v/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Version&color=brightgreen&cacheSeconds=86400"
-            alt="Extension Version"
-            class="badge-img h-6 xs:h-7 sm:h-8"
-            loading="lazy"
-            on:error={handleImgError}
-          />
-          <!-- Static Fallback for Version -->
-          <div 
-            class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-green-600 text-white text-xs font-bold rounded items-center hover:bg-green-700 transition-colors"
-            style="display: none;"
-          >
-            📦 v1.1.0
-          </div>
-        </div>
-        
-        <!-- Last Updated -->
-        <div class="relative">
-          <img 
-            src="https://img.shields.io/visual-studio-marketplace/last-updated/ControlForgeSystems.controlforge-structured-text?style=for-the-badge&logo=visual-studio-code&logoColor=white&label=Updated&color=orange&cacheSeconds=86400"
-            alt="Last Updated"
-            class="badge-img h-6 xs:h-7 sm:h-8"
-            loading="lazy"
-            on:error={handleImgError}
-          />
-          <!-- Static Fallback for Last Updated -->
-          <div 
-            class="hidden h-6 xs:h-7 sm:h-8 px-3 py-1 bg-orange-500 text-white text-xs font-bold rounded items-center hover:bg-orange-600 transition-colors"
-            style="display: none;"
-          >
-            🔄 Recently
-          </div>
-        </div>
-      </div>
-      
-      <!-- Badge Refresh Button (only show if badges fail) -->
-      <div class="mt-2 text-center">
-        <button 
-          on:click={reloadBadges}
-          class="text-xs text-gray-500 hover:text-gray-700 underline"
-          title="Refresh extension stats"
-        >
-          Refresh Stats
-        </button>
-      </div>
-    </div>
-
-    <!-- Interactive VS Code Demo -->
-    <div class="mb-6 sm:mb-8">
-      {#if VSCodeDemo}
-        <svelte:component this={VSCodeDemo} height="450px" />
-      {:else}
-        <div class="w-full h-[450px] bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
-          <div class="text-center">
-            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
-            <p class="text-gray-600">Loading VS Code Demo...</p>
-          </div>
-        </div>
-      {/if}
-    </div>
-
-    <!-- Command Line Installation -->
+    <!-- Installation -->
     <div class="text-center mb-6 sm:mb-8">
       <h3 class="text-lg xs:text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Installation</h3>
       
@@ -277,7 +130,8 @@
         <div>
           <a 
             href="vscode:extension/ControlForgeSystems.controlforge-structured-text"
-            class="inline-flex items-center bg-brand-blue hover:bg-blue-700 text-white font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-lg transition-colors text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:scale-105 duration-200"
+            class="inline-flex items-center bg-brand-blue hover:bg-blue-700 text-white font-semibold py-3 px-6 sm:py-4 sm:px-8 rounded-lg transition-all duration-200 text-sm sm:text-base shadow-lg hover:shadow-xl transform hover:scale-105 focus:outline-2 focus:outline-brand-blue focus:outline-offset-2"
+            on:click={() => trackGAClick('open_in_vscode')}
           >
             <svg class="w-5 h-5 sm:w-6 sm:h-6 mr-2 sm:mr-3" fill="currentColor" viewBox="0 0 24 24">
               <path d="M23.15 2.587L18.21.21a1.494 1.494 0 0 0-1.705.29l-9.46 8.63-4.12-3.128a.999.999 0 0 0-1.276.057L.327 7.261A1 1 0 0 0 .326 8.74L3.899 12 .326 15.26a1 1 0 0 0 .001 1.479L1.65 17.94a.999.999 0 0 0 1.276.057l4.12-3.128 9.46 8.63a1.492 1.492 0 0 0 1.704.29l4.942-2.377A1.5 1.5 0 0 0 24 20.06V3.939a1.5 1.5 0 0 0-.85-1.352zm-5.146 14.861L10.826 12l7.178-5.448v10.896z"/>
@@ -292,7 +146,8 @@
             href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
             target="_blank"
             rel="noopener noreferrer"
-            class="inline-flex items-center bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 sm:py-3 sm:px-6 rounded-lg transition-colors text-xs sm:text-sm shadow hover:shadow-lg"
+            class="inline-flex items-center bg-gray-600 hover:bg-gray-700 text-white font-semibold py-2 px-4 sm:py-3 sm:px-6 rounded-lg transition-all duration-200 text-xs sm:text-sm shadow hover:shadow-lg focus:outline-2 focus:outline-gray-600 focus:outline-offset-2"
+            on:click={() => trackGAClick('view_in_web_browser')}
           >
             <svg class="w-4 h-4 sm:w-5 sm:h-5 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
@@ -304,62 +159,90 @@
       
       <p class="text-sm xs:text-base text-gray-600 mb-3">Or install via command line:</p>
       <div class="max-w-full mx-auto">
-        <pre class="bg-gray-100 p-3 xs:p-4 sm:p-5 rounded-t-lg text-xs xs:text-sm sm:text-base overflow-x-auto">code --install-extension controlforge.controlforge-structured-text</pre>
-        <div class="flex justify-end bg-gray-50 border-t border-gray-200 rounded-b-lg">
-          <button
-            id="copy-button"
-            on:click={copyToClipboard}
-            class="bg-brand-blue hover:bg-blue-700 text-white px-3 py-1 m-2 rounded text-xs sm:text-sm transition-colors shadow flex items-center justify-center disabled:opacity-60"
-            disabled={isCopying}
-          >
-            {#if copied}
-              <svg class="h-4 w-4 mr-1 text-white" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
-              </svg>
-              Copied!
-            {:else if isCopying}
-              <svg class="animate-spin h-4 w-4 mr-1" viewBox="0 0 24 24">
-                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="white" stroke-width="4" fill="none"/>
-                <path class="opacity-75" fill="white" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z"/>
-              </svg>
-              Copy
-            {:else}
-              Copy
-            {/if}
-          </button>
+        <div class="bg-gray-900 rounded-lg p-3 relative">
+          <div class="flex items-center justify-between mb-2">
+            <span class="text-gray-400 text-xs font-medium">Terminal</span>
+            <button
+              on:click={copyToClipboard}
+              class="bg-gray-700 hover:bg-gray-600 text-white text-xs px-2 py-px rounded flex items-center space-x-1 transition-colors duration-150 focus:outline-2 focus:outline-white focus:outline-offset-1"
+              style="min-height: auto;"
+              disabled={isCopying}
+            >
+              {#if copied}
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"/>
+                </svg>
+                <span>Copied!</span>
+              {:else}
+                <svg class="h-3 w-3" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+                </svg>
+                <span>Copy</span>
+              {/if}
+            </button>
+          </div>
+          <div class="flex items-center space-x-2">
+            <span class="text-green-400 text-sm">$</span>
+            <code class="text-gray-100 text-sm font-mono">code --install-extension controlforge.controlforge-structured-text</code>
+          </div>
         </div>
       </div>
     </div>
 
+    <!-- Interactive VS Code Demo -->
+    <div class="mb-6 sm:mb-8">
+      <h3 class="text-lg xs:text-xl sm:text-2xl font-semibold mb-4 sm:mb-6 text-center">Interactive Demo</h3>
+      {#if VSCodeDemo}
+        <svelte:component this={VSCodeDemo} title="ControlForge Interactive Demo" height="450px" />
+      {:else}
+        <div class="w-full h-[450px] bg-gray-100 border-2 border-dashed border-gray-300 rounded-lg flex items-center justify-center">
+          <div class="text-center">
+            <div class="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-2"></div>
+            <p class="text-gray-600">Loading VS Code Demo...</p>
+          </div>
+        </div>
+      {/if}
+    </div>
+
     <div class="mb-6 sm:mb-8">
       <h3 class="text-lg xs:text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">Key Features</h3>
-      <ul class="space-y-3 xs:space-y-4 text-sm xs:text-base sm:text-lg">
-        <li class="flex items-start">
-          <div>
-            <span class="font-semibold">Function Block IntelliSense</span>: Auto-complete for FB outputs (<code>myTimer.Q</code>, <code>upCounter.CV</code>)
-          </div>
-        </li>
-        <li class="flex items-start">
-          <div>
-            <span class="font-semibold">Rich Syntax Highlighting</span>: Complete IEC 61131-3 language support
-          </div>
-        </li>
-        <li class="flex items-start">
-          <div>
-            <span class="font-semibold">Smart Code Completion</span>: Context-aware suggestions for keywords, types, and variables
-          </div>
-        </li>
-        <li class="flex items-start">
-          <div>
-            <span class="font-semibold">Code Validation</span>: Built-in syntax validation and error detection
-          </div>
-        </li>
-        <li class="flex items-start">
-          <div>
-            <span class="font-semibold">Code Snippets</span>: Pre-built templates for common PLC patterns
-          </div>
-        </li>
-      </ul>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 sm:p-5">
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">Function Block IntelliSense</h4>
+          <p class="text-sm sm:text-base text-gray-700">
+            Auto-complete for FB outputs with smart suggestions
+          </p>
+          <code class="text-xs sm:text-sm text-brand-blue bg-white px-2 py-1 rounded mt-2 inline-block">myTimer.Q, upCounter.CV</code>
+        </div>
+        
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 sm:p-5">
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">Rich Syntax Highlighting</h4>
+          <p class="text-sm sm:text-base text-gray-700">
+            Complete IEC 61131-3 language support with color-coded syntax
+          </p>
+        </div>
+        
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 sm:p-5">
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">Smart Code Completion</h4>
+          <p class="text-sm sm:text-base text-gray-700">
+            Context-aware suggestions for keywords, types, and variables
+          </p>
+        </div>
+        
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 sm:p-5">
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">Code Validation</h4>
+          <p class="text-sm sm:text-base text-gray-700">
+            Built-in syntax validation and real-time error detection
+          </p>
+        </div>
+        
+        <div class="bg-gray-50 border border-gray-200 rounded-lg p-4 sm:p-5 md:col-span-2">
+          <h4 class="text-lg font-semibold text-gray-900 mb-2">Code Snippets</h4>
+          <p class="text-sm sm:text-base text-gray-700">
+            Pre-built templates for common PLC patterns and industrial automation constructs
+          </p>
+        </div>
+      </div>
     </div>
     
     <!-- Developer Resources -->

@@ -6,24 +6,47 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<title>ControlForge Systems</title>
 		
-		<!-- Google Tag Manager -->
+		<!-- Google Tag Manager - Ultra-optimized for performance -->
 		<script>
 			window.dataLayer = window.dataLayer || [];
-			function gtag(){dataLayer.push(arguments);}
-			gtag('js', new Date());
 			
-			// Asynchronous GTM loading without document.write
-			(function() {
-				var gtmScript = document.createElement('script');
+			// Ultra-deferred GTM loading - only load on meaningful user interaction
+			let gtmLoaded = false;
+			function loadGTM() {
+				if (gtmLoaded) return;
+				gtmLoaded = true;
+				
+				const gtmScript = document.createElement('script');
 				gtmScript.async = true;
 				gtmScript.src = 'https://www.googletagmanager.com/gtm.js?id=GTM-K8HFFCM6';
-				var firstScript = document.getElementsByTagName('script')[0];
-				firstScript.parentNode.insertBefore(gtmScript, firstScript);
+				document.head.appendChild(gtmScript);
 				
-				// Initialize dataLayer
-				window.dataLayer = window.dataLayer || [];
 				window.dataLayer.push({'gtm.start': new Date().getTime(), event: 'gtm.js'});
-			})();
+			}
+			
+			// Only load GTM after significant delay or meaningful interaction
+			function initGTMLoader() {
+				// Load after 3 seconds of page being loaded AND idle
+				setTimeout(() => {
+					if (document.readyState === 'complete') {
+						requestIdleCallback ? requestIdleCallback(loadGTM, { timeout: 5000 }) : loadGTM();
+					}
+				}, 3000);
+				
+				// Load on meaningful user interactions only
+				['click', 'touchstart', 'keydown'].forEach(function(event) {
+					document.addEventListener(event, () => {
+						setTimeout(loadGTM, 1000); // Still delay even on interaction
+					}, { once: true, passive: true });
+				});
+			}
+			
+			// Initialize the loader
+			if (document.readyState === 'complete') {
+				initGTMLoader();
+			} else {
+				window.addEventListener('load', initGTMLoader);
+			}
 		</script>
 		<!-- End Google Tag Manager -->
 		

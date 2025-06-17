@@ -1,9 +1,10 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { browser } from '$app/environment';
+  import { configureMonacoEnvironment } from '$lib/monaco-config';
   import CodeExample from './CodeExample.svelte';
   
-  export const title: string = 'VS Code with ControlForge Extension';
+  export let title: string = 'VS Code with ControlForge Extension';
   export let files: Array<{name: string, content: string, active?: boolean}> = [];
   export let height: string = '500px';
   
@@ -83,6 +84,11 @@ END_FUNCTION_BLOCK`,
   $: currentFiles = files.length > 0 ? files : defaultFiles;
   $: activeFile = currentFiles[activeFileIndex];
   
+  // Initialize Monaco configuration when component loads
+  if (browser) {
+    configureMonacoEnvironment();
+  }
+  
   function switchFile(index: number) {
     activeFileIndex = index;
   }
@@ -91,6 +97,14 @@ END_FUNCTION_BLOCK`,
 <div class="border border-gray-300 rounded-lg overflow-hidden bg-white shadow-lg">
   <!-- VS Code-style header -->
   <div class="bg-gray-800 text-white px-4 py-2">
+    <div class="flex items-center space-x-2">
+      <div class="flex space-x-1">
+        <div class="w-3 h-3 rounded-full bg-red-500"></div>
+        <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+        <div class="w-3 h-3 rounded-full bg-green-500"></div>
+      </div>
+      <span class="text-sm font-medium">{title}</span>
+    </div>
   </div>
   
   <!-- File tabs -->
@@ -123,19 +137,6 @@ END_FUNCTION_BLOCK`,
         readonly={true}
       />
     {/if}
-    
-    <!-- Extension features overlay -->
-    <div class="absolute top-2 right-2 flex flex-col space-y-2">
-      <div class="bg-blue-500 text-white text-xs px-2 py-1 rounded shadow">
-        Syntax Highlighting
-      </div>
-      <div class="bg-green-500 text-white text-xs px-2 py-1 rounded shadow">
-        Error Checking
-      </div>
-      <div class="bg-purple-500 text-white text-xs px-2 py-1 rounded shadow">
-        Code Completion
-      </div>
-    </div>
   </div>
   
   <!-- Status bar -->

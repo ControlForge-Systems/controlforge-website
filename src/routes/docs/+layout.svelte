@@ -4,10 +4,6 @@
   
   let isSidebarOpen = false;
   
-  function toggleSidebar() {
-    isSidebarOpen = !isSidebarOpen;
-  }
-  
   function closeSidebar() {
     isSidebarOpen = false;
   }
@@ -19,19 +15,6 @@
 </svelte:head>
 
 <div class="flex min-h-screen">
-  <!-- Mobile sidebar toggle button - Only show when sidebar is closed -->
-  {#if !isSidebarOpen}
-    <button
-      class="md:hidden fixed top-20 left-4 z-30 bg-blue-600 text-white p-3 rounded-lg shadow-lg hover:bg-blue-700 transition-colors"
-      on:click={toggleSidebar}
-      aria-label="Show documentation menu"
-    >
-      <svg class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h7" />
-      </svg>
-    </button>
-  {/if}
-
   <!-- Mobile overlay -->
   {#if isSidebarOpen}
     <div 

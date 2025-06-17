@@ -1,17 +1,24 @@
 <script lang="ts">
   import { page } from '$app/stores';
   import { browser } from '$app/environment';
+  import OptimizedImage from './OptimizedImage.svelte';
   
   let isMenuOpen = false;
   
   const navItems = [
-    { href: '/', label: 'Home' },
-    { href: '/docs', label: 'Documentation' },
-    { href: '/docs/syntax', label: 'Syntax Basics' },
-    { href: '/docs/variables', label: 'Variables & Types' },
-    { href: '/docs/control', label: 'Control Structures' },
-    { href: '/docs/functions', label: 'Functions' },
-    { href: '/docs/best-practices', label: 'Best Practices' }
+    { href: '/', label: 'Home', type: 'main' },
+    { 
+      href: '/docs', 
+      label: 'Documentation', 
+      type: 'main',
+      subItems: [
+        { href: '/docs/syntax', label: 'Syntax Basics' },
+        { href: '/docs/variables', label: 'Variables & Types' },
+        { href: '/docs/control', label: 'Control Structures' },
+        { href: '/docs/functions', label: 'Functions' },
+        { href: '/docs/best-practices', label: 'Best Practices' }
+      ]
+    }
   ];
   
   function toggleMenu() {
@@ -29,12 +36,15 @@
       <!-- Logo -->
       <div class="flex items-center">
         <a href="/" class="block" on:click={closeMenu}>
-          <img
-            src="/controlforge_horizontal_white_1434x359.png"
+          <OptimizedImage
+            src="/controlforge_horizontal_white_240x60.png"
+            webpSrc="/controlforge_horizontal_white_240x60.webp"
             alt="ControlForge Logo"
-            class="max-h-10 w-auto object-contain hover:opacity-80 transition-opacity"
+            className="max-h-10 w-auto object-contain hover:opacity-80 transition-opacity"
             style="height:40px"
-          >
+            width={240}
+            height={60}
+          />
         </a>
       </div>
 
@@ -42,7 +52,7 @@
       <nav class="hidden md:flex items-center space-x-6">
         <a 
           href="/docs" 
-          class="text-lg hover:text-gray-300 transition-colors {
+          class="text-lg hover:text-gray-300 transition-colors leading-none flex items-center focus:outline-2 focus:outline-brand-blue focus:outline-offset-2 rounded px-2 py-1 {
             $page.url.pathname.startsWith('/docs') ? 'text-blue-400' : ''
           }"
         >
@@ -76,15 +86,33 @@
     <div class="md:hidden bg-gray-800 border-t border-gray-700">
       <nav class="px-4 py-4 space-y-2">
         {#each navItems as item}
+          <!-- Main navigation item -->
           <a
             href={item.href}
-            class="block px-4 py-3 text-white hover:bg-gray-700 rounded transition-colors {
+            class="block px-4 py-3 text-white hover:bg-gray-700 rounded transition-colors font-medium focus:outline-2 focus:outline-brand-blue focus:outline-offset-2 {
               $page.url.pathname === item.href ? 'bg-gray-600' : ''
             }"
             on:click={closeMenu}
           >
             {item.label}
           </a>
+          
+          <!-- Sub-items if they exist and we're in docs section -->
+          {#if item.subItems && $page.url.pathname.startsWith('/docs')}
+            <div class="ml-4 space-y-1 border-l-2 border-gray-600 pl-4">
+              {#each item.subItems as subItem}
+                <a
+                  href={subItem.href}
+                  class="block px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-700 rounded transition-colors focus:outline-2 focus:outline-brand-blue focus:outline-offset-2 {
+                    $page.url.pathname === subItem.href ? 'bg-gray-600 text-white' : ''
+                  }"
+                  on:click={closeMenu}
+                >
+                  {subItem.label}
+                </a>
+              {/each}
+            </div>
+          {/if}
         {/each}
       </nav>
       
@@ -94,7 +122,7 @@
           href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
           target="_blank"
           rel="noopener noreferrer"
-          class="block px-4 py-2 text-sm text-blue-400 hover:text-blue-300 transition-colors"
+          class="block px-4 py-2 text-sm text-blue-400 hover:text-blue-300 transition-colors focus:outline-2 focus:outline-brand-blue focus:outline-offset-2 rounded"
           on:click={closeMenu}
         >
           📦 VS Code Extension →

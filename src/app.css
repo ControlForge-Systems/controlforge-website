@@ -100,3 +100,26 @@ a:focus {
   outline: 2px solid var(--control-blue);
   outline-offset: 2px;
 }
+
+/* Brand button styles */
+.btn-brand {
+  background-color: var(--control-blue);
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-brand:hover {
+  background-color: #0066cc;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 140, 255, 0.3);
+}
+
+/* Consistent focus styles for all interactive elements */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+textarea:focus-visible,
+select:focus-visible {
+  outline: 2px solid var(--control-blue);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
