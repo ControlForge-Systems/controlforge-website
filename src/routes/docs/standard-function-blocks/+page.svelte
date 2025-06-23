@@ -1,10 +1,12 @@
 <script>
+  import CanonicalLink from "$lib/components/CanonicalLink.svelte";
   import CodeExample from '$lib/components/CodeExample.svelte';
 </script>
 
 <svelte:head>
   <title>Standard Function Blocks - Structured Text Documentation</title>
-  <meta name="description" content="Complete reference for IEC 61131-3 standard function blocks including timers (TON, TOF, TP), counters (CTU, CTD, CTUD), edge detection (R_TRIG, F_TRIG), and bistable elements (RS, SR)." />
+  <meta name="description" content="Reference for IEC 61131-3 function blocks including timers (TON, TOF), counters (CTU, CTD), edge detection, and bistable elements for industrial automation." />
+  <CanonicalLink path="/docs/standard-function-blocks" />
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">

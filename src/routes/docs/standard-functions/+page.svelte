@@ -1,10 +1,12 @@
 <script>
+  import CanonicalLink from "$lib/components/CanonicalLink.svelte";
   import CodeExample from '$lib/components/CodeExample.svelte';
 </script>
 
 <svelte:head>
   <title>Standard Functions Reference - Structured Text Documentation</title>
   <meta name="description" content="Complete reference for IEC 61131-3 standard functions including type conversion, mathematical functions, string functions, and date/time functions." />
+  <CanonicalLink path="/docs/standard-functions" />
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">

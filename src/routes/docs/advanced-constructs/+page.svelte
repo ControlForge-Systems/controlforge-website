@@ -1,10 +1,12 @@
 <script>
+  import CanonicalLink from "$lib/components/CanonicalLink.svelte";
   import CodeExample from '$lib/components/CodeExample.svelte';
 </script>
 
 <svelte:head>
   <title>Advanced Language Constructs - Structured Text Documentation</title>
   <meta name="description" content="Advanced IEC 61131-3 features including CONFIGURATION, RESOURCE, TASK, INTERFACE, METHOD, PROPERTY, NAMESPACE, and object-oriented programming constructs." />
+  <CanonicalLink path="/docs/advanced-constructs" />
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">

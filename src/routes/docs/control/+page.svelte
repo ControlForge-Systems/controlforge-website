@@ -1,10 +1,12 @@
 <script lang="ts">
   import CodeExample from '$lib/components/CodeExample.svelte';
+  import CanonicalLink from '$lib/components/CanonicalLink.svelte';
 </script>
 
 <svelte:head>
   <title>Control Structures - Structured Text Documentation</title>
   <meta name="description" content="Master control flow in IEC 61131-3 Structured Text with IF, CASE, FOR, WHILE, and REPEAT statements. Learn conditional logic and loops with practical examples." />
+  <CanonicalLink path="/docs/control" />
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">

@@ -106,6 +106,7 @@
 <svelte:head>
   <title>Error {status} - ControlForge Systems</title>
   <meta name="robots" content="noindex" />
+  <!-- No canonical link for error pages as they should not be indexed -->
 </svelte:head>
 
 <main class="flex flex-col items-center justify-center min-h-screen px-4">

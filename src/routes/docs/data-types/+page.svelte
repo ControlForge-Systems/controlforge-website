@@ -1,10 +1,12 @@
 <script>
+  import CanonicalLink from "$lib/components/CanonicalLink.svelte";
   import CodeExample from '$lib/components/CodeExample.svelte';
 </script>
 
 <svelte:head>
   <title>Data Types Reference - Structured Text Documentation</title>
-  <meta name="description" content="Complete reference for all IEC 61131-3 data types including elementary, generic, and derived types. Learn BYTE, WORD, DWORD, LWORD, POINTER, REFERENCE, and more." />
+  <meta name="description" content="Guide to IEC 61131-3 data types including elementary, generic, and derived types. Learn about BYTE, WORD, DWORD, POINTER and reference types." />
+  <CanonicalLink path="/docs/data-types" />
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">

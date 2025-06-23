@@ -1,5 +1,6 @@
 <script lang="ts">
   import { onMount } from 'svelte';
+  import OrganizationSchema from '$lib/components/OrganizationSchema.svelte';
   
   let isCopying = false;
   let copied = false;
@@ -42,22 +43,25 @@
 
 <svelte:head>
   <title>ControlForge Systems - Structured Text VS Code Extension | IEC 61131-3 Support</title>
-  <meta name="description" content="ControlForge Systems develops modern developer tools for automation and control systems. Our Structured Text VS Code extension supports IEC 61131-3 standard with syntax highlighting, code snippets, and error checking." />
+  <meta name="description" content="Modern tools for IEC 61131-3 Structured Text programming. Our VS Code extension offers syntax highlighting, code snippets, and validation for PLC development." />
   <meta name="keywords" content="structured text, IEC 61131-3, VS Code extension, PLC programming, automation, control systems, ControlForge" />
   <meta name="author" content="ControlForge Systems" />
+  <svelte:component this={OrganizationSchema} 
+    description="ControlForge Systems develops modern tools for industrial automation and PLC programming. Our flagship product is a Structured Text VS Code extension supporting the IEC 61131-3 standard."
+  />
   
   <!-- Open Graph / Facebook -->
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://controlforge.dev/" />
   <meta property="og:title" content="ControlForge Systems - Structured Text VS Code Extension" />
-  <meta property="og:description" content="Modern developer tools for automation and control systems. Structured Text extension with IEC 61131-3 support." />
+  <meta property="og:description" content="Modern tools for IEC 61131-3 Structured Text programming. Our VS Code extension enhances PLC development with syntax highlighting and validation." />
   <meta property="og:image" content="/controlforge_logo_512x512_optimized.webp" />
   
   <!-- Twitter -->
   <meta property="twitter:card" content="summary_large_image" />
   <meta property="twitter:url" content="https://controlforge.dev/" />
   <meta property="twitter:title" content="ControlForge Systems - Structured Text VS Code Extension" />
-  <meta property="twitter:description" content="Modern developer tools for automation and control systems. Structured Text extension with IEC 61131-3 support." />
+  <meta property="twitter:description" content="Modern tools for IEC 61131-3 Structured Text programming. Our VS Code extension enhances PLC development with syntax highlighting and validation." />
   <meta property="twitter:image" content="/controlforge_logo_512x512_optimized.webp" />
   
   <!-- Additional SEO -->
@@ -86,7 +90,7 @@
         "ratingValue": "5",
         "reviewCount": "10"
       },
-      "description": "Structured Text extension for VS Code supporting IEC 61131-3 with syntax highlighting, code snippets, and error checking.",
+      "description": "Modern tools for IEC 61131-3 Structured Text programming with syntax highlighting, code snippets, and validation for PLC development.",
       "url": "https://controlforge.dev/",
       "image": "https://controlforge.dev/controlforge_ST_icon_512x512.png",
       "author": {

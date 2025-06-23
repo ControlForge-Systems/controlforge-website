@@ -1,5 +1,7 @@
 <!-- 404 Error Page -->
 <script lang="ts">
+  import CanonicalLink from '$lib/components/CanonicalLink.svelte';
+  
   const errorDetails = {
     status: 404,
     title: 'Page Not Found',
@@ -11,6 +13,7 @@
 <svelte:head>
   <title>Error 404 - ControlForge Systems</title>
   <meta name="robots" content="noindex" />
+  <CanonicalLink path="/404" />
 </svelte:head>
 
 <main class="flex flex-col items-center justify-center min-h-screen px-4">

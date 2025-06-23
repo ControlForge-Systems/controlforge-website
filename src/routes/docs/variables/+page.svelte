@@ -1,10 +1,12 @@
 <script>
+  import CanonicalLink from "$lib/components/CanonicalLink.svelte";
   import CodeExample from '$lib/components/CodeExample.svelte';
 </script>
 
 <svelte:head>
   <title>Variables & Data Types - Structured Text Documentation</title>
   <meta name="description" content="Learn about variable declarations, initialization, and data types in IEC 61131-3 Structured Text including BOOL, INT, REAL, STRING, and more." />
+  <CanonicalLink path="/docs/variables" />
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">

@@ -1,10 +1,33 @@
 <script>
   import VSCodeDemo from '$lib/components/VSCodeDemo.svelte';
+  import CanonicalLink from '$lib/components/CanonicalLink.svelte';
+  import FAQSchema from '$lib/components/FAQSchema.svelte';
+  
+  const faqs = [
+    {
+      question: "What is Structured Text?",
+      answer: "Structured Text (ST) is a high-level programming language defined in the IEC 61131-3 standard for programmable logic controllers (PLCs) and industrial automation systems. It provides a text-based approach similar to Pascal or C for writing control logic."
+    },
+    {
+      question: "Why use Structured Text instead of Ladder Logic?",
+      answer: "Structured Text offers superior readability, maintainability, and scalability compared to Ladder Logic, especially for complex algorithms, mathematical operations, and large control applications. It's better suited for modern industrial automation needs."
+    },
+    {
+      question: "Is Structured Text part of an official standard?",
+      answer: "Yes, Structured Text is defined in the IEC 61131-3 international standard, which specifies the programming languages for programmable controllers including Ladder Diagram (LD), Function Block Diagram (FBD), and Sequential Function Chart (SFC)."
+    },
+    {
+      question: "What are the main features of ControlForge's Structured Text extension?",
+      answer: "ControlForge's VS Code extension provides syntax highlighting, code snippets, IntelliSense, error checking, and debugging support for IEC 61131-3 Structured Text programming language, enhancing productivity for industrial automation developers."
+    }
+  ];
 </script>
 
 <svelte:head>
   <title>Structured Text Overview - ControlForge Documentation</title>
-  <meta name="description" content="Introduction to IEC 61131-3 Structured Text programming language for industrial automation and control systems." />
+  <meta name="description" content="Guide to IEC 61131-3 Structured Text for industrial automation. Learn syntax, control structures, and modern PLC programming techniques for control systems." />
+  <CanonicalLink path="/docs" />
+  <FAQSchema faqs={faqs} />
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">

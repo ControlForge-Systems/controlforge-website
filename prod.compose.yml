@@ -32,3 +32,12 @@ services:
       - 'traefik.http.routers.controlforge-website.tls=true'
       - 'traefik.http.routers.controlforge-website.tls.certresolver=myresolver'
       - 'traefik.http.services.controlforge-website.loadbalancer.server.port=80'
+      # www subdomain handling (simple redirect)
+      - 'traefik.http.routers.controlforge-website-www.rule=Host(`www.controlforge.dev`)'
+      - 'traefik.http.routers.controlforge-website-www.entrypoints=websecure'
+      - 'traefik.http.routers.controlforge-website-www.tls=true'
+      - 'traefik.http.routers.controlforge-website-www.tls.certresolver=myresolver'
+      - 'traefik.http.middlewares.www-redirect.redirectregex.regex=^https://www\.controlforge\.dev/(.*)'
+      - 'traefik.http.middlewares.www-redirect.redirectregex.replacement=https://controlforge.dev/$${1}'
+      - 'traefik.http.middlewares.www-redirect.redirectregex.permanent=true'
+      - 'traefik.http.routers.controlforge-website-www.middlewares=www-redirect'

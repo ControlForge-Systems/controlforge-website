@@ -1,17 +1,48 @@
 <script lang="ts">
   import DocsSidebar from '$lib/components/DocsSidebar.svelte';
+  import CanonicalLink from '$lib/components/CanonicalLink.svelte';
+  import BreadcrumbSchema from '$lib/components/BreadcrumbSchema.svelte';
+  import SocialMeta from '$lib/components/SocialMeta.svelte';
   import '../../app.css';
+  import { page } from '$app/stores';
   
   let isSidebarOpen = false;
   
   function closeSidebar() {
     isSidebarOpen = false;
   }
+  
+  $: breadcrumbs = getBreadcrumbs($page.url.pathname);
+  
+  function getBreadcrumbs(path: string) {
+    const parts = path.split('/').filter(Boolean);
+    const breadcrumbs = [{ name: 'Home', url: '/' }];
+    
+    let currentPath = '';
+    for (const part of parts) {
+      currentPath += `/${part}`;
+      
+      // Format the name from the URL part
+      let name = part.charAt(0).toUpperCase() + part.slice(1);
+      name = name.replace(/-/g, ' ');
+      
+      breadcrumbs.push({ name, url: currentPath });
+    }
+    
+    return breadcrumbs;
+  }
 </script>
 
 <svelte:head>
   <title>Structured Text Documentation - ControlForge Systems</title>
   <meta name="description" content="Complete documentation for IEC 61131-3 Structured Text programming language. Learn syntax, variables, control structures, and best practices." />
+  <CanonicalLink path={$page.url.pathname} />
+  <BreadcrumbSchema breadcrumbs={breadcrumbs} />
+  <SocialMeta 
+    title="Structured Text Documentation - ControlForge Systems"
+    description="Complete guide to IEC 61131-3 Structured Text for industrial automation. Master PLC programming with our comprehensive documentation."
+    url={$page.url.pathname}
+  />
 </svelte:head>
 
 <div class="flex min-h-screen">

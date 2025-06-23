@@ -1,5 +1,7 @@
 <!-- 50x Server Error Page -->
 <script lang="ts">
+  import CanonicalLink from '$lib/components/CanonicalLink.svelte';
+  
   const errorDetails = {
     status: '50x',
     title: 'Server Error',
@@ -11,6 +13,7 @@
 <svelte:head>
   <title>Server Error - ControlForge Systems</title>
   <meta name="robots" content="noindex" />
+  <CanonicalLink path="/50x" />
 </svelte:head>
 
 <main class="flex flex-col items-center justify-center min-h-screen px-4">

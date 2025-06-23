@@ -1,10 +1,12 @@
 <script>
+  import CanonicalLink from "$lib/components/CanonicalLink.svelte";
   import CodeExample from '$lib/components/CodeExample.svelte';
 </script>
 
 <svelte:head>
   <title>Functions & Function Blocks - Structured Text Documentation</title>
   <meta name="description" content="Learn how to create and use functions and function blocks in IEC 61131-3 Structured Text. Master modular programming for industrial automation." />
+  <CanonicalLink path="/docs/functions" />
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">

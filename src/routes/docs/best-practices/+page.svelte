@@ -1,10 +1,12 @@
 <script>
+  import CanonicalLink from "$lib/components/CanonicalLink.svelte";
   import CodeExample from '$lib/components/CodeExample.svelte';
 </script>
 
 <svelte:head>
   <title>Best Practices - Structured Text Documentation</title>
   <meta name="description" content="Learn best practices for writing clean, maintainable, and efficient IEC 61131-3 Structured Text code. Professional coding standards for industrial automation." />
+  <CanonicalLink path="/docs/best-practices" />
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">

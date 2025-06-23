@@ -1,10 +1,12 @@
 <script>
+  import CanonicalLink from "$lib/components/CanonicalLink.svelte";
   import CodeExample from '$lib/components/CodeExample.svelte';
 </script>
 
 <svelte:head>
   <title>Structured Text Syntax Basics - ControlForge Documentation</title>
   <meta name="description" content="Learn the fundamental syntax rules of IEC 61131-3 Structured Text including statements, comments, blocks, and formatting conventions." />
+  <CanonicalLink path="/docs/syntax" />
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">
