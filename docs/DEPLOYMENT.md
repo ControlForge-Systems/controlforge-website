@@ -19,7 +19,7 @@
 # 1. Validate everything
 pnpm validate
 
-# 2. Deploy to production  
+# 2. Deploy to production
 pnpm prod:deploy
 ```
 
@@ -28,13 +28,14 @@ pnpm prod:deploy
 ## 📋 Deployment Process
 
 ### 1. Development Validation
+
 ```bash
 # Test locally
 pnpm dev
 
 # Code quality checks
 pnpm check        # TypeScript checking
-pnpm lint         # ESLint validation  
+pnpm lint         # ESLint validation
 pnpm format       # Prettier formatting
 
 # Build validation
@@ -43,6 +44,7 @@ pnpm preview      # Test production build locally
 ```
 
 ### 2. Pre-Deployment Validation
+
 ```bash
 # Run comprehensive validation
 pnpm validate
@@ -55,18 +57,21 @@ pnpm validate
 ```
 
 ### 3. Production Deployment
+
 ```bash
 # Deploy with automatic build and transfer
 pnpm prod:deploy
 ```
 
 **This command:**
+
 1. Builds optimized production bundle
 2. Transfers files to server via rsync
 3. Restarts Docker service
 4. Verifies deployment
 
 ### 4. Post-Deployment Verification
+
 ```bash
 # Verify site is live
 curl -I https://controlforge.dev
@@ -83,11 +88,13 @@ curl -I https://controlforge.dev
 ## 🔧 Deployment Configuration
 
 ### Files Deployed
+
 - `build/` - Static site files
-- `prod.compose.yml` - Docker configuration  
+- `prod.compose.yml` - Docker configuration
 - `nginx/` - Nginx configuration
 
 ### Infrastructure
+
 - **Server**: Docker + Nginx
 - **SSL**: Automatic HTTPS
 - **Deployment**: Rsync file transfer
@@ -97,12 +104,14 @@ curl -I https://controlforge.dev
 ## 🔄 Rollback Procedures
 
 ### Service Issues
+
 ```bash
 # Restart current service
-ssh homelab 'cd ~/ssd-2tb/apps/controlforge-website && docker compose -f prod.compose.yml restart'
+ssh homelab 'cd ~/ssd-2tb/apps/michael/controlforge-website && docker compose -f prod.compose.yml restart'
 ```
 
 ### Code Issues
+
 ```bash
 # 1. Checkout previous working commit
 git checkout <previous-commit-hash>
@@ -119,6 +128,7 @@ git checkout main
 ## 📊 Monitoring
 
 ### Health Checks
+
 ```bash
 # Site availability
 curl -f https://controlforge.dev
@@ -128,6 +138,7 @@ ssh homelab 'docker ps | grep controlforge-website'
 ```
 
 ### Manual Verification
+
 - [ ] Homepage loads without errors
 - [ ] VS Code demo functions properly
 - [ ] Documentation pages accessible
@@ -137,4 +148,4 @@ ssh homelab 'docker ps | grep controlforge-website'
 
 ---
 
-*Follow this guide for all production deployments. Always complete the production checklist before deploying.*
+_Follow this guide for all production deployments. Always complete the production checklist before deploying._
