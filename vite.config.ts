@@ -59,8 +59,10 @@ export default defineConfig({
 				warn(warning);
 			}
 		},
-		// Increase chunk size warning limit to 1MB for Monaco Editor
-		chunkSizeWarningLimit: 1000,
+		// Monaco Editor chunk is ~3.8MB unminified (958KB gzipped)
+		// It's lazy-loaded only when VSCodeDemo renders, so large size is acceptable
+		// Set threshold to 4MB to suppress warning while catching other issues
+		chunkSizeWarningLimit: 4000,
 		// Use Terser for better compression in production
 		minify: 'terser',
 		terserOptions: {
