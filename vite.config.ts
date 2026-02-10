@@ -14,11 +14,7 @@ export default defineConfig({
     exclude: ['monaco-editor']
   },
   define: {
-    global: 'globalThis',
-    // Remove development code in production
-    'import.meta.env.DEV': false,
-    // Disable Monaco Editor features at build time
-    'process.env.NODE_ENV': '"production"'
+    global: 'globalThis'
   },
   server: {
     fs: {
@@ -77,9 +73,11 @@ export default defineConfig({
     minify: 'terser',
     terserOptions: {
       compress: {
-        drop_console: true,
-        drop_debugger: true,
-        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn'],
+        drop_console: process.env.NODE_ENV === 'production',
+        drop_debugger: process.env.NODE_ENV === 'production',
+        pure_funcs: process.env.NODE_ENV === 'production' 
+          ? ['console.log', 'console.info', 'console.debug', 'console.warn']
+          : [],
       },
       mangle: {
         safari10: true,

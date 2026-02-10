@@ -5,13 +5,12 @@ Official website for ControlForge Systems - Bringing Industrial Control Programm
 ![Deploy Status](https://img.shields.io/github/deployments/ControlForge-Systems/controlforge-website/production?label=deploy)
 ![License](https://img.shields.io/github/license/ControlForge-Systems/controlforge-website)
 
-## � Documentation
+## 📚 Documentation
 
 **All project documentation is located in the [`/docs/`](./docs/) folder.**
 
 - **[Documentation Index](./docs/README.md)** - Complete overview of all documentation
 - **[Styling Guide](./docs/STYLING_GUIDE.md)** - Brand guidelines and component patterns ⭐
-- **[Copilot Context](./COPILOT_CONTEXT.md)** - Quick reference for GitHub Copilot
 
 ## �🚀 Quick Start
 

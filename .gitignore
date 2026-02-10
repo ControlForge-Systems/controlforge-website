@@ -65,3 +65,7 @@ coverage/
 *.bak
 *~
 *.orig
+
+# Testing artifacts
+localhost_*.html
+*.lighthouse.html
