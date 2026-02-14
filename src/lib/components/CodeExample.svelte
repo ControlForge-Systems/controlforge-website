@@ -6,15 +6,17 @@
 	import { browser } from '$app/environment';
 	import structuredTextGrammar from '$lib/grammars/structured-text.tmLanguage.json';
 
-	export let code: string = '';
-	export let title: string = '';
-	export let height: string = '300px';
-	export let readonly: boolean = true;
+	let {
+		code = '',
+		title = '',
+		height = '300px',
+		readonly = true
+	}: { code?: string; title?: string; height?: string; readonly?: boolean } = $props();
 
-	let highlightedHtml: string = '';
-	let isLoading: boolean = true;
-	let error: string | null = null;
-	let highlighter: any = null;
+	let highlightedHtml: string = $state('');
+	let isLoading: boolean = $state(true);
+	let error: string | null = $state(null);
+	let highlighter: any = $state(null);
 
 	// Initialize highlighter once
 	onMount(async () => {
@@ -42,16 +44,18 @@
 	});
 
 	// Re-highlight when code changes
-	$: if (browser && highlighter && code) {
-		try {
-			highlightedHtml = highlighter.codeToHtml(code, {
-				lang: 'Structured Text',
-				theme: 'github-light'
-			});
-		} catch (err) {
-			console.error('CodeExample re-highlight error:', err);
+	$effect(() => {
+		if (browser && highlighter && code) {
+			try {
+				highlightedHtml = highlighter.codeToHtml(code, {
+					lang: 'Structured Text',
+					theme: 'github-light'
+				});
+			} catch (err) {
+				console.error('CodeExample re-highlight error:', err);
+			}
 		}
-	}
+	});
 </script>
 
 {#if title}

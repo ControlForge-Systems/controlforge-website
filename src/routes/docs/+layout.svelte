@@ -6,19 +6,24 @@
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import '../../app.css';
 	import { page } from '$app/stores';
+	import type { Snippet } from 'svelte';
 
-	let isSidebarOpen = false;
+	let { children }: { children: Snippet } = $props();
+
+	let isSidebarOpen = $state(false);
 
 	function closeSidebar() {
 		isSidebarOpen = false;
 	}
 
-	$: breadcrumbs = getBreadcrumbs($page.url.pathname);
-	$: breadcrumbItems = breadcrumbs.map((b, i) => ({
-		label: b.name,
-		href: i < breadcrumbs.length - 1 ? b.url : undefined,
-		current: i === breadcrumbs.length - 1
-	}));
+	let breadcrumbs = $derived(getBreadcrumbs($page.url.pathname));
+	let breadcrumbItems = $derived(
+		breadcrumbs.map((b, i) => ({
+			label: b.name,
+			href: i < breadcrumbs.length - 1 ? b.url : undefined,
+			current: i === breadcrumbs.length - 1
+		}))
+	);
 
 	function getBreadcrumbs(path: string) {
 		const parts = path.split('/').filter(Boolean);
@@ -59,8 +64,8 @@
 	{#if isSidebarOpen}
 		<div
 			class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
-			on:click={closeSidebar}
-			on:keydown={(e) => e.key === 'Escape' && closeSidebar()}
+			onclick={closeSidebar}
+			onkeydown={(e) => e.key === 'Escape' && closeSidebar()}
 			role="button"
 			tabindex="0"
 		></div>
@@ -78,7 +83,7 @@
 	<!-- Main content with proper margins -->
 	<main class="flex-1 p-4 md:p-8 max-w-4xl md:ml-0 {isSidebarOpen ? 'md:ml-64' : ''}">
 		<Breadcrumbs items={breadcrumbItems} />
-		<slot />
+		{@render children()}
 	</main>
 </div>
 

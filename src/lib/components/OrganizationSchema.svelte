@@ -2,11 +2,19 @@
 	/**
 	 * This component adds Organization schema for better company representation in search
 	 */
-	export let name: string = 'ControlForge Systems';
-	export let url: string = 'https://controlforge.dev';
-	export let logo: string = 'https://controlforge.dev/controlforge_logo_1024x1024.webp';
-	export let description: string = '';
-	export let email: string = 'hello@controlforge.dev';
+	let {
+		name = 'ControlForge Systems',
+		url = 'https://controlforge.dev',
+		logo = 'https://controlforge.dev/controlforge_logo_1024x1024.webp',
+		description = '',
+		email = 'hello@controlforge.dev'
+	}: {
+		name?: string;
+		url?: string;
+		logo?: string;
+		description?: string;
+		email?: string;
+	} = $props();
 </script>
 
 {@html `

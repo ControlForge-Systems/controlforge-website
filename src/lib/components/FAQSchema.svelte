@@ -1,23 +1,25 @@
 <script lang="ts">
-  /**
-   * This component adds FAQ structured data (JSON-LD) for better SEO
-   */
-  interface FAQ {
-    question: string;
-    answer: string;
-  }
-  
-  export let faqs: FAQ[] = [];
+	/**
+	 * This component adds FAQ structured data (JSON-LD) for better SEO
+	 */
+	interface FAQ {
+		question: string;
+		answer: string;
+	}
+
+	let { faqs = [] }: { faqs?: FAQ[] } = $props();
 </script>
 
 {#if faqs && faqs.length > 0}
-  {@html `
+	{@html `
   <script type="application/ld+json">
     {
       "@context": "https://schema.org",
       "@type": "FAQPage",
       "mainEntity": [
-        ${faqs.map((faq, i) => `
+        ${faqs
+					.map(
+						(faq, i) => `
           {
             "@type": "Question",
             "name": "${faq.question.replace(/"/g, '\\"')}",
@@ -26,7 +28,9 @@
               "text": "${faq.answer.replace(/"/g, '\\"')}"
             }
           }${i < faqs.length - 1 ? ',' : ''}
-        `).join('')}
+        `
+					)
+					.join('')}
       ]
     }
   </script>
