@@ -3,6 +3,7 @@
 	import { createOnigurumaEngine } from 'shiki/engine/oniguruma';
 	import githubLight from 'shiki/themes/github-light.mjs';
 	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
 	import structuredTextGrammar from '$lib/grammars/structured-text.tmLanguage.json';
 
 	export let code: string = '';
@@ -15,9 +16,17 @@
 	let error: string | null = null;
 	let highlighter: any = null;
 
+	console.log('[CodeExample] Script loaded, browser:', browser);
+
 	// Initialize highlighter once
 	onMount(async () => {
 		console.log('[CodeExample] onMount started, code length:', code.length);
+
+		if (!browser) {
+			console.log('[CodeExample] Not in browser, skipping');
+			return;
+		}
+
 		try {
 			console.log('[CodeExample] Creating highlighter...');
 
@@ -49,7 +58,8 @@
 	});
 
 	// Re-highlight when code changes
-	$: if (highlighter && code) {
+	$: if (browser && highlighter && code) {
+		console.log('[CodeExample] Reactive highlight triggered');
 		try {
 			highlightedHtml = highlighter.codeToHtml(code, {
 				lang: 'Structured Text',
