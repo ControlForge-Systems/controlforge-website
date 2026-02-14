@@ -16,9 +16,9 @@
 		dateModified?: string;
 	} = $props();
 
-	// Use current date if not provided (will be replaced by +page.ts with git dates)
-	const published = datePublished || new Date().toISOString();
-	const modified = dateModified || new Date().toISOString();
+	// Use current date if not provided
+	let published = $derived(datePublished || new Date().toISOString());
+	let modified = $derived(dateModified || new Date().toISOString());
 </script>
 
 {@html `
