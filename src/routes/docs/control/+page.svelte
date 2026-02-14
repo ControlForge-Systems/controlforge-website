@@ -1,41 +1,52 @@
 <script lang="ts">
-  import CodeExample from '$lib/components/CodeExample.svelte';
-  import CanonicalLink from '$lib/components/CanonicalLink.svelte';
+	import CodeExample from '$lib/components/CodeExample.svelte';
+	import CanonicalLink from '$lib/components/CanonicalLink.svelte';
+	import ArticleSchema from '$lib/components/ArticleSchema.svelte';
 </script>
 
 <svelte:head>
-  <title>Control Structures - Structured Text Documentation</title>
-  <meta name="description" content="Master control flow in IEC 61131-3 Structured Text with IF, CASE, FOR, WHILE, and REPEAT statements. Learn conditional logic and loops with practical examples." />
-  <CanonicalLink path="/docs/control" />
+	<title>Control Structures - Structured Text Documentation</title>
+	<meta
+		name="description"
+		content="Master control flow in IEC 61131-3 Structured Text with IF, CASE, FOR, WHILE, and REPEAT statements. Learn conditional logic and loops with practical examples."
+	/>
+	<CanonicalLink path="/docs/control" />
+	<ArticleSchema
+		headline="Control Structures"
+		description="Master control flow in IEC 61131-3 Structured Text with IF, CASE, FOR, WHILE, and REPEAT statements. Learn conditional logic and loops with practical examples."
+		url="/docs/control"
+	/>
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">
-  <h1 class="text-3xl font-bold text-gray-900 mb-6">Control Structures</h1>
-  
-  <p class="text-gray-700 mb-6">
-    Control structures enable conditional logic and loops for responsive automation programs.
-  </p>
+	<h1 class="text-3xl font-bold text-gray-900 mb-6">Control Structures</h1>
 
-  <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
-    <h3 class="text-lg font-semibold text-green-800 mb-3">🚀 Enhance Your Development Experience</h3>
-    <p class="text-green-700 text-sm mb-3">
-      Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
-    </p>
-    <a 
-      href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
-    >
-      Install VS Code Extension →
-    </a>
-  </div>
+	<p class="text-gray-700 mb-6">
+		Control structures enable conditional logic and loops for responsive automation programs.
+	</p>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">IF Statement</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`// Simple IF statement
+	<div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+		<h3 class="text-lg font-semibold text-green-800 mb-3">
+			🚀 Enhance Your Development Experience
+		</h3>
+		<p class="text-green-700 text-sm mb-3">
+			Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
+		</p>
+		<a
+			href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+		>
+			Install VS Code Extension →
+		</a>
+	</div>
+
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">IF Statement</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`// Simple IF statement
 IF Temperature > 80.0 THEN
     CoolingFan := TRUE;
     OverheatAlarm := TRUE;
@@ -59,15 +70,15 @@ ELSE
     CoolingFan := FALSE;
     AlarmLevel := 0;
 END_IF;`}
-      height="400px"
-    />
-  </div>
+			height="400px"
+		/>
+	</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">CASE Statement</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`CASE ErrorCode OF
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">CASE Statement</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`CASE ErrorCode OF
     0:      // No error
         ErrorMessage := 'System OK';
         AlarmActive := FALSE;
@@ -86,15 +97,15 @@ ELSE
     ErrorMessage := 'Unknown error';
     AlarmActive := TRUE;
 END_CASE;`}
-      height="400px"
-    />
-  </div>
+			height="400px"
+		/>
+	</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">FOR Loop</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`VAR
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">FOR Loop</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`VAR
     I : INT;
     SensorValues : ARRAY[1..10] OF REAL;
     Sum : REAL := 0.0;
@@ -114,15 +125,15 @@ END_FOR;
 FOR I := 10 TO 1 BY -1 DO
     ShutdownSequence[I] := TRUE;
 END_FOR;`}
-      height="400px"
-    />
-  </div>
+			height="400px"
+		/>
+	</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">WHILE Loop</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`VAR
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">WHILE Loop</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`VAR
     Position : REAL;
     Target : REAL := 100.0;
     Speed : REAL := 5.0;
@@ -144,15 +155,15 @@ WHILE NOT QueueEmpty DO
     Item := GetNextItem();
     ProcessItem(Item);
 END_WHILE;`}
-      height="400px"
-    />
-  </div>
+			height="400px"
+		/>
+	</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">REPEAT Loop</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`VAR
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">REPEAT Loop</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`VAR
     Position : REAL;
     Attempts : INT := 0;
     MaxAttempts : INT := 5;
@@ -174,15 +185,15 @@ REPEAT
     Success := TryOperation();
     RetryCount := RetryCount + 1;
 UNTIL Success OR (RetryCount >= 3) END_REPEAT;`}
-      height="350px"
-    />
-  </div>
+			height="350px"
+		/>
+	</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Loop Control</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`// EXIT - immediately exit the loop
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Loop Control</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`// EXIT - immediately exit the loop
 FOR I := 1 TO 100 DO
     IF ErrorCondition THEN
         EXIT;  // Jump out of loop
@@ -202,19 +213,25 @@ END_FOR;
 IF CriticalError THEN
     RETURN;  // Exit immediately
 END_IF;`}
-      height="400px"
-    />
-  </div>
+			height="400px"
+		/>
+	</div>
 
-  <div class="bg-green-50 border border-green-200 rounded-lg p-6">
-    <h3 class="text-lg font-semibold text-green-800 mb-3">🚀 Next Steps</h3>
-    <div class="space-y-2">
-      <a href="/docs/functions" class="block text-sm text-brand-blue hover:text-blue-800 transition-colors">
-        → User-Defined Functions and Function Blocks
-      </a>
-      <a href="/docs/standard-function-blocks" class="block text-sm text-brand-blue hover:text-blue-800 transition-colors">
-        → Standard Function Blocks (Timers, Counters)
-      </a>
-    </div>
-  </div>
+	<div class="bg-green-50 border border-green-200 rounded-lg p-6">
+		<h3 class="text-lg font-semibold text-green-800 mb-3">🚀 Next Steps</h3>
+		<div class="space-y-2">
+			<a
+				href="/docs/functions"
+				class="block text-sm text-brand-blue hover:text-blue-800 transition-colors"
+			>
+				→ User-Defined Functions and Function Blocks
+			</a>
+			<a
+				href="/docs/standard-function-blocks"
+				class="block text-sm text-brand-blue hover:text-blue-800 transition-colors"
+			>
+				→ Standard Function Blocks (Timers, Counters)
+			</a>
+		</div>
+	</div>
 </article>

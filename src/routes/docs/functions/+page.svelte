@@ -1,41 +1,52 @@
 <script>
-  import CanonicalLink from "$lib/components/CanonicalLink.svelte";
-  import CodeExample from '$lib/components/CodeExample.svelte';
+	import CanonicalLink from '$lib/components/CanonicalLink.svelte';
+	import ArticleSchema from '$lib/components/ArticleSchema.svelte';
+	import CodeExample from '$lib/components/CodeExample.svelte';
 </script>
 
 <svelte:head>
-  <title>Functions & Function Blocks - Structured Text Documentation</title>
-  <meta name="description" content="Learn how to create and use functions and function blocks in IEC 61131-3 Structured Text. Master modular programming for industrial automation." />
-  <CanonicalLink path="/docs/functions" />
+	<title>Functions & Function Blocks - Structured Text Documentation</title>
+	<meta
+		name="description"
+		content="Learn how to create and use functions and function blocks in IEC 61131-3 Structured Text. Master modular programming for industrial automation."
+	/>
+	<CanonicalLink path="/docs/functions" />
+	<ArticleSchema
+		headline="Functions & Function Blocks"
+		description="Learn how to create and use functions and function blocks in IEC 61131-3 Structured Text. Master modular programming for industrial automation."
+		url="/docs/functions"
+	/>
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">
-  <h1 class="text-3xl font-bold text-gray-900 mb-6">Functions & Function Blocks</h1>
-  
-  <p class="text-gray-700 mb-6">
-    Modular programming with functions and function blocks for code reuse and maintainability.
-  </p>
+	<h1 class="text-3xl font-bold text-gray-900 mb-6">Functions & Function Blocks</h1>
 
-  <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
-    <h3 class="text-lg font-semibold text-green-800 mb-3">🚀 Enhance Your Development Experience</h3>
-    <p class="text-green-700 text-sm mb-3">
-      Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
-    </p>
-    <a 
-      href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
-    >
-      Install VS Code Extension →
-    </a>
-  </div>
+	<p class="text-gray-700 mb-6">
+		Modular programming with functions and function blocks for code reuse and maintainability.
+	</p>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Functions</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`// Function definition
+	<div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+		<h3 class="text-lg font-semibold text-green-800 mb-3">
+			🚀 Enhance Your Development Experience
+		</h3>
+		<p class="text-green-700 text-sm mb-3">
+			Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
+		</p>
+		<a
+			href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+		>
+			Install VS Code Extension →
+		</a>
+	</div>
+
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Functions</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`// Function definition
 FUNCTION CalculateArea : REAL
 VAR_INPUT
     Length : REAL;
@@ -70,15 +81,15 @@ END_VAR
 
 RoomArea := CalculateArea(Length := 12.5, Width := 8.0);
 TempC := ConvertTemperature(75.0, 'F', 'C');`}
-      height="500px"
-    />
-  </div>
+			height="500px"
+		/>
+	</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Function Blocks</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`// Function block definition
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Function Blocks</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`// Function block definition
 FUNCTION_BLOCK MotorController
 VAR_INPUT
     Start : BOOL;
@@ -127,15 +138,15 @@ Motor2(Start := StartButton2, Stop := StopButton2, Speed := SpeedSetpoint2);
 // Use outputs
 Conveyor1Running := Motor1.Running;
 Conveyor2Running := Motor2.Running;`}
-      height="600px"
-    />
-  </div>
+			height="600px"
+		/>
+	</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Variable Declarations</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`FUNCTION_BLOCK AdvancedController
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Variable Declarations</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`FUNCTION_BLOCK AdvancedController
 VAR_INPUT
     Enable : BOOL;          // Input from external source
     Setpoint : REAL;        // Target value
@@ -166,15 +177,15 @@ ELSE
 END_IF;
 
 END_FUNCTION_BLOCK`}
-      height="500px"
-    />
-  </div>
+			height="500px"
+		/>
+	</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Practical Example</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`// Complete example: Tank level controller
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Practical Example</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`// Complete example: Tank level controller
 FUNCTION_BLOCK TankController
 VAR_INPUT
     LevelSensor : REAL;     // Tank level 0-100%
@@ -227,19 +238,25 @@ Tank1(LevelSensor := AnalogInput1,
 Tank2(LevelSensor := AnalogInput2, 
       FillEnable := AutoMode, 
       EmptyEnable := AutoMode);`}
-      height="600px"
-    />
-  </div>
+			height="600px"
+		/>
+	</div>
 
-  <div class="bg-green-50 border border-green-200 rounded-lg p-6">
-    <h3 class="text-lg font-semibold text-green-800 mb-3">🚀 Next Steps</h3>
-    <div class="space-y-2">
-      <a href="/docs/standard-function-blocks" class="block text-sm text-brand-blue hover:text-blue-800 transition-colors">
-        → Standard Function Blocks (Timers, Counters)
-      </a>
-      <a href="/docs/best-practices" class="block text-sm text-brand-blue hover:text-blue-800 transition-colors">
-        → Best Practices for Professional Development
-      </a>
-    </div>
-  </div>
+	<div class="bg-green-50 border border-green-200 rounded-lg p-6">
+		<h3 class="text-lg font-semibold text-green-800 mb-3">🚀 Next Steps</h3>
+		<div class="space-y-2">
+			<a
+				href="/docs/standard-function-blocks"
+				class="block text-sm text-brand-blue hover:text-blue-800 transition-colors"
+			>
+				→ Standard Function Blocks (Timers, Counters)
+			</a>
+			<a
+				href="/docs/best-practices"
+				class="block text-sm text-brand-blue hover:text-blue-800 transition-colors"
+			>
+				→ Best Practices for Professional Development
+			</a>
+		</div>
+	</div>
 </article>
