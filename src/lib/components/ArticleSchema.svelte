@@ -19,36 +19,32 @@
 		dateModified?: string;
 	} = $props();
 
-	// Create schema object - values are constant per page
-	function createSchema() {
-		return {
-			'@context': 'https://schema.org',
-			'@type': 'TechArticle',
-			headline,
-			description,
-			author: {
-				'@type': 'Organization',
-				name: 'ControlForge Systems',
-				url: 'https://controlforge.dev'
-			},
-			publisher: {
-				'@type': 'Organization',
-				name: 'ControlForge Systems',
-				logo: {
-					'@type': 'ImageObject',
-					url: 'https://controlforge.dev/controlforge_logo_1024x1024.webp'
-				}
-			},
-			datePublished,
-			dateModified,
-			mainEntityOfPage: {
-				'@type': 'WebPage',
-				'@id': `https://controlforge.dev${url}`
+	// Use $derived to create schema reactively (eliminates state_referenced_locally warnings)
+	const schema = $derived({
+		'@context': 'https://schema.org',
+		'@type': 'TechArticle',
+		headline,
+		description,
+		author: {
+			'@type': 'Organization',
+			name: 'ControlForge Systems',
+			url: 'https://controlforge.dev'
+		},
+		publisher: {
+			'@type': 'Organization',
+			name: 'ControlForge Systems',
+			logo: {
+				'@type': 'ImageObject',
+				url: 'https://controlforge.dev/controlforge_logo_1024x1024.webp'
 			}
-		};
-	}
-
-	const schema = createSchema();
+		},
+		datePublished,
+		dateModified,
+		mainEntityOfPage: {
+			'@type': 'WebPage',
+			'@id': `https://controlforge.dev${url}`
+		}
+	});
 
 	// Inject schema into head on mount (client-side only)
 	onMount(() => {
