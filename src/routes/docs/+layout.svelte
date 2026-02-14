@@ -65,9 +65,15 @@
 		<div
 			class="md:hidden fixed inset-0 bg-black bg-opacity-50 z-40"
 			onclick={closeSidebar}
-			onkeydown={(e) => e.key === 'Escape' && closeSidebar()}
+			onkeydown={(e) => {
+				if (e.key === 'Escape' || e.key === 'Enter' || e.key === ' ') {
+					e.preventDefault();
+					closeSidebar();
+				}
+			}}
 			role="button"
 			tabindex="0"
+			aria-label="Close sidebar"
 		></div>
 	{/if}
 
