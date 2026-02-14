@@ -33,7 +33,7 @@
 			Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
 		</p>
 		<a
-			href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+			href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
 			target="_blank"
 			rel="noopener noreferrer"
 			class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
@@ -81,7 +81,6 @@ END_VAR
 
 RoomArea := CalculateArea(Length := 12.5, Width := 8.0);
 TempC := ConvertTemperature(75.0, 'F', 'C');`}
-			height="500px"
 		/>
 	</div>
 
@@ -138,7 +137,6 @@ Motor2(Start := StartButton2, Stop := StopButton2, Speed := SpeedSetpoint2);
 // Use outputs
 Conveyor1Running := Motor1.Running;
 Conveyor2Running := Motor2.Running;`}
-			height="600px"
 		/>
 	</div>
 
@@ -177,7 +175,6 @@ ELSE
 END_IF;
 
 END_FUNCTION_BLOCK`}
-			height="500px"
 		/>
 	</div>
 
@@ -238,7 +235,6 @@ Tank1(LevelSensor := AnalogInput1,
 Tank2(LevelSensor := AnalogInput2, 
       FillEnable := AutoMode, 
       EmptyEnable := AutoMode);`}
-			height="600px"
 		/>
 	</div>
 

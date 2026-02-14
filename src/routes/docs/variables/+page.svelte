@@ -34,7 +34,7 @@
 			Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
 		</p>
 		<a
-			href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+			href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
 			target="_blank"
 			rel="noopener noreferrer"
 			class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
@@ -56,7 +56,6 @@
     AnotherVariable : DataType := InitialValue;
 END_VAR`}
 			title="Variable Declaration Syntax"
-			height="90px"
 		/>
 	</div>
 
@@ -71,7 +70,6 @@ END_VAR`}
     StartButton : BOOL;
     SafetyOK : BOOL := TRUE;
 END_VAR`}
-				height="110px"
 			/>
 			<p class="text-sm text-gray-600 mt-3">
 				<strong>Values:</strong> TRUE, FALSE<br />
@@ -89,7 +87,6 @@ END_VAR`}
     SmallValue : SINT := -50;
     PositiveOnly : UINT := 65000;
 END_VAR`}
-				height="120px"
 			/>
 			<div class="text-sm text-gray-600 mt-3">
 				<div><strong>SINT:</strong> -128 to 127 (8-bit)</div>
@@ -107,7 +104,6 @@ END_VAR`}
     PreciseValue : LREAL := 3.14159265359;
     Percentage : REAL := 75.0;
 END_VAR`}
-				height="100px"
 			/>
 			<div class="text-sm text-gray-600 mt-3">
 				<div><strong>REAL:</strong> 32-bit floating point</div>
@@ -124,7 +120,6 @@ END_VAR`}
     PartNumber : STRING(20) := 'ABC-123';
     ErrorText : STRING(100);
 END_VAR`}
-				height="110px"
 			/>
 			<div class="text-sm text-gray-600 mt-3">
 				<div><strong>STRING:</strong> Variable-length text</div>
@@ -148,7 +143,6 @@ END_VAR`}
     StartTime : TIME_OF_DAY := TOD#08:30:00;
 END_VAR`}
 			title="Time Data Types"
-			height="200px"
 		/>
 	</div>
 
@@ -179,7 +173,6 @@ END_VAR`}
     AlarmActive : BOOL := FALSE;
     ErrorCount : INT := 0;
 END_VAR`}
-				height="180px"
 			/>
 		</div>
 
@@ -194,7 +187,6 @@ END_VAR`}
     Status : BOOL;
     Speed : REAL;
 END_VAR`}
-				height="180px"
 			/>
 		</div>
 	</div>
@@ -223,7 +215,6 @@ Temperatures[1] := 25.5;
 InputStates[0] := TRUE;
 Matrix[2,3] := 42;`}
 			title="Array Declaration and Usage"
-			height="300px"
 		/>
 	</div>
 
@@ -258,13 +249,12 @@ IF Motor1.Temperature > 80.0 THEN
     Motor1.IsRunning := FALSE;
 END_IF;`}
 			title="Structure Definition and Usage"
-			height="400px"
 		/>
 	</div>
 
 	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Variable Scope and Storage Classes</h2>
 
-	<div class="bg-white border border-gray-200 rounded-lg p-6 mb-6">
+	<div class="bg-white border border-gray-200 rounded-lg p-6 mb-6 overflow-x-auto">
 		<table class="w-full text-sm">
 			<thead>
 				<tr class="border-b">
@@ -323,7 +313,6 @@ VAR_RETAIN
     LastStopTime : DATE_AND_TIME;   // Local but retained
 END_VAR`}
 			title="Variable Scopes Example"
-			height="280px"
 		/>
 	</div>
 
@@ -354,7 +343,6 @@ IntValue := STRING_TO_INT('123');       // '123' → 123
 BoolValue := INT_TO_BOOL(1);            // 1 → TRUE
 IntValue := BOOL_TO_INT(TRUE);          // TRUE → 1`}
 			title="Type Conversion Examples"
-			height="300px"
 		/>
 	</div>
 
@@ -393,7 +381,6 @@ bStartButton : BOOL;    // Boolean
 iCounter : INT;         // Integer  
 rTemperature : REAL;    // Real
 sPartNumber : STRING;   // String`}
-				height="200px"
 			/>
 		</div>
 
@@ -410,7 +397,6 @@ VAR
     MaxTemp : REAL := 100.0;
     MinTemp : REAL := -10.0;
 END_VAR`}
-				height="200px"
 			/>
 		</div>
 	</div>

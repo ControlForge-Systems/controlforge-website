@@ -7,7 +7,7 @@
 		url = 'https://controlforge.dev',
 		logo = 'https://controlforge.dev/controlforge_logo_1024x1024.webp',
 		description = '',
-		email = 'hello@controlforge.dev'
+		email = 'contact@controlforge.dev'
 	}: {
 		name?: string;
 		url?: string;

@@ -34,7 +34,7 @@
 			Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
 		</p>
 		<a
-			href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+			href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
 			target="_blank"
 			rel="noopener noreferrer"
 			class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
@@ -85,7 +85,6 @@ PulseTimer(
 );
 PulseOutput := PulseTimer.Q;`}
 			title="Timer Function Blocks (TON, TOF, TP)"
-			height="600px"
 		/>
 	</div>
 
@@ -177,7 +176,6 @@ UpDownCounter(
 TotalParts := UpDownCounter.CV;   // Current value
 // QU = TRUE when CV >= PV, QD = TRUE when CV <= 0`}
 			title="Counter Function Blocks (CTU, CTD, CTUD)"
-			height="700px"
 		/>
 	</div>
 
@@ -267,7 +265,6 @@ IF StopButton OR EmergencyPulse THEN
     END_IF;
 END_IF;`}
 			title="Edge Detection Function Blocks (R_TRIG, F_TRIG)"
-			height="550px"
 		/>
 	</div>
 
@@ -347,7 +344,6 @@ AlarmLatch := AlarmRS.Q1;
 // Combined logic
 AlarmAcknowledged := AckButton AND AlarmLatch;`}
 			title="Bistable Function Blocks (RS, SR)"
-			height="650px"
 		/>
 	</div>
 
@@ -453,7 +449,6 @@ AlarmBuzzer := EStopEdge.Q OR PartCounter.Q;
 
 END_PROGRAM`}
 			title="Complete Conveyor Control Example"
-			height="800px"
 		/>
 	</div>
 

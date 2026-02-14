@@ -35,7 +35,7 @@
 			Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
 		</p>
 		<a
-			href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+			href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
 			target="_blank"
 			rel="noopener noreferrer"
 			class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
@@ -62,7 +62,6 @@ IsRunning := TRUE;
 // Function calls
 Result := MyFunction(Input1, Input2);
 Timer1(IN := StartSignal, PT := T#5s);`}
-			height="170px"
 		/>
 	</div>
 
@@ -94,7 +93,6 @@ IF EmergencyStop THEN
     MotorEnabled := FALSE;      // Immediate stop
     AlarmActive := TRUE;        // Trigger alarm
 END_IF;`}
-				height="240px"
 			/>
 		</div>
 
@@ -122,7 +120,6 @@ IF Pressure > MaxPressure THEN
     EmergencyShutdown := TRUE;
 END_IF;
 *)`}
-				height="350px"
 			/>
 		</div>
 	</div>
@@ -183,7 +180,6 @@ ELSE
     ErrorHandler();
 END_CASE;`}
 			title="Control Block Structures"
-			height="380px"
 		/>
 	</div>
 
@@ -192,7 +188,7 @@ END_CASE;`}
 	<div class="mb-6">
 		<div class="mb-6">
 			<h3 class="text-lg font-semibold text-gray-800 mb-3">Arithmetic Operators</h3>
-			<div class="bg-white border border-gray-200 rounded-lg p-4">
+			<div class="bg-white border border-gray-200 rounded-lg p-4 overflow-x-auto">
 				<table class="w-full text-sm">
 					<thead>
 						<tr class="border-b">
@@ -214,7 +210,7 @@ END_CASE;`}
 
 		<div>
 			<h3 class="text-lg font-semibold text-gray-800 mb-3">Comparison Operators</h3>
-			<div class="bg-white border border-gray-200 rounded-lg p-4">
+			<div class="bg-white border border-gray-200 rounded-lg p-4 overflow-x-auto">
 				<table class="w-full text-sm">
 					<thead>
 						<tr class="border-b">
@@ -245,7 +241,6 @@ SafetyOK := NOT EmergencyStop;
 
 // Complex expressions with precedence
 Result := (A AND B) OR (C AND NOT D);`}
-			height="160px"
 		/>
 	</div>
 
@@ -273,7 +268,6 @@ Temperature := SensorReading;
 IF Counter = 10 THEN
     // Do something
 END_IF;`}
-			height="160px"
 		/>
 	</div>
 
@@ -295,7 +289,6 @@ MyVariable := 10;
 myvariable := 10;  // Same variable
 MYVARIABLE := 10;  // Same variable`}
 			title="Case Insensitivity Examples"
-			height="200px"
 		/>
 	</div>
 
@@ -311,7 +304,6 @@ MYVARIABLE := 10;  // Same variable`}
 			<CodeExample
 				code={`if a>10 then b:=20;c:=30;end_if;
 for i:=1 to 100 do sum:=sum+i;end_for;`}
-				height="80px"
 			/>
 		</div>
 
@@ -326,7 +318,6 @@ END_IF;
 FOR I := 1 TO 100 DO
     Sum := Sum + I;
 END_FOR;`}
-				height="180px"
 			/>
 		</div>
 	</div>
@@ -365,7 +356,6 @@ IF EmergencyStop THEN
     AllOutputs := FALSE;
 END_IF;`}
 			title="Typical Program Structure"
-			height="480px"
 		/>
 	</div>
 

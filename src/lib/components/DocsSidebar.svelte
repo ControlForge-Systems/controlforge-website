@@ -50,7 +50,7 @@
     <h3 class="text-sm font-medium text-gray-500 mb-3">Quick Links</h3>
     <div class="space-y-2">
       <a
-        href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+        href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
         target="_blank"
         rel="noopener noreferrer"
         class="block text-xs text-brand-blue hover:text-blue-800 transition-colors"

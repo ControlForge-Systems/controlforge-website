@@ -33,7 +33,7 @@
 			Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
 		</p>
 		<a
-			href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+			href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
 			target="_blank"
 			rel="noopener noreferrer"
 			class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
@@ -70,7 +70,6 @@ ELSE
     CoolingFan := FALSE;
     AlarmLevel := 0;
 END_IF;`}
-			height="400px"
 		/>
 	</div>
 
@@ -97,7 +96,6 @@ ELSE
     ErrorMessage := 'Unknown error';
     AlarmActive := TRUE;
 END_CASE;`}
-			height="400px"
 		/>
 	</div>
 
@@ -125,7 +123,6 @@ END_FOR;
 FOR I := 10 TO 1 BY -1 DO
     ShutdownSequence[I] := TRUE;
 END_FOR;`}
-			height="400px"
 		/>
 	</div>
 
@@ -155,7 +152,6 @@ WHILE NOT QueueEmpty DO
     Item := GetNextItem();
     ProcessItem(Item);
 END_WHILE;`}
-			height="400px"
 		/>
 	</div>
 
@@ -185,7 +181,6 @@ REPEAT
     Success := TryOperation();
     RetryCount := RetryCount + 1;
 UNTIL Success OR (RetryCount >= 3) END_REPEAT;`}
-			height="350px"
 		/>
 	</div>
 
@@ -213,7 +208,6 @@ END_FOR;
 IF CriticalError THEN
     RETURN;  // Exit immediately
 END_IF;`}
-			height="400px"
 		/>
 	</div>
 

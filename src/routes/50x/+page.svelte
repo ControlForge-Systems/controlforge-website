@@ -88,7 +88,7 @@
 			<p class="text-sm text-gray-500 mb-2">Still having trouble? We're here to help.</p>
 			<div class="flex flex-col sm:flex-row gap-4 justify-center text-sm">
 				<a
-					href="mailto:hello@controlforge.dev"
+					href="mailto:contact@controlforge.dev"
 					class="text-blue-600 hover:text-blue-800 hover:underline inline-flex items-center"
 				>
 					<svg
@@ -105,7 +105,7 @@
 							d="M3 8l7.89 7.89a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"
 						/>
 					</svg>
-					hello@controlforge.dev
+					contact@controlforge.dev
 				</a>
 				<span class="text-gray-400">|</span>
 				<span class="text-gray-500">

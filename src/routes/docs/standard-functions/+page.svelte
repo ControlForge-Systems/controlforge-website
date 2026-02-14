@@ -35,7 +35,7 @@
 			Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
 		</p>
 		<a
-			href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+			href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
 			target="_blank"
 			rel="noopener noreferrer"
 			class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
@@ -86,7 +86,6 @@ ConvertedBool := STRING_TO_BOOL('TRUE');     // 'TRUE' → TRUE
 ConvertedLReal := DINT_TO_LREAL(DIntVal);    // 32-bit to 64-bit real
 ConvertedWord := INT_TO_WORD(IntVal);        // Reinterpret as bit string`}
 			title="Type Conversion Functions"
-			height="600px"
 		/>
 	</div>
 
@@ -150,7 +149,6 @@ LogResults := EXPT(2.0, 3.0);          // 2³ = 8.0
 // Modulo operation
 RoundResults := MOD(17, 5);             // 17 mod 5 = 2`}
 			title="Mathematical Functions"
-			height="650px"
 		/>
 	</div>
 
@@ -235,7 +233,6 @@ IF SourceString = 'Hello World Programming' THEN
     // Strings match exactly
 END_IF;`}
 			title="String Manipulation Functions"
-			height="700px"
 		/>
 	</div>
 
@@ -335,7 +332,6 @@ END_VAR
 CurrentTime := GetCurrentTOD();  // System function
 InShift := (CurrentTime >= ShiftStart) AND (CurrentTime <= ShiftEnd);`}
 			title="Date and Time Functions"
-			height="700px"
 		/>
 	</div>
 
@@ -433,7 +429,6 @@ END_IF;
 
 END_FUNCTION`}
 			title="Practical Applications of Standard Functions"
-			height="600px"
 		/>
 	</div>
 

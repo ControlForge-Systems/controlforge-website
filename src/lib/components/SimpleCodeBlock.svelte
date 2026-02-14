@@ -1,9 +1,5 @@
 <script lang="ts">
-	let {
-		code = '',
-		title = '',
-		height = '300px'
-	}: { code?: string; title?: string; height?: string } = $props();
+	let { code = '', title = '' }: { code?: string; title?: string } = $props();
 
 	// Simple syntax highlighting for Structured Text without Monaco Editor
 	function highlightCode(code: string): string {
@@ -55,14 +51,13 @@
 {/if}
 
 <div class="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm">
-	<div class="code-container" style="height: {height};">
+	<div class="code-container">
 		<pre class="code-pre"><code class="code-content">{@html highlightedCode}</code></pre>
 	</div>
 </div>
 
 <style>
 	.code-container {
-		overflow: auto;
 		background: #fafafa;
 		font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
 		font-size: 14px;
@@ -77,7 +72,6 @@
 		word-wrap: break-word;
 		background: transparent;
 		border: none;
-		height: 100%;
 		box-sizing: border-box;
 	}
 

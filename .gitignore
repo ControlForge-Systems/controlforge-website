@@ -69,3 +69,5 @@ coverage/
 # Testing artifacts
 localhost_*.html
 *.lighthouse.html
+test-results/
+playwright-report/

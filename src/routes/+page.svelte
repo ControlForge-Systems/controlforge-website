@@ -18,7 +18,7 @@
 		if (isCopying) return;
 		isCopying = true;
 		copied = false;
-		const text = 'code --install-extension controlforge.controlforge-structured-text';
+		const text = 'code --install-extension ControlForgeSystems.controlforge-structured-text';
 		navigator.clipboard
 			.writeText(text)
 			.then(() => {
@@ -119,12 +119,12 @@
 			class="flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 sm:gap-6 mb-4 sm:mb-6"
 		>
 			<div class="md:w-1/3 flex justify-center">
-				<picture>
+				<picture class="max-w-full">
 					<source srcset="/controlforge_ST_icon_1024x1024.webp" type="image/webp" />
 					<img
 						src="/controlforge_ST_icon_1024x1024.png"
 						alt="Structured Text by ControlForge Logo"
-						class="w-32 h-32 xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain"
+						class="w-32 h-32 xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain max-w-full"
 						loading="lazy"
 						decoding="async"
 					/>
@@ -245,7 +245,7 @@
 					<div class="flex items-center space-x-2">
 						<span class="text-green-400 text-sm">$</span>
 						<code class="text-gray-100 text-sm font-mono"
-							>code --install-extension controlforge.controlforge-structured-text</code
+							>code --install-extension ControlForgeSystems.controlforge-structured-text</code
 						>
 					</div>
 				</div>
@@ -261,7 +261,7 @@
 				Interactive Demo
 			</h3>
 			<div class="w-full max-w-full overflow-hidden">
-				<VSCodeDemo title="ControlForge Interactive Demo" height="450px" />
+				<VSCodeDemo title="ControlForge Interactive Demo" />
 			</div>
 		</div>
 
@@ -406,10 +406,10 @@
 				Have questions or need support? We'd love to hear from you.
 			</p>
 			<a
-				href="mailto:hello@controlforge.dev"
+				href="mailto:contact@controlforge.dev"
 				class="inline-flex items-center bg-brand-blue hover:bg-blue-700 text-white font-semibold py-2 px-3 xs:py-3 xs:px-4 sm:px-6 rounded-lg transition-colors text-xs xs:text-sm sm:text-base"
 			>
-				📧 hello@controlforge.dev
+				📧 contact@controlforge.dev
 			</a>
 		</div>
 	</section>
