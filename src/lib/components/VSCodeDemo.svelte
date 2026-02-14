@@ -115,9 +115,11 @@ END_FUNCTION_BLOCK`,
 						? 'bg-gray-800 text-white'
 						: 'bg-gray-700 text-gray-300 hover:bg-gray-600'}"
 					onclick={() => switchFile(index)}
+					aria-label="Switch to {file.name}"
+					aria-current={index === activeFileIndex ? 'true' : undefined}
 				>
 					<span class="flex items-center space-x-1 sm:space-x-2">
-						<span class="w-2 h-2 bg-blue-400 rounded-full"></span>
+						<span class="w-2 h-2 bg-blue-400 rounded-full" aria-hidden="true"></span>
 						<span>{file.name}</span>
 					</span>
 				</button>
