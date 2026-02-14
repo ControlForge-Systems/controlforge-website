@@ -88,7 +88,6 @@
 	<meta name="revisit-after" content="7 days" />
 	<meta name="googlebot" content="index, follow" />
 	<meta name="bingbot" content="index, follow" />
-	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
 	<link rel="canonical" href="https://controlforge.dev/" />
 
 	<script type="application/ld+json">
