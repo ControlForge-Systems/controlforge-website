@@ -4,7 +4,11 @@ FROM nginx:alpine
 # Add metadata
 LABEL maintainer="ControlForge Systems <hello@controlforge.dev>"
 LABEL description="ControlForge Website - Production Docker Image"
-LABEL version="1.0.0"
+LABEL version="1.1.0"
+
+# Note: Brotli module disabled due to version mismatch
+# nginx:alpine latest = 1.29.x, nginx-mod-http-brotli = 1.28.x
+# Pre-compressed .br files still generated for future use
 
 # Copy built static files
 COPY build/ /usr/share/nginx/html/
