@@ -126,13 +126,16 @@
 			class="flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 sm:gap-6 mb-4 sm:mb-6"
 		>
 			<div class="md:w-1/3 flex justify-center">
-				<img
-					src="/controlforge_ST_icon_1024x1024.png"
-					alt="Structured Text by ControlForge Logo"
-					class="w-32 h-32 xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain"
-					loading="lazy"
-					decoding="async"
-				/>
+				<picture>
+					<source srcset="/controlforge_ST_icon_1024x1024.webp" type="image/webp" />
+					<img
+						src="/controlforge_ST_icon_1024x1024.png"
+						alt="Structured Text by ControlForge Logo"
+						class="w-32 h-32 xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain"
+						loading="lazy"
+						decoding="async"
+					/>
+				</picture>
 			</div>
 			<div class="md:w-2/3 text-center md:text-left">
 				<h1 class="text-xl xs:text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">
