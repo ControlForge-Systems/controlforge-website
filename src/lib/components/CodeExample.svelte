@@ -1,10 +1,8 @@
 <script lang="ts">
-	import { createHighlighterCore } from 'shiki/core';
-	import { createOnigurumaEngine } from 'shiki/engine/oniguruma';
-	import githubLight from 'shiki/themes/github-light.mjs';
 	import { onMount } from 'svelte';
 	import { browser } from '$app/environment';
-	import structuredTextGrammar from '$lib/grammars/structured-text.tmLanguage.json';
+	import { getHighlighter } from '$lib/stores/shiki';
+	import type { HighlighterCore } from 'shiki/core';
 
 	let {
 		code = '',
@@ -16,19 +14,15 @@
 	let highlightedHtml: string = $state('');
 	let isLoading: boolean = $state(true);
 	let error: string | null = $state(null);
-	let highlighter: any = $state(null);
+	let highlighter: HighlighterCore | null = $state(null);
 
-	// Initialize highlighter once
+	// Get singleton highlighter instance
 	onMount(async () => {
 		if (!browser) return;
 
 		try {
-			// Create highlighter with fine-grained bundle
-			highlighter = await createHighlighterCore({
-				themes: [githubLight],
-				langs: [structuredTextGrammar as any],
-				engine: createOnigurumaEngine(import('shiki/wasm'))
-			});
+			// Use shared singleton highlighter
+			highlighter = await getHighlighter();
 
 			// Highlight initial code
 			highlightedHtml = highlighter.codeToHtml(code, {
