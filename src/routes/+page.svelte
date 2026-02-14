@@ -1,6 +1,7 @@
 <script lang="ts">
 	import OrganizationSchema from '$lib/components/OrganizationSchema.svelte';
 	import VSCodeDemo from '$lib/components/VSCodeDemo.svelte';
+	import LiveStatus from '$lib/components/LiveStatus.svelte';
 
 	let isCopying = false;
 	let copied = false;
@@ -248,6 +249,9 @@
 						>
 					</div>
 				</div>
+
+				<!-- Live region for copy feedback -->
+				<LiveStatus message={copied ? 'Installation command copied to clipboard' : ''} />
 			</div>
 		</div>
 
