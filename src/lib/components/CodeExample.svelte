@@ -13,17 +13,19 @@
 	let highlightedHtml: string = '';
 	let isLoading: boolean = true;
 	let error: string | null = null;
+	let highlighter: any = null;
 
+	// Initialize highlighter once
 	onMount(async () => {
 		try {
 			// Create highlighter with fine-grained bundle
-			const highlighter = await createHighlighterCore({
+			highlighter = await createHighlighterCore({
 				themes: [githubLight],
 				langs: [structuredTextGrammar as any],
 				engine: createOnigurumaEngine(import('shiki/wasm'))
 			});
 
-			// Highlight code
+			// Highlight initial code
 			highlightedHtml = highlighter.codeToHtml(code, {
 				lang: 'Structured Text',
 				theme: 'github-light'
@@ -36,6 +38,18 @@
 			isLoading = false;
 		}
 	});
+
+	// Re-highlight when code changes
+	$: if (highlighter && code) {
+		try {
+			highlightedHtml = highlighter.codeToHtml(code, {
+				lang: 'Structured Text',
+				theme: 'github-light'
+			});
+		} catch (err) {
+			console.error('[CodeExample] Re-highlight error:', err);
+		}
+	}
 </script>
 
 {#if title}
