@@ -1,10 +1,18 @@
-# Use nginx alpine for lightweight production image
-FROM nginx:alpine
+# Use nginx alpine pinned to version matching Alpine's brotli module
+# When Alpine updates nginx-mod-http-brotli to 1.29+, update to nginx:alpine
+FROM nginx:1.28.2-alpine
 
 # Add metadata
 LABEL maintainer="ControlForge Systems <hello@controlforge.dev>"
 LABEL description="ControlForge Website - Production Docker Image"
-LABEL version="1.0.0"
+LABEL version="1.2.0"
+
+# Install brotli module (version must match nginx exactly)
+RUN apk add --no-cache nginx-mod-http-brotli
+
+# Load brotli modules into nginx
+RUN sed -i '1i load_module modules/ngx_http_brotli_filter_module.so;' /etc/nginx/nginx.conf && \
+    sed -i '2i load_module modules/ngx_http_brotli_static_module.so;' /etc/nginx/nginx.conf
 
 # Copy built static files
 COPY build/ /usr/share/nginx/html/
