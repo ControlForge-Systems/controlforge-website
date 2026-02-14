@@ -129,7 +129,7 @@ END_FUNCTION_BLOCK`,
 
 	<!-- Editor area -->
 	<div class="relative w-full overflow-hidden">
-		<CodeExample code={activeFile.content} {height} readonly={true} />
+		<CodeExample code={activeFile.content} {height} />
 	</div>
 
 	<!-- Status bar -->

@@ -8,9 +8,8 @@
 	let {
 		code = '',
 		title = '',
-		height = '300px',
-		readonly = true
-	}: { code?: string; title?: string; height?: string; readonly?: boolean } = $props();
+		height = '300px'
+	}: { code?: string; title?: string; height?: string } = $props();
 
 	let highlightedHtml: string = $state('');
 	let isLoading: boolean = $state(true);
