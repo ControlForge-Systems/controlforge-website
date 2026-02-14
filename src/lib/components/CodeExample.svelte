@@ -16,20 +16,11 @@
 	let error: string | null = null;
 	let highlighter: any = null;
 
-	console.log('[CodeExample] Script loaded, browser:', browser);
-
 	// Initialize highlighter once
 	onMount(async () => {
-		console.log('[CodeExample] onMount started, code length:', code.length);
-
-		if (!browser) {
-			console.log('[CodeExample] Not in browser, skipping');
-			return;
-		}
+		if (!browser) return;
 
 		try {
-			console.log('[CodeExample] Creating highlighter...');
-
 			// Create highlighter with fine-grained bundle
 			highlighter = await createHighlighterCore({
 				themes: [githubLight],
@@ -37,21 +28,14 @@
 				engine: createOnigurumaEngine(import('shiki/wasm'))
 			});
 
-			console.log('[CodeExample] Highlighter created successfully');
-			console.log('[CodeExample] Loaded languages:', highlighter.getLoadedLanguages());
-			console.log('[CodeExample] Loaded themes:', highlighter.getLoadedThemes());
-
 			// Highlight initial code
 			highlightedHtml = highlighter.codeToHtml(code, {
 				lang: 'Structured Text',
 				theme: 'github-light'
 			});
 
-			console.log('[CodeExample] Initial highlight complete, HTML length:', highlightedHtml.length);
 			isLoading = false;
 		} catch (err) {
-			console.error('[CodeExample] Shiki error:', err);
-			console.error('[CodeExample] Error stack:', err instanceof Error ? err.stack : 'No stack');
 			error = err instanceof Error ? err.message : String(err);
 			isLoading = false;
 		}
@@ -59,14 +43,13 @@
 
 	// Re-highlight when code changes
 	$: if (browser && highlighter && code) {
-		console.log('[CodeExample] Reactive highlight triggered');
 		try {
 			highlightedHtml = highlighter.codeToHtml(code, {
 				lang: 'Structured Text',
 				theme: 'github-light'
 			});
 		} catch (err) {
-			console.error('[CodeExample] Re-highlight error:', err);
+			console.error('CodeExample re-highlight error:', err);
 		}
 	}
 </script>
