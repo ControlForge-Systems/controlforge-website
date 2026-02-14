@@ -1,9 +1,6 @@
 <script lang="ts">
-	import { createHighlighterCore } from 'shiki/core';
-	import { createOnigurumaEngine } from 'shiki/engine/oniguruma';
-	import githubLight from 'shiki/themes/github-light.mjs';
+	import { codeToHtml } from 'shiki/bundle/web';
 	import { onMount } from 'svelte';
-	import structuredTextGrammar from '$lib/grammars/structured-text.tmLanguage.json';
 
 	export let code: string = '';
 	export let title: string = '';
@@ -16,23 +13,19 @@
 
 	onMount(async () => {
 		try {
-			// Create highlighter with fine-grained bundle (only github-light theme + ST grammar)
-			const highlighter = await createHighlighterCore({
-				themes: [githubLight],
-				langs: [structuredTextGrammar as any],
-				engine: createOnigurumaEngine(import('shiki/wasm'))
-			});
+			console.log('[CodeExample] Starting Shiki web bundle test');
 
-			// Highlight code
-			highlightedHtml = highlighter.codeToHtml(code, {
-				lang: 'structured-text',
+			// Test with JavaScript first (bundled language)
+			highlightedHtml = await codeToHtml(code, {
+				lang: 'javascript',
 				theme: 'github-light'
 			});
 
+			console.log('[CodeExample] Code highlighted successfully');
 			isLoading = false;
 		} catch (err) {
-			console.error('Shiki highlighting failed:', err);
-			error = err instanceof Error ? err.message : 'Unknown error';
+			console.error('[CodeExample] Shiki highlighting failed:', err);
+			error = err instanceof Error ? err.message : String(err);
 			isLoading = false;
 		}
 	});
