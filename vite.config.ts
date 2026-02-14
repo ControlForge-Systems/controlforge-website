@@ -2,17 +2,8 @@ import { sveltekit } from '@sveltejs/kit/vite';
 import { defineConfig } from 'vite';
 import devtoolsJson from 'vite-plugin-devtools-json';
 
-export default defineConfig({
-	plugins: [
-		sveltekit(),
-		// Removed Monaco Editor plugin to reduce main bundle size
-		// Monaco will be loaded dynamically only when needed
-		devtoolsJson()
-	],
-	optimizeDeps: {
-		// Don't pre-bundle Monaco - we want it to load lazily
-		exclude: ['monaco-editor']
-	},
+export default defineConfig(({ mode }) => ({
+	plugins: [sveltekit(), devtoolsJson()],
 	define: {
 		global: 'globalThis'
 	},
@@ -25,11 +16,6 @@ export default defineConfig({
 		rollupOptions: {
 			output: {
 				manualChunks: (id) => {
-					// Monaco Editor gets its own chunk and should be loaded lazily
-					if (id.includes('monaco-editor')) {
-						return 'monaco-editor';
-					}
-
 					// Node modules get separate vendor chunks based on size
 					if (id.includes('node_modules')) {
 						// Large packages get their own chunks
@@ -38,6 +24,10 @@ export default defineConfig({
 						}
 						if (id.includes('@sveltejs/kit')) {
 							return 'sveltekit-vendor';
+						}
+						// Shiki gets its own chunk (much smaller than Monaco)
+						if (id.includes('shiki')) {
+							return 'shiki';
 						}
 						// Group smaller vendor packages
 						return 'vendor';
@@ -59,18 +49,14 @@ export default defineConfig({
 				warn(warning);
 			}
 		},
-		// Monaco Editor chunk is ~3.8MB unminified (958KB gzipped)
-		// It's lazy-loaded only when VSCodeDemo renders, so large size is acceptable
-		// Set threshold to 4MB to suppress warning while catching other issues
-		chunkSizeWarningLimit: 4000,
 		// Use Terser for better compression in production
 		minify: 'terser',
 		terserOptions: {
 			compress: {
-				drop_console: process.env.NODE_ENV === 'production',
-				drop_debugger: process.env.NODE_ENV === 'production',
+				drop_console: mode === 'production',
+				drop_debugger: mode === 'production',
 				pure_funcs:
-					process.env.NODE_ENV === 'production'
+					mode === 'production'
 						? ['console.log', 'console.info', 'console.debug', 'console.warn']
 						: []
 			},
@@ -82,4 +68,4 @@ export default defineConfig({
 			}
 		}
 	}
-});
+}));
