@@ -1,9 +1,15 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
+	import { onMount } from 'svelte';
+	import { createFocusTrap } from 'focus-trap';
+	import type { FocusTrap } from 'focus-trap';
 	import OptimizedImage from './OptimizedImage.svelte';
 
-	let isMenuOpen = false;
+	let isMenuOpen = $state(false);
+	let mobileMenuEl: HTMLElement | null = null;
+	let focusTrap: FocusTrap | null = null;
+	let hamburgerButton: HTMLButtonElement | null = null;
 
 	const navItems = [
 		{ href: '/', label: 'Home', type: 'main' },
@@ -28,6 +34,31 @@
 	function closeMenu() {
 		isMenuOpen = false;
 	}
+
+	// Setup focus trap when menu opens
+	$effect(() => {
+		if (!browser) return;
+
+		if (isMenuOpen && mobileMenuEl) {
+			// Create focus trap
+			focusTrap = createFocusTrap(mobileMenuEl, {
+				escapeDeactivates: true,
+				clickOutsideDeactivates: true,
+				returnFocusOnDeactivate: true,
+				allowOutsideClick: true,
+				onDeactivate: () => {
+					closeMenu();
+				}
+			});
+
+			// Activate focus trap
+			focusTrap.activate();
+		} else if (focusTrap) {
+			// Deactivate when menu closes
+			focusTrap.deactivate();
+			focusTrap = null;
+		}
+	});
 </script>
 
 <header class="bg-gray-900 text-white">
@@ -35,7 +66,7 @@
 		<div class="flex items-center justify-between h-16">
 			<!-- Logo -->
 			<div class="flex items-center">
-				<a href="/" class="block" on:click={closeMenu}>
+				<a href="/" class="block" onclick={closeMenu}>
 					<OptimizedImage
 						src="/controlforge_horizontal_white_240x60.png"
 						webpSrc="/controlforge_horizontal_white_240x60.webp"
@@ -65,8 +96,9 @@
 
 			<!-- Mobile hamburger button - Only show on screens smaller than md -->
 			<button
+				bind:this={hamburgerButton}
 				class="block md:hidden p-2 rounded hover:bg-gray-700 transition-colors"
-				on:click={toggleMenu}
+				onclick={toggleMenu}
 				aria-label="Toggle navigation menu"
 				aria-expanded={isMenuOpen}
 				aria-controls="mobile-menu"
@@ -110,7 +142,14 @@
 
 	<!-- Mobile Navigation Menu - Only show when isMenuOpen is true -->
 	{#if isMenuOpen}
-		<div class="md:hidden bg-gray-800 border-t border-gray-700" id="mobile-menu">
+		<div
+			bind:this={mobileMenuEl}
+			class="md:hidden bg-gray-800 border-t border-gray-700"
+			id="mobile-menu"
+			role="dialog"
+			aria-modal="true"
+			aria-label="Mobile navigation menu"
+		>
 			<nav class="px-4 py-4 space-y-2" aria-label="Mobile navigation">
 				{#each navItems as item}
 					<!-- Main navigation item -->
@@ -121,7 +160,7 @@
 							? 'bg-gray-600'
 							: ''}"
 						aria-current={$page.url.pathname === item.href ? 'page' : undefined}
-						on:click={closeMenu}
+						onclick={closeMenu}
 					>
 						{item.label}
 					</a>
@@ -137,7 +176,7 @@
 										? 'bg-gray-600 text-white'
 										: ''}"
 									aria-current={$page.url.pathname === subItem.href ? 'page' : undefined}
-									on:click={closeMenu}
+									onclick={closeMenu}
 								>
 									{subItem.label}
 								</a>
@@ -154,7 +193,7 @@
 					target="_blank"
 					rel="noopener noreferrer"
 					class="block px-4 py-2 text-sm text-blue-400 hover:text-blue-300 transition-colors focus:outline-2 focus:outline-brand-blue focus:outline-offset-2 rounded"
-					on:click={closeMenu}
+					onclick={closeMenu}
 				>
 					📦 VS Code Extension →
 				</a>
