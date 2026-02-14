@@ -3,6 +3,7 @@
 	import { browser } from '$app/environment';
 	import { getHighlighter } from '$lib/stores/shiki';
 	import type { HighlighterCore } from 'shiki/core';
+	import LiveStatus from './LiveStatus.svelte';
 
 	let {
 		code = '',
@@ -15,6 +16,11 @@
 	let isLoading: boolean = $state(true);
 	let error: string | null = $state(null);
 	let highlighter: HighlighterCore | null = $state(null);
+
+	// Derived status message for screen readers
+	let statusMessage = $derived(
+		isLoading ? 'Loading code example...' : error ? `Error loading code example: ${error}` : ''
+	);
 
 	// Get singleton highlighter instance
 	onMount(async () => {
@@ -71,6 +77,9 @@
 		{/if}
 	</div>
 </div>
+
+<!-- Live region for loading/error status -->
+<LiveStatus message={statusMessage} priority={error ? 'assertive' : 'polite'} />
 
 <style>
 	.code-container {
