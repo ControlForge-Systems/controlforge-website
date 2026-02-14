@@ -19,32 +19,36 @@
 		dateModified?: string;
 	} = $props();
 
-	// Create schema object
-	const schema = {
-		'@context': 'https://schema.org',
-		'@type': 'TechArticle',
-		headline,
-		description,
-		author: {
-			'@type': 'Organization',
-			name: 'ControlForge Systems',
-			url: 'https://controlforge.dev'
-		},
-		publisher: {
-			'@type': 'Organization',
-			name: 'ControlForge Systems',
-			logo: {
-				'@type': 'ImageObject',
-				url: 'https://controlforge.dev/controlforge_logo_1024x1024.webp'
+	// Create schema object - values are constant per page
+	function createSchema() {
+		return {
+			'@context': 'https://schema.org',
+			'@type': 'TechArticle',
+			headline,
+			description,
+			author: {
+				'@type': 'Organization',
+				name: 'ControlForge Systems',
+				url: 'https://controlforge.dev'
+			},
+			publisher: {
+				'@type': 'Organization',
+				name: 'ControlForge Systems',
+				logo: {
+					'@type': 'ImageObject',
+					url: 'https://controlforge.dev/controlforge_logo_1024x1024.webp'
+				}
+			},
+			datePublished,
+			dateModified,
+			mainEntityOfPage: {
+				'@type': 'WebPage',
+				'@id': `https://controlforge.dev${url}`
 			}
-		},
-		datePublished,
-		dateModified,
-		mainEntityOfPage: {
-			'@type': 'WebPage',
-			'@id': `https://controlforge.dev${url}`
-		}
-	};
+		};
+	}
+
+	const schema = createSchema();
 
 	// Inject schema into head on mount (client-side only)
 	onMount(() => {
