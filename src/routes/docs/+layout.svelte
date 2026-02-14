@@ -6,6 +6,9 @@
 	import SocialMeta from '$lib/components/SocialMeta.svelte';
 	import '../../app.css';
 	import { page } from '$app/stores';
+	import type { Snippet } from 'svelte';
+
+	let { children }: { children: Snippet } = $props();
 
 	let isSidebarOpen = $state(false);
 
@@ -80,7 +83,7 @@
 	<!-- Main content with proper margins -->
 	<main class="flex-1 p-4 md:p-8 max-w-4xl md:ml-0 {isSidebarOpen ? 'md:ml-64' : ''}">
 		<Breadcrumbs items={breadcrumbItems} />
-		<slot />
+		{@render children()}
 	</main>
 </div>
 
