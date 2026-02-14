@@ -33,7 +33,7 @@
 			Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
 		</p>
 		<a
-			href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+			href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
 			target="_blank"
 			rel="noopener noreferrer"
 			class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
@@ -63,7 +63,6 @@ END_IF;
 
 // Bad: Hard to read
 if systemready and not emergencystop then startmotor:=true;statusled:=green;end_if;`}
-			height="400px"
 		/>
 	</div>
 
@@ -95,7 +94,6 @@ VAR
     motor1 : BOOL;      // Not descriptive
     M1 : MotorController; // Cryptic
 END_VAR`}
-			height="450px"
 		/>
 	</div>
 
@@ -140,7 +138,6 @@ ELSE
 END_IF;
 
 END_FUNCTION_BLOCK`}
-			height="500px"
 		/>
 	</div>
 
@@ -179,7 +176,6 @@ ELSE
 END_IF;
 
 END_FUNCTION_BLOCK`}
-			height="500px"
 		/>
 	</div>
 
@@ -217,7 +213,6 @@ SafeToOperate := NOT EmergencyStop AND SafetyOK AND PowerOn;
 IF SafeToOperate AND OperatorReady THEN
     StartSequence := TRUE;
 END_IF;`}
-			height="500px"
 		/>
 	</div>
 

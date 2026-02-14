@@ -5,11 +5,7 @@
 	import type { HighlighterCore } from 'shiki/core';
 	import LiveStatus from './LiveStatus.svelte';
 
-	let {
-		code = '',
-		title = '',
-		height = '300px'
-	}: { code?: string; title?: string; height?: string } = $props();
+	let { code = '', title = '' }: { code?: string; title?: string } = $props();
 
 	let highlightedHtml: string = $state('');
 	let isLoading: boolean = $state(true);
@@ -64,7 +60,7 @@
 {/if}
 
 <div class="border border-gray-200 rounded-lg overflow-hidden bg-white shadow-sm max-w-full">
-	<div class="code-container" style="height: {height}; width: 100%; max-width: 100%;">
+	<div class="code-container">
 		{#if isLoading}
 			<pre class="fallback-code">{code}</pre>
 		{:else if error}
@@ -82,7 +78,6 @@
 
 <style>
 	.code-container {
-		overflow: auto;
 		position: relative;
 		contain: layout style paint;
 	}
@@ -93,9 +88,7 @@
 		background: #fafafa !important;
 		border: none;
 		width: 100%;
-		height: 100%;
 		box-sizing: border-box;
-		overflow: auto;
 		font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
 		font-size: 14px;
 		line-height: 1.5;
@@ -116,9 +109,7 @@
 		background: #fafafa;
 		border: none;
 		width: 100%;
-		height: 100%;
 		box-sizing: border-box;
-		overflow: auto;
 		white-space: pre-wrap;
 		word-wrap: break-word;
 	}

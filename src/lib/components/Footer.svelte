@@ -80,32 +80,12 @@
 				<ul class="space-y-2 text-sm">
 					<li>
 						<a
-							href="https://github.com/ControlForge-Systems/controlforge-structured-text/discussions"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-gray-600 hover:text-brand-blue transition-colors"
-						>
-							Discussions
-						</a>
-					</li>
-					<li>
-						<a
 							href="https://github.com/ControlForge-Systems/controlforge-structured-text/blob/main/CHANGELOG.md"
 							target="_blank"
 							rel="noopener noreferrer"
 							class="text-gray-600 hover:text-brand-blue transition-colors"
 						>
 							Changelog
-						</a>
-					</li>
-					<li>
-						<a
-							href="https://github.com/ControlForge-Systems/controlforge-structured-text/blob/main/CONTRIBUTING.md"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-gray-600 hover:text-brand-blue transition-colors"
-						>
-							Contributing
 						</a>
 					</li>
 				</ul>
@@ -117,10 +97,10 @@
 				<ul class="space-y-2 text-sm">
 					<li>
 						<a
-							href="mailto:hello@controlforge.dev"
+							href="mailto:contact@controlforge.dev"
 							class="text-gray-600 hover:text-brand-blue transition-colors"
 						>
-							hello@controlforge.dev
+							contact@controlforge.dev
 						</a>
 					</li>
 					<li>

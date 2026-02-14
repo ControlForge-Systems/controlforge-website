@@ -7,9 +7,9 @@
 	import OptimizedImage from './OptimizedImage.svelte';
 
 	let isMenuOpen = $state(false);
-	let mobileMenuEl: HTMLElement | null = null;
-	let focusTrap: FocusTrap | null = null;
-	let hamburgerButton: HTMLButtonElement | null = null;
+	let mobileMenuEl: HTMLElement | null = $state(null);
+	let focusTrap: FocusTrap | null = $state(null);
+	let hamburgerButton: HTMLButtonElement | null = $state(null);
 
 	const navItems = [
 		{ href: '/', label: 'Home', type: 'main' },
@@ -189,7 +189,7 @@
 			<!-- Quick Links -->
 			<div class="px-4 pb-4 border-t border-gray-700 pt-4">
 				<a
-					href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+					href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="block px-4 py-2 text-sm text-blue-400 hover:text-blue-300 transition-colors focus:outline-2 focus:outline-brand-blue focus:outline-offset-2 rounded"

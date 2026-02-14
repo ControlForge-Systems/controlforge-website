@@ -107,7 +107,7 @@ END_FUNCTION_BLOCK`,
 
 	<!-- File tabs -->
 	<div class="bg-gray-700 border-b border-gray-600 overflow-x-auto">
-		<div class="flex min-w-min">
+		<div class="flex">
 			{#each currentFiles as file, index}
 				<button
 					class="px-2 sm:px-4 py-2 text-xs sm:text-sm font-medium border-r border-gray-600 transition-colors whitespace-nowrap {index ===
@@ -129,7 +129,7 @@ END_FUNCTION_BLOCK`,
 
 	<!-- Editor area -->
 	<div class="relative w-full overflow-hidden">
-		<CodeExample code={activeFile.content} {height} />
+		<CodeExample code={activeFile.content} />
 	</div>
 
 	<!-- Status bar -->

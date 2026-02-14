@@ -33,7 +33,7 @@
 			Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
 		</p>
 		<a
-			href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+			href="https://marketplace.visualstudio.com/items?itemName=ControlForgeSystems.controlforge-structured-text"
 			target="_blank"
 			rel="noopener noreferrer"
 			class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
@@ -65,7 +65,6 @@ CONFIGURATION MainSystem
     END_RESOURCE
 END_CONFIGURATION`}
 			title="Configuration and Resource Management"
-			height="400px"
 		/>
 	</div>
 
@@ -108,7 +107,6 @@ PROPERTY Speed : REAL
     END_SET
 END_PROPERTY`}
 			title="Interfaces, Methods, and Properties"
-			height="500px"
 		/>
 	</div>
 
@@ -143,7 +141,6 @@ VAR
     TempSensor : TemperatureSensor;    // Available through USING
 END_VAR`}
 			title="Namespace Organization"
-			height="400px"
 		/>
 	</div>
 
