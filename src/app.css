@@ -1,19 +1,29 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+
+@theme {
+	--color-brand-blue: #008cff;
+	--color-brand-navy: #0a0f1f;
+	--color-brand-gray: #e0e0e0;
+}
 
 :root {
-  --control-blue: #008CFF;
-  --midnight-navy: #0A0F1F;
-  --pure-white: #FFFFFF;
-  --steel-gray: #E0E0E0;
+	--control-blue: #008cff;
+	--midnight-navy: #0a0f1f;
+	--pure-white: #ffffff;
+	--steel-gray: #e0e0e0;
 }
 
 body {
-  font-family: 'Inter', 'Segoe UI', system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
-  margin: 0;
-  background-color: var(--pure-white);
-  color: var(--midnight-navy);
+	font-family:
+		'Inter',
+		'Segoe UI',
+		system-ui,
+		-apple-system,
+		BlinkMacSystemFont,
+		sans-serif;
+	margin: 0;
+	background-color: var(--pure-white);
+	color: var(--midnight-navy);
 }
 
 h1,
@@ -22,95 +32,94 @@ h3,
 h4,
 h5,
 h6 {
-  font-weight: bold;
-  color: var(--midnight-navy);
+	font-weight: bold;
+	color: var(--midnight-navy);
 }
 
 .text-muted {
-  color: var(--steel-gray);
+	color: var(--steel-gray);
 }
 
 .bg-brand-blue {
-  background-color: var(--control-blue);
+	background-color: var(--control-blue);
 }
 
 .bg-brand-navy {
-  background-color: var(--midnight-navy);
+	background-color: var(--midnight-navy);
 }
 
 .text-brand-blue {
-  color: var(--control-blue);
+	color: var(--control-blue);
 }
 
 .border-brand-gray {
-  border-color: var(--steel-gray);
+	border-color: var(--steel-gray);
 }
 
 /* Smooth scroll behavior */
 html {
-  scroll-behavior: smooth;
+	scroll-behavior: smooth;
 }
 
 /* Button hover effects */
 .btn-brand {
-  background-color: var(--control-blue);
-  transition: all 0.2s ease-in-out;
+	background-color: var(--control-blue);
+	transition: all 0.2s ease-in-out;
 }
 
 .btn-brand:hover {
-  background-color: #0066cc;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 140, 255, 0.3);
+	background-color: #0066cc;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(0, 140, 255, 0.3);
 }
 
 /* Mobile navigation improvements */
 @media (max-width: 768px) {
+	/* Prevent body scroll when mobile menu is open */
+	body.menu-open {
+		overflow: hidden;
+	}
 
-  /* Prevent body scroll when mobile menu is open */
-  body.menu-open {
-    overflow: hidden;
-  }
+	/* Ensure mobile menu is above everything */
+	.mobile-menu {
+		z-index: 9999;
+	}
 
-  /* Ensure mobile menu is above everything */
-  .mobile-menu {
-    z-index: 9999;
-  }
+	/* Better touch targets for mobile */
+	.mobile-nav-item {
+		min-height: 44px;
+	}
 
-  /* Better touch targets for mobile */
-  .mobile-nav-item {
-    min-height: 44px;
-  }
-
-  /* Smooth sidebar transitions */
-  .mobile-sidebar {
-    transition: transform 0.3s ease-in-out;
-  }
+	/* Smooth sidebar transitions */
+	.mobile-sidebar {
+		transition: transform 0.3s ease-in-out;
+	}
 }
 
 /* Ensure tap targets are large enough */
 button,
 a {
-  min-height: 44px;
-  min-width: 44px;
+	min-height: 44px;
+	min-width: 44px;
 }
 
 /* Improve focus states for accessibility */
 button:focus,
 a:focus {
-  outline: 2px solid var(--control-blue);
-  outline-offset: 2px;
+	outline: 2px solid var(--control-blue);
+	outline-offset: 2px;
 }
 
 /* Brand button styles */
 .btn-brand {
-  background-color: var(--control-blue);
-  transition: all 0.2s ease-in-out;
+	background-color: var(--control-blue);
+	transition: all 0.2s ease-in-out;
 }
 
 .btn-brand:hover {
-  background-color: #0066cc;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 12px rgba(0, 140, 255, 0.3);
+	background-color: #0066cc;
+	transform: translateY(-1px);
+	box-shadow: 0 4px 12px rgba(0, 140, 255, 0.3);
 }
 
 /* Consistent focus styles for all interactive elements */
@@ -119,7 +128,7 @@ a:focus-visible,
 input:focus-visible,
 textarea:focus-visible,
 select:focus-visible {
-  outline: 2px solid var(--control-blue);
-  outline-offset: 2px;
-  border-radius: 4px;
+	outline: 2px solid var(--control-blue);
+	outline-offset: 2px;
+	border-radius: 4px;
 }
