@@ -1,7 +1,4 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
-	import { browser } from '$app/environment';
-	import { configureMonacoEnvironment } from '$lib/monaco-config';
 	import CodeExample from './CodeExample.svelte';
 
 	export let title: string = 'VS Code with ControlForge Extension';
@@ -84,11 +81,6 @@ END_FUNCTION_BLOCK`,
 	$: currentFiles = files.length > 0 ? files : defaultFiles;
 	$: activeFile = currentFiles[activeFileIndex];
 
-	// Initialize Monaco configuration when component loads
-	if (browser) {
-		configureMonacoEnvironment();
-	}
-
 	function switchFile(index: number) {
 		activeFileIndex = index;
 	}
@@ -129,9 +121,7 @@ END_FUNCTION_BLOCK`,
 
 	<!-- Editor area -->
 	<div class="relative w-full overflow-hidden">
-		{#if activeFile}
-			<CodeExample code={activeFile.content} {height} readonly={true} />
-		{/if}
+		<CodeExample code={activeFile.content} {height} readonly={true} />
 	</div>
 
 	<!-- Status bar -->

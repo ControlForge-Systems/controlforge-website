@@ -1,17 +1,9 @@
 <script lang="ts">
-	import { onMount } from 'svelte';
 	import OrganizationSchema from '$lib/components/OrganizationSchema.svelte';
+	import VSCodeDemo from '$lib/components/VSCodeDemo.svelte';
 
 	let isCopying = false;
 	let copied = false;
-	let VSCodeDemo: any = null;
-
-	// Lazy load VSCodeDemo component
-	onMount(async () => {
-		// Load VSCodeDemo component
-		const { default: VSCodeDemoComponent } = await import('$lib/components/VSCodeDemo.svelte');
-		VSCodeDemo = VSCodeDemoComponent;
-	});
 
 	function trackGAClick(buttonName: string) {
 		window.dataLayer = window.dataLayer || [];
@@ -256,17 +248,7 @@
 				Interactive Demo
 			</h3>
 			<div class="w-full max-w-full overflow-hidden">
-				{#if VSCodeDemo}
-					<svelte:component
-						this={VSCodeDemo}
-						title="ControlForge Interactive Demo"
-						height="450px"
-					/>
-				{:else}
-					<div class="bg-gray-100 rounded-lg p-8 text-center">
-						<p class="text-gray-600">Loading interactive demo...</p>
-					</div>
-				{/if}
+				<VSCodeDemo title="ControlForge Interactive Demo" height="450px" />
 			</div>
 		</div>
 
