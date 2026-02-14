@@ -1,4 +1,7 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+	import { browser } from '$app/environment';
+
 	/**
 	 * Article schema for documentation pages
 	 */
@@ -16,7 +19,8 @@
 		dateModified?: string;
 	} = $props();
 
-	const schema = $derived({
+	// Create schema object
+	const schema = {
 		'@context': 'https://schema.org',
 		'@type': 'TechArticle',
 		headline,
@@ -40,9 +44,24 @@
 			'@type': 'WebPage',
 			'@id': `https://controlforge.dev${url}`
 		}
+	};
+
+	// Inject schema into head on mount (client-side only)
+	onMount(() => {
+		if (browser) {
+			const script = document.createElement('script');
+			script.type = 'application/ld+json';
+			script.textContent = JSON.stringify(schema);
+			document.head.appendChild(script);
+
+			return () => {
+				document.head.removeChild(script);
+			};
+		}
 	});
 </script>
 
+<!-- Server-side schema injection -->
 <svelte:head>
 	{@html `<script type="application/ld+json">${JSON.stringify(schema)}</scr` + `ipt>`}
 </svelte:head>
