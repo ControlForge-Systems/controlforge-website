@@ -1,41 +1,52 @@
 <script>
-  import CanonicalLink from "$lib/components/CanonicalLink.svelte";
-  import CodeExample from '$lib/components/CodeExample.svelte';
+	import CanonicalLink from '$lib/components/CanonicalLink.svelte';
+	import ArticleSchema from '$lib/components/ArticleSchema.svelte';
+	import CodeExample from '$lib/components/CodeExample.svelte';
 </script>
 
 <svelte:head>
-  <title>Best Practices - Structured Text Documentation</title>
-  <meta name="description" content="Learn best practices for writing clean, maintainable, and efficient IEC 61131-3 Structured Text code. Professional coding standards for industrial automation." />
-  <CanonicalLink path="/docs/best-practices" />
+	<title>Best Practices - Structured Text Documentation</title>
+	<meta
+		name="description"
+		content="Learn best practices for writing clean, maintainable, and efficient IEC 61131-3 Structured Text code. Professional coding standards for industrial automation."
+	/>
+	<CanonicalLink path="/docs/best-practices" />
+	<ArticleSchema
+		headline="Best Practices"
+		description="Learn best practices for writing clean, maintainable, and efficient IEC 61131-3 Structured Text code. Professional coding standards for industrial automation."
+		url="/docs/best-practices"
+	/>
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">
-  <h1 class="text-3xl font-bold text-gray-900 mb-6">Best Practices</h1>
-  
-  <p class="text-gray-700 mb-6">
-    Professional coding standards for reliable industrial automation systems.
-  </p>
+	<h1 class="text-3xl font-bold text-gray-900 mb-6">Best Practices</h1>
 
-  <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
-    <h3 class="text-lg font-semibold text-green-800 mb-3">🚀 Enhance Your Development Experience</h3>
-    <p class="text-green-700 text-sm mb-3">
-      Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
-    </p>
-    <a 
-      href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
-    >
-      Install VS Code Extension →
-    </a>
-  </div>
+	<p class="text-gray-700 mb-6">
+		Professional coding standards for reliable industrial automation systems.
+	</p>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Code Style and Formatting</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`// Good: Clear structure and indentation
+	<div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+		<h3 class="text-lg font-semibold text-green-800 mb-3">
+			🚀 Enhance Your Development Experience
+		</h3>
+		<p class="text-green-700 text-sm mb-3">
+			Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
+		</p>
+		<a
+			href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+		>
+			Install VS Code Extension →
+		</a>
+	</div>
+
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Code Style and Formatting</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`// Good: Clear structure and indentation
 IF SystemReady AND NOT EmergencyStop THEN
     StartMotor := TRUE;
     StatusLED := GREEN;
@@ -52,15 +63,15 @@ END_IF;
 
 // Bad: Hard to read
 if systemready and not emergencystop then startmotor:=true;statusled:=green;end_if;`}
-      height="400px"
-    />
-  </div>
+			height="400px"
+		/>
+	</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Naming Conventions</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`// Good naming conventions
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Naming Conventions</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`// Good naming conventions
 VAR
     // Clear, descriptive names
     MotorRunning : BOOL;
@@ -84,15 +95,15 @@ VAR
     motor1 : BOOL;      // Not descriptive
     M1 : MotorController; // Cryptic
 END_VAR`}
-      height="450px"
-    />
-  </div>
+			height="450px"
+		/>
+	</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Error Handling</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`// Always check for error conditions
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Error Handling</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`// Always check for error conditions
 FUNCTION_BLOCK SafeMotorController
 VAR_INPUT
     Start : BOOL;
@@ -129,15 +140,15 @@ ELSE
 END_IF;
 
 END_FUNCTION_BLOCK`}
-      height="500px"
-    />
-  </div>
+			height="500px"
+		/>
+	</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Documentation</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`(*
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Documentation</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`(*
     Function Block: ConveyorController
     Purpose: Controls conveyor belt speed and direction
     Author: Engineering Team
@@ -168,15 +179,15 @@ ELSE
 END_IF;
 
 END_FUNCTION_BLOCK`}
-      height="500px"
-    />
-  </div>
+			height="500px"
+		/>
+	</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Performance Tips</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`// Use efficient data types
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Performance Tips</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`// Use efficient data types
 VAR
     Counter : UINT;         // Use UINT instead of DINT for small counts
     Status : BYTE;          // Use BYTE for flags (8 bits)
@@ -206,31 +217,37 @@ SafeToOperate := NOT EmergencyStop AND SafetyOK AND PowerOn;
 IF SafeToOperate AND OperatorReady THEN
     StartSequence := TRUE;
 END_IF;`}
-      height="500px"
-    />
-  </div>
+			height="500px"
+		/>
+	</div>
 
-  <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
-    <h3 class="text-lg font-semibold text-green-800 mb-3">Key Guidelines</h3>
-    <ul class="text-green-700 text-sm space-y-1">
-      <li>• Use clear, descriptive variable names</li>
-      <li>• Implement proper error handling and safety checks</li>
-      <li>• Comment complex logic and document function blocks</li>
-      <li>• Use consistent indentation and formatting</li>
-      <li>• Choose appropriate data types for efficiency</li>
-      <li>• Test thoroughly with edge cases</li>
-    </ul>
-  </div>
+	<div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-6">
+		<h3 class="text-lg font-semibold text-green-800 mb-3">Key Guidelines</h3>
+		<ul class="text-green-700 text-sm space-y-1">
+			<li>• Use clear, descriptive variable names</li>
+			<li>• Implement proper error handling and safety checks</li>
+			<li>• Comment complex logic and document function blocks</li>
+			<li>• Use consistent indentation and formatting</li>
+			<li>• Choose appropriate data types for efficiency</li>
+			<li>• Test thoroughly with edge cases</li>
+		</ul>
+	</div>
 
-  <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
-    <h3 class="text-lg font-semibold text-yellow-800 mb-3">🚀 Next Steps</h3>
-    <div class="space-y-2">
-      <a href="/docs/examples" class="block text-sm text-brand-blue hover:text-blue-800 transition-colors">
-        → Practical Examples and Design Patterns
-      </a>
-      <a href="/docs/advanced-constructs" class="block text-sm text-brand-blue hover:text-blue-800 transition-colors">
-        → Advanced Language Features
-      </a>
-    </div>
-  </div>
+	<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6">
+		<h3 class="text-lg font-semibold text-yellow-800 mb-3">🚀 Next Steps</h3>
+		<div class="space-y-2">
+			<a
+				href="/docs/examples"
+				class="block text-sm text-brand-blue hover:text-blue-800 transition-colors"
+			>
+				→ Practical Examples and Design Patterns
+			</a>
+			<a
+				href="/docs/advanced-constructs"
+				class="block text-sm text-brand-blue hover:text-blue-800 transition-colors"
+			>
+				→ Advanced Language Features
+			</a>
+		</div>
+	</div>
 </article>

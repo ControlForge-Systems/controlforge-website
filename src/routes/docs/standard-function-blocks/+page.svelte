@@ -1,42 +1,53 @@
 <script>
-  import CanonicalLink from "$lib/components/CanonicalLink.svelte";
-  import CodeExample from '$lib/components/CodeExample.svelte';
+	import CanonicalLink from '$lib/components/CanonicalLink.svelte';
+	import ArticleSchema from '$lib/components/ArticleSchema.svelte';
+	import CodeExample from '$lib/components/CodeExample.svelte';
 </script>
 
 <svelte:head>
-  <title>Standard Function Blocks - Structured Text Documentation</title>
-  <meta name="description" content="Reference for IEC 61131-3 function blocks including timers (TON, TOF), counters (CTU, CTD), edge detection, and bistable elements for industrial automation." />
-  <CanonicalLink path="/docs/standard-function-blocks" />
+	<title>Standard Function Blocks - Structured Text Documentation</title>
+	<meta
+		name="description"
+		content="Reference for IEC 61131-3 function blocks including timers (TON, TOF), counters (CTU, CTD), edge detection, and bistable elements for industrial automation."
+	/>
+	<CanonicalLink path="/docs/standard-function-blocks" />
+	<ArticleSchema
+		headline="Standard Function Blocks"
+		description="Reference for IEC 61131-3 function blocks including timers (TON, TOF), counters (CTU, CTD), edge detection, and bistable elements for industrial automation."
+		url="/docs/standard-function-blocks"
+	/>
 </svelte:head>
 
 <article class="prose prose-lg max-w-none">
-  <h1 class="text-3xl font-bold text-gray-900 mb-6">Standard Function Blocks</h1>
-  
-  <p class="text-gray-700 mb-6">
-    IEC 61131-3 defines a comprehensive set of standard function blocks that provide essential 
-    timing, counting, and logic functions for industrial automation applications.
-  </p>
+	<h1 class="text-3xl font-bold text-gray-900 mb-6">Standard Function Blocks</h1>
 
-  <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
-    <h3 class="text-lg font-semibold text-green-800 mb-3">🚀 Enhance Your Development Experience</h3>
-    <p class="text-green-700 text-sm mb-3">
-      Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
-    </p>
-    <a 
-      href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
-    >
-      Install VS Code Extension →
-    </a>
-  </div>
+	<p class="text-gray-700 mb-6">
+		IEC 61131-3 defines a comprehensive set of standard function blocks that provide essential
+		timing, counting, and logic functions for industrial automation applications.
+	</p>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Timer Function Blocks</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`VAR
+	<div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-8">
+		<h3 class="text-lg font-semibold text-green-800 mb-3">
+			🚀 Enhance Your Development Experience
+		</h3>
+		<p class="text-green-700 text-sm mb-3">
+			Get syntax highlighting, IntelliSense, and debugging support for Structured Text:
+		</p>
+		<a
+			href="https://marketplace.visualstudio.com/items?itemName=controlforge.controlforge-structured-text"
+			target="_blank"
+			rel="noopener noreferrer"
+			class="inline-flex items-center px-4 py-2 bg-brand-blue text-white text-sm font-medium rounded-md hover:bg-blue-700 transition-colors"
+		>
+			Install VS Code Extension →
+		</a>
+	</div>
+
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Timer Function Blocks</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`VAR
     OnDelayTimer : TON;     // Timer On Delay
     OffDelayTimer : TOF;    // Timer Off Delay  
     PulseTimer : TP;        // Timer Pulse
@@ -73,60 +84,54 @@ PulseTimer(
     PT := T#500ms
 );
 PulseOutput := PulseTimer.Q;`}
-      title="Timer Function Blocks (TON, TOF, TP)"
-      height="600px"
-    />
-  </div>
+			title="Timer Function Blocks (TON, TOF, TP)"
+			height="600px"
+		/>
+	</div>
 
-  <div class="grid md:grid-cols-3 gap-6 mb-6">
-    <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-blue-800 mb-3">TON - Timer On Delay</h3>
-      <p class="text-blue-700 text-sm mb-3"><strong>Members:</strong></p>
-      <ul class="text-blue-700 text-sm space-y-1">
-        <li>• <strong>IN:</strong> Start input (BOOL)</li>
-        <li>• <strong>PT:</strong> Preset time (TIME)</li>
-        <li>• <strong>Q:</strong> Timer output (BOOL)</li>
-        <li>• <strong>ET:</strong> Elapsed time (TIME)</li>
-      </ul>
-      <p class="text-blue-700 text-sm mt-3">
-        Delays the TRUE signal by the preset time.
-      </p>
-    </div>
-    
-    <div class="bg-green-50 border border-green-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-green-800 mb-3">TOF - Timer Off Delay</h3>
-      <p class="text-green-700 text-sm mb-3"><strong>Members:</strong></p>
-      <ul class="text-green-700 text-sm space-y-1">
-        <li>• <strong>IN:</strong> Input signal (BOOL)</li>
-        <li>• <strong>PT:</strong> Preset time (TIME)</li>
-        <li>• <strong>Q:</strong> Timer output (BOOL)</li>
-        <li>• <strong>ET:</strong> Elapsed time (TIME)</li>
-      </ul>
-      <p class="text-green-700 text-sm mt-3">
-        Delays the FALSE signal by the preset time.
-      </p>
-    </div>
-    
-    <div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-purple-800 mb-3">TP - Timer Pulse</h3>
-      <p class="text-purple-700 text-sm mb-3"><strong>Members:</strong></p>
-      <ul class="text-purple-700 text-sm space-y-1">
-        <li>• <strong>IN:</strong> Trigger input (BOOL)</li>
-        <li>• <strong>PT:</strong> Pulse duration (TIME)</li>
-        <li>• <strong>Q:</strong> Pulse output (BOOL)</li>
-        <li>• <strong>ET:</strong> Elapsed time (TIME)</li>
-      </ul>
-      <p class="text-purple-700 text-sm mt-3">
-        Generates a pulse of fixed duration.
-      </p>
-    </div>
-  </div>
+	<div class="grid md:grid-cols-3 gap-6 mb-6">
+		<div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+			<h3 class="text-lg font-semibold text-blue-800 mb-3">TON - Timer On Delay</h3>
+			<p class="text-blue-700 text-sm mb-3"><strong>Members:</strong></p>
+			<ul class="text-blue-700 text-sm space-y-1">
+				<li>• <strong>IN:</strong> Start input (BOOL)</li>
+				<li>• <strong>PT:</strong> Preset time (TIME)</li>
+				<li>• <strong>Q:</strong> Timer output (BOOL)</li>
+				<li>• <strong>ET:</strong> Elapsed time (TIME)</li>
+			</ul>
+			<p class="text-blue-700 text-sm mt-3">Delays the TRUE signal by the preset time.</p>
+		</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Counter Function Blocks</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`VAR
+		<div class="bg-green-50 border border-green-200 rounded-lg p-6">
+			<h3 class="text-lg font-semibold text-green-800 mb-3">TOF - Timer Off Delay</h3>
+			<p class="text-green-700 text-sm mb-3"><strong>Members:</strong></p>
+			<ul class="text-green-700 text-sm space-y-1">
+				<li>• <strong>IN:</strong> Input signal (BOOL)</li>
+				<li>• <strong>PT:</strong> Preset time (TIME)</li>
+				<li>• <strong>Q:</strong> Timer output (BOOL)</li>
+				<li>• <strong>ET:</strong> Elapsed time (TIME)</li>
+			</ul>
+			<p class="text-green-700 text-sm mt-3">Delays the FALSE signal by the preset time.</p>
+		</div>
+
+		<div class="bg-purple-50 border border-purple-200 rounded-lg p-6">
+			<h3 class="text-lg font-semibold text-purple-800 mb-3">TP - Timer Pulse</h3>
+			<p class="text-purple-700 text-sm mb-3"><strong>Members:</strong></p>
+			<ul class="text-purple-700 text-sm space-y-1">
+				<li>• <strong>IN:</strong> Trigger input (BOOL)</li>
+				<li>• <strong>PT:</strong> Pulse duration (TIME)</li>
+				<li>• <strong>Q:</strong> Pulse output (BOOL)</li>
+				<li>• <strong>ET:</strong> Elapsed time (TIME)</li>
+			</ul>
+			<p class="text-purple-700 text-sm mt-3">Generates a pulse of fixed duration.</p>
+		</div>
+	</div>
+
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Counter Function Blocks</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`VAR
     UpCounter : CTU;        // Count Up
     DownCounter : CTD;      // Count Down
     UpDownCounter : CTUD;   // Count Up/Down
@@ -171,57 +176,57 @@ UpDownCounter(
 );
 TotalParts := UpDownCounter.CV;   // Current value
 // QU = TRUE when CV >= PV, QD = TRUE when CV <= 0`}
-      title="Counter Function Blocks (CTU, CTD, CTUD)"
-      height="700px"
-    />
-  </div>
+			title="Counter Function Blocks (CTU, CTD, CTUD)"
+			height="700px"
+		/>
+	</div>
 
-  <div class="grid md:grid-cols-3 gap-6 mb-6">
-    <div class="bg-orange-50 border border-orange-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-orange-800 mb-3">CTU - Count Up</h3>
-      <p class="text-orange-700 text-sm mb-3"><strong>Members:</strong></p>
-      <ul class="text-orange-700 text-sm space-y-1">
-        <li>• <strong>CU:</strong> Count up input (BOOL)</li>
-        <li>• <strong>R:</strong> Reset input (BOOL)</li>
-        <li>• <strong>PV:</strong> Preset value (INT)</li>
-        <li>• <strong>Q:</strong> Output (CV ≥ PV)</li>
-        <li>• <strong>CV:</strong> Current value (INT)</li>
-      </ul>
-    </div>
-    
-    <div class="bg-red-50 border border-red-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-red-800 mb-3">CTD - Count Down</h3>
-      <p class="text-red-700 text-sm mb-3"><strong>Members:</strong></p>
-      <ul class="text-red-700 text-sm space-y-1">
-        <li>• <strong>CD:</strong> Count down input (BOOL)</li>
-        <li>• <strong>LD:</strong> Load input (BOOL)</li>
-        <li>• <strong>PV:</strong> Preset value (INT)</li>
-        <li>• <strong>Q:</strong> Output (CV ≤ 0)</li>
-        <li>• <strong>CV:</strong> Current value (INT)</li>
-      </ul>
-    </div>
-    
-    <div class="bg-teal-50 border border-teal-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-teal-800 mb-3">CTUD - Count Up/Down</h3>
-      <p class="text-teal-700 text-sm mb-3"><strong>Members:</strong></p>
-      <ul class="text-teal-700 text-sm space-y-1">
-        <li>• <strong>CU:</strong> Count up input (BOOL)</li>
-        <li>• <strong>CD:</strong> Count down input (BOOL)</li>
-        <li>• <strong>R:</strong> Reset input (BOOL)</li>
-        <li>• <strong>LD:</strong> Load input (BOOL)</li>
-        <li>• <strong>PV:</strong> Preset value (INT)</li>
-        <li>• <strong>QU:</strong> Up output (CV ≥ PV)</li>
-        <li>• <strong>QD:</strong> Down output (CV ≤ 0)</li>
-        <li>• <strong>CV:</strong> Current value (INT)</li>
-      </ul>
-    </div>
-  </div>
+	<div class="grid md:grid-cols-3 gap-6 mb-6">
+		<div class="bg-orange-50 border border-orange-200 rounded-lg p-6">
+			<h3 class="text-lg font-semibold text-orange-800 mb-3">CTU - Count Up</h3>
+			<p class="text-orange-700 text-sm mb-3"><strong>Members:</strong></p>
+			<ul class="text-orange-700 text-sm space-y-1">
+				<li>• <strong>CU:</strong> Count up input (BOOL)</li>
+				<li>• <strong>R:</strong> Reset input (BOOL)</li>
+				<li>• <strong>PV:</strong> Preset value (INT)</li>
+				<li>• <strong>Q:</strong> Output (CV ≥ PV)</li>
+				<li>• <strong>CV:</strong> Current value (INT)</li>
+			</ul>
+		</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Edge Detection Function Blocks</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`VAR
+		<div class="bg-red-50 border border-red-200 rounded-lg p-6">
+			<h3 class="text-lg font-semibold text-red-800 mb-3">CTD - Count Down</h3>
+			<p class="text-red-700 text-sm mb-3"><strong>Members:</strong></p>
+			<ul class="text-red-700 text-sm space-y-1">
+				<li>• <strong>CD:</strong> Count down input (BOOL)</li>
+				<li>• <strong>LD:</strong> Load input (BOOL)</li>
+				<li>• <strong>PV:</strong> Preset value (INT)</li>
+				<li>• <strong>Q:</strong> Output (CV ≤ 0)</li>
+				<li>• <strong>CV:</strong> Current value (INT)</li>
+			</ul>
+		</div>
+
+		<div class="bg-teal-50 border border-teal-200 rounded-lg p-6">
+			<h3 class="text-lg font-semibold text-teal-800 mb-3">CTUD - Count Up/Down</h3>
+			<p class="text-teal-700 text-sm mb-3"><strong>Members:</strong></p>
+			<ul class="text-teal-700 text-sm space-y-1">
+				<li>• <strong>CU:</strong> Count up input (BOOL)</li>
+				<li>• <strong>CD:</strong> Count down input (BOOL)</li>
+				<li>• <strong>R:</strong> Reset input (BOOL)</li>
+				<li>• <strong>LD:</strong> Load input (BOOL)</li>
+				<li>• <strong>PV:</strong> Preset value (INT)</li>
+				<li>• <strong>QU:</strong> Up output (CV ≥ PV)</li>
+				<li>• <strong>QD:</strong> Down output (CV ≤ 0)</li>
+				<li>• <strong>CV:</strong> Current value (INT)</li>
+			</ul>
+		</div>
+	</div>
+
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Edge Detection Function Blocks</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`VAR
     RisingEdge : R_TRIG;    // Rising edge detection
     FallingEdge : F_TRIG;   // Falling edge detection
     
@@ -261,42 +266,42 @@ IF StopButton OR EmergencyPulse THEN
         EmergencyActivations := EmergencyActivations + 1;
     END_IF;
 END_IF;`}
-      title="Edge Detection Function Blocks (R_TRIG, F_TRIG)"
-      height="550px"
-    />
-  </div>
+			title="Edge Detection Function Blocks (R_TRIG, F_TRIG)"
+			height="550px"
+		/>
+	</div>
 
-  <div class="mb-6">
-    <div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-4">
-      <h3 class="text-lg font-semibold text-green-800 mb-3">R_TRIG - Rising Edge</h3>
-      <p class="text-green-700 text-sm mb-3"><strong>Members:</strong></p>
-      <ul class="text-green-700 text-sm space-y-1">
-        <li>• <strong>CLK:</strong> Input signal (BOOL)</li>
-        <li>• <strong>Q:</strong> Edge output (BOOL)</li>
-      </ul>
-      <p class="text-green-700 text-sm mt-3">
-        Q is TRUE for one scan when CLK changes from FALSE to TRUE.
-      </p>
-    </div>
-    
-    <div class="bg-red-50 border border-red-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-red-800 mb-3">F_TRIG - Falling Edge</h3>
-      <p class="text-red-700 text-sm mb-3"><strong>Members:</strong></p>
-      <ul class="text-red-700 text-sm space-y-1">
-        <li>• <strong>CLK:</strong> Input signal (BOOL)</li>
-        <li>• <strong>Q:</strong> Edge output (BOOL)</li>
-      </ul>
-      <p class="text-red-700 text-sm mt-3">
-        Q is TRUE for one scan when CLK changes from TRUE to FALSE.
-      </p>
-    </div>
-  </div>
+	<div class="mb-6">
+		<div class="bg-green-50 border border-green-200 rounded-lg p-6 mb-4">
+			<h3 class="text-lg font-semibold text-green-800 mb-3">R_TRIG - Rising Edge</h3>
+			<p class="text-green-700 text-sm mb-3"><strong>Members:</strong></p>
+			<ul class="text-green-700 text-sm space-y-1">
+				<li>• <strong>CLK:</strong> Input signal (BOOL)</li>
+				<li>• <strong>Q:</strong> Edge output (BOOL)</li>
+			</ul>
+			<p class="text-green-700 text-sm mt-3">
+				Q is TRUE for one scan when CLK changes from FALSE to TRUE.
+			</p>
+		</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Bistable Function Blocks</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`VAR
+		<div class="bg-red-50 border border-red-200 rounded-lg p-6">
+			<h3 class="text-lg font-semibold text-red-800 mb-3">F_TRIG - Falling Edge</h3>
+			<p class="text-red-700 text-sm mb-3"><strong>Members:</strong></p>
+			<ul class="text-red-700 text-sm space-y-1">
+				<li>• <strong>CLK:</strong> Input signal (BOOL)</li>
+				<li>• <strong>Q:</strong> Edge output (BOOL)</li>
+			</ul>
+			<p class="text-red-700 text-sm mt-3">
+				Q is TRUE for one scan when CLK changes from TRUE to FALSE.
+			</p>
+		</div>
+	</div>
+
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Bistable Function Blocks</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`VAR
     SetResetLatch : RS;     // Set dominant bistable
     ResetSetLatch : SR;     // Reset dominant bistable
     
@@ -341,44 +346,42 @@ AlarmLatch := AlarmRS.Q1;
 
 // Combined logic
 AlarmAcknowledged := AckButton AND AlarmLatch;`}
-      title="Bistable Function Blocks (RS, SR)"
-      height="650px"
-    />
-  </div>
+			title="Bistable Function Blocks (RS, SR)"
+			height="650px"
+		/>
+	</div>
 
-  <div class="mb-6">
-    <div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-4">
-      <h3 class="text-lg font-semibold text-yellow-800 mb-3">RS - Set Dominant</h3>
-      <p class="text-yellow-700 text-sm mb-3"><strong>Members:</strong></p>
-      <ul class="text-yellow-700 text-sm space-y-1">
-        <li>• <strong>S:</strong> Set input (BOOL)</li>
-        <li>• <strong>R1:</strong> Reset input (BOOL)</li>
-        <li>• <strong>Q1:</strong> Output (BOOL)</li>
-      </ul>
-      <p class="text-yellow-700 text-sm mt-3">
-        When both S and R1 are TRUE, Q1 = TRUE (Set wins).
-      </p>
-    </div>
-    
-    <div class="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
-      <h3 class="text-lg font-semibold text-indigo-800 mb-3">SR - Reset Dominant</h3>
-      <p class="text-indigo-700 text-sm mb-3"><strong>Members:</strong></p>
-      <ul class="text-indigo-700 text-sm space-y-1">
-        <li>• <strong>S1:</strong> Set input (BOOL)</li>
-        <li>• <strong>R:</strong> Reset input (BOOL)</li>
-        <li>• <strong>Q1:</strong> Output (BOOL)</li>
-      </ul>
-      <p class="text-indigo-700 text-sm mt-3">
-        When both S1 and R are TRUE, Q1 = FALSE (Reset wins).
-      </p>
-    </div>
-  </div>
+	<div class="mb-6">
+		<div class="bg-yellow-50 border border-yellow-200 rounded-lg p-6 mb-4">
+			<h3 class="text-lg font-semibold text-yellow-800 mb-3">RS - Set Dominant</h3>
+			<p class="text-yellow-700 text-sm mb-3"><strong>Members:</strong></p>
+			<ul class="text-yellow-700 text-sm space-y-1">
+				<li>• <strong>S:</strong> Set input (BOOL)</li>
+				<li>• <strong>R1:</strong> Reset input (BOOL)</li>
+				<li>• <strong>Q1:</strong> Output (BOOL)</li>
+			</ul>
+			<p class="text-yellow-700 text-sm mt-3">When both S and R1 are TRUE, Q1 = TRUE (Set wins).</p>
+		</div>
 
-  <h2 class="text-2xl font-semibold text-gray-800 mb-4">Practical Application Example</h2>
-  
-  <div class="mb-6">
-    <CodeExample 
-      code={`PROGRAM ConveyorControl
+		<div class="bg-indigo-50 border border-indigo-200 rounded-lg p-6">
+			<h3 class="text-lg font-semibold text-indigo-800 mb-3">SR - Reset Dominant</h3>
+			<p class="text-indigo-700 text-sm mb-3"><strong>Members:</strong></p>
+			<ul class="text-indigo-700 text-sm space-y-1">
+				<li>• <strong>S1:</strong> Set input (BOOL)</li>
+				<li>• <strong>R:</strong> Reset input (BOOL)</li>
+				<li>• <strong>Q1:</strong> Output (BOOL)</li>
+			</ul>
+			<p class="text-indigo-700 text-sm mt-3">
+				When both S1 and R are TRUE, Q1 = FALSE (Reset wins).
+			</p>
+		</div>
+	</div>
+
+	<h2 class="text-2xl font-semibold text-gray-800 mb-4">Practical Application Example</h2>
+
+	<div class="mb-6">
+		<CodeExample
+			code={`PROGRAM ConveyorControl
 VAR
     // Inputs
     StartButton : BOOL;
@@ -449,19 +452,23 @@ StatusLight := SystemRunning;
 AlarmBuzzer := EStopEdge.Q OR PartCounter.Q;
 
 END_PROGRAM`}
-      title="Complete Conveyor Control Example"
-      height="800px"
-    />
-  </div>
+			title="Complete Conveyor Control Example"
+			height="800px"
+		/>
+	</div>
 
-  <div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
-    <h3 class="text-lg font-semibold text-blue-800 mb-3">🚀 Key Benefits of Standard Function Blocks</h3>
-    <ul class="text-blue-700 text-sm space-y-2">
-      <li>• <strong>Standardization:</strong> Consistent behavior across different PLC platforms</li>
-      <li>• <strong>Reliability:</strong> Well-tested implementations with predictable timing</li>
-      <li>• <strong>Efficiency:</strong> Optimized performance for real-time control systems</li>
-      <li>• <strong>Maintainability:</strong> Familiar interfaces for all automation engineers</li>
-      <li>• <strong>Safety:</strong> Proven components for safety-critical applications</li>
-    </ul>
-  </div>
+	<div class="bg-blue-50 border border-blue-200 rounded-lg p-6">
+		<h3 class="text-lg font-semibold text-blue-800 mb-3">
+			🚀 Key Benefits of Standard Function Blocks
+		</h3>
+		<ul class="text-blue-700 text-sm space-y-2">
+			<li>
+				• <strong>Standardization:</strong> Consistent behavior across different PLC platforms
+			</li>
+			<li>• <strong>Reliability:</strong> Well-tested implementations with predictable timing</li>
+			<li>• <strong>Efficiency:</strong> Optimized performance for real-time control systems</li>
+			<li>• <strong>Maintainability:</strong> Familiar interfaces for all automation engineers</li>
+			<li>• <strong>Safety:</strong> Proven components for safety-critical applications</li>
+		</ul>
+	</div>
 </article>
