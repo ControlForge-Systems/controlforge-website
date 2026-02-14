@@ -6,8 +6,8 @@
 		headline,
 		description,
 		url,
-		datePublished,
-		dateModified
+		datePublished = new Date().toISOString(),
+		dateModified = new Date().toISOString()
 	}: {
 		headline: string;
 		description: string;
@@ -15,19 +15,15 @@
 		datePublished?: string;
 		dateModified?: string;
 	} = $props();
-
-	// Use current date if not provided
-	let published = $derived(datePublished || new Date().toISOString());
-	let modified = $derived(dateModified || new Date().toISOString());
 </script>
 
-{@html `
-<script type="application/ld+json">
+<svelte:head>
+	{@html `<script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "TechArticle",
-  "headline": "${headline}",
-  "description": "${description}",
+  "headline": ${JSON.stringify(headline)},
+  "description": ${JSON.stringify(description)},
   "author": {
     "@type": "Organization",
     "name": "ControlForge Systems",
@@ -41,12 +37,12 @@
       "url": "https://controlforge.dev/controlforge_logo_1024x1024.webp"
     }
   },
-  "datePublished": "${published}",
-  "dateModified": "${modified}",
+  "datePublished": ${JSON.stringify(datePublished)},
+  "dateModified": ${JSON.stringify(dateModified)},
   "mainEntityOfPage": {
     "@type": "WebPage",
     "@id": "https://controlforge.dev${url}"
   }
 }
-</script>
-`}
+</scr` + `ipt>`}
+</svelte:head>
