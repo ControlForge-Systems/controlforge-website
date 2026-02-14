@@ -1,4 +1,6 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
+
 	/**
 	 * Article schema for documentation pages
 	 */
@@ -16,33 +18,42 @@
 		dateModified?: string;
 	} = $props();
 
-	const schema = $derived({
-		'@context': 'https://schema.org',
-		'@type': 'TechArticle',
-		headline,
-		description,
-		author: {
-			'@type': 'Organization',
-			name: 'ControlForge Systems',
-			url: 'https://controlforge.dev'
-		},
-		publisher: {
-			'@type': 'Organization',
-			name: 'ControlForge Systems',
-			logo: {
-				'@type': 'ImageObject',
-				url: 'https://controlforge.dev/controlforge_logo_1024x1024.webp'
+	// Inject schema into head on mount
+	// Props are constant per page, so capture immediately in onMount
+	onMount(() => {
+		const schema = {
+			'@context': 'https://schema.org',
+			'@type': 'TechArticle',
+			headline,
+			description,
+			author: {
+				'@type': 'Organization',
+				name: 'ControlForge Systems',
+				url: 'https://controlforge.dev'
+			},
+			publisher: {
+				'@type': 'Organization',
+				name: 'ControlForge Systems',
+				logo: {
+					'@type': 'ImageObject',
+					url: 'https://controlforge.dev/controlforge_logo_1024x1024.webp'
+				}
+			},
+			datePublished,
+			dateModified,
+			mainEntityOfPage: {
+				'@type': 'WebPage',
+				'@id': `https://controlforge.dev${url}`
 			}
-		},
-		datePublished,
-		dateModified,
-		mainEntityOfPage: {
-			'@type': 'WebPage',
-			'@id': `https://controlforge.dev${url}`
-		}
+		};
+
+		const script = document.createElement('script');
+		script.type = 'application/ld+json';
+		script.textContent = JSON.stringify(schema);
+		document.head.appendChild(script);
+
+		return () => {
+			document.head.removeChild(script);
+		};
 	});
 </script>
-
-<svelte:head>
-	{@html `<script type="application/ld+json">${JSON.stringify(schema)}</scr` + `ipt>`}
-</svelte:head>
