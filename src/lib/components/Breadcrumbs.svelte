@@ -1,5 +1,6 @@
 <script lang="ts">
-	export let items: Array<{ label: string; href?: string; current?: boolean }> = [];
+	let { items = [] }: { items?: Array<{ label: string; href?: string; current?: boolean }> } =
+		$props();
 </script>
 
 <nav aria-label="Breadcrumb" class="mb-4 sm:mb-6">

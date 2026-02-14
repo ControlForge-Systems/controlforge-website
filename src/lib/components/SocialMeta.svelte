@@ -1,12 +1,14 @@
 <script lang="ts">
-  /**
-   * This component adds Open Graph and Twitter card tags for social media sharing
-   */
-  export let title: string;
-  export let description: string;
-  export let url: string = "";
-  export let image: string = "/controlforge_logo_512x512_optimized.webp";
-  export let type: string = "article";
+	/**
+	 * This component adds Open Graph and Twitter card tags for social media sharing
+	 */
+	let {
+		title,
+		description,
+		url = '',
+		image = '/controlforge_logo_512x512_optimized.webp',
+		type = 'article'
+	}: { title: string; description: string; url?: string; image?: string; type?: string } = $props();
 </script>
 
 <!-- Open Graph / Facebook -->

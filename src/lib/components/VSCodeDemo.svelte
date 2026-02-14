@@ -1,11 +1,17 @@
 <script lang="ts">
 	import CodeExample from './CodeExample.svelte';
 
-	export let title: string = 'VS Code with ControlForge Extension';
-	export let files: Array<{ name: string; content: string; active?: boolean }> = [];
-	export let height: string = '500px';
+	let {
+		title = 'VS Code with ControlForge Extension',
+		files = [],
+		height = '500px'
+	}: {
+		title?: string;
+		files?: Array<{ name: string; content: string; active?: boolean }>;
+		height?: string;
+	} = $props();
 
-	let activeFileIndex = 0;
+	let activeFileIndex = $state(0);
 
 	// Default example files if none provided
 	const defaultFiles = [
@@ -78,8 +84,8 @@ END_FUNCTION_BLOCK`,
 		}
 	];
 
-	$: currentFiles = files.length > 0 ? files : defaultFiles;
-	$: activeFile = currentFiles[activeFileIndex];
+	let currentFiles = $derived(files.length > 0 ? files : defaultFiles);
+	let activeFile = $derived(currentFiles[activeFileIndex]);
 
 	function switchFile(index: number) {
 		activeFileIndex = index;
@@ -108,7 +114,7 @@ END_FUNCTION_BLOCK`,
 					activeFileIndex
 						? 'bg-gray-800 text-white'
 						: 'bg-gray-700 text-gray-300 hover:bg-gray-600'}"
-					on:click={() => switchFile(index)}
+					onclick={() => switchFile(index)}
 				>
 					<span class="flex items-center space-x-1 sm:space-x-2">
 						<span class="w-2 h-2 bg-blue-400 rounded-full"></span>
