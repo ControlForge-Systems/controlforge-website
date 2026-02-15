@@ -7,7 +7,6 @@ networks:
 services:
   controlforge-website:
     container_name: controlforge-website
-    image: nginx:alpine
     build: .
     restart: always
     networks:

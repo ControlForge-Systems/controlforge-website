@@ -8,8 +8,9 @@
 
 	let isMenuOpen = $state(false);
 	let mobileMenuEl: HTMLElement | null = $state(null);
-	let focusTrap: FocusTrap | null = $state(null);
+	let focusTrap: FocusTrap | null = null;
 	let hamburgerButton: HTMLButtonElement | null = $state(null);
+	let deactivatingTrap = false;
 
 	const navItems = [
 		{ href: '/', label: 'Home', type: 'main' },
@@ -35,28 +36,32 @@
 		isMenuOpen = false;
 	}
 
+	function destroyFocusTrap() {
+		if (focusTrap && !deactivatingTrap) {
+			deactivatingTrap = true;
+			focusTrap.deactivate();
+			focusTrap = null;
+			deactivatingTrap = false;
+		}
+	}
+
 	// Setup focus trap when menu opens
 	$effect(() => {
 		if (!browser) return;
 
 		if (isMenuOpen && mobileMenuEl) {
-			// Create focus trap
 			focusTrap = createFocusTrap(mobileMenuEl, {
 				escapeDeactivates: true,
 				clickOutsideDeactivates: true,
 				returnFocusOnDeactivate: true,
 				allowOutsideClick: true,
 				onDeactivate: () => {
-					closeMenu();
+					isMenuOpen = false;
 				}
 			});
-
-			// Activate focus trap
 			focusTrap.activate();
-		} else if (focusTrap) {
-			// Deactivate when menu closes
-			focusTrap.deactivate();
-			focusTrap = null;
+		} else {
+			destroyFocusTrap();
 		}
 	});
 </script>
