@@ -92,6 +92,7 @@
 		font-family: 'Consolas', 'Monaco', 'Courier New', monospace;
 		font-size: 14px;
 		line-height: 1.5;
+		overflow-x: auto;
 	}
 
 	.shiki-wrapper :global(code) {

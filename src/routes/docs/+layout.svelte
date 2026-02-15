@@ -59,7 +59,7 @@
 	/>
 </svelte:head>
 
-<div class="flex min-h-screen">
+<div class="flex min-h-screen overflow-x-hidden">
 	<!-- Mobile overlay -->
 	{#if isSidebarOpen}
 		<div
@@ -87,7 +87,9 @@
 	</div>
 
 	<!-- Main content with proper margins -->
-	<main class="flex-1 p-4 md:p-8 max-w-4xl md:ml-0 {isSidebarOpen ? 'md:ml-64' : ''}">
+	<main
+		class="flex-1 p-4 md:p-8 max-w-4xl md:ml-0 overflow-x-hidden {isSidebarOpen ? 'md:ml-64' : ''}"
+	>
 		<Breadcrumbs items={breadcrumbItems} />
 		{@render children()}
 	</main>
