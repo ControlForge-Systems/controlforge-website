@@ -4,10 +4,10 @@
 </script>
 
 <nav aria-label="Breadcrumb" class="mb-4 sm:mb-6">
-	<ol class="flex items-center flex-wrap gap-2 text-sm text-gray-600">
+	<ol class="flex items-center gap-1 text-sm text-gray-600 overflow-x-auto">
 		{#each items as item, index}
 			{#if index > 0}
-				<li class="flex items-center shrink-0" aria-hidden="true">
+				<li class="shrink-0" aria-hidden="true">
 					<svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
 						<path
 							fill-rule="evenodd"
@@ -18,13 +18,13 @@
 				</li>
 			{/if}
 
-			<li class="flex items-center">
+			<li class="shrink-0">
 				{#if item.current}
-					<span class="font-semibold text-gray-900 leading-none" aria-current="page">
+					<span class="font-semibold text-gray-900" aria-current="page">
 						{item.label}
 					</span>
 				{:else}
-					<a href={item.href} class="hover:text-brand-blue transition-colors leading-none">
+					<a href={item.href} class="hover:text-brand-blue transition-colors whitespace-nowrap">
 						{item.label}
 					</a>
 				{/if}
