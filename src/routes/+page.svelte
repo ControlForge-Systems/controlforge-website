@@ -118,13 +118,15 @@
 		<div
 			class="flex flex-col md:flex-row items-center justify-center md:justify-between gap-4 sm:gap-6 mb-4 sm:mb-6"
 		>
-			<div class="md:w-1/3 flex justify-center">
-				<picture class="max-w-full">
+			<div class="md:w-1/3 flex justify-center max-w-full">
+				<picture class="max-w-full block">
 					<source srcset="/controlforge_ST_icon_1024x1024.webp" type="image/webp" />
 					<img
 						src="/controlforge_ST_icon_1024x1024.png"
 						alt="Structured Text by ControlForge Logo"
 						class="w-32 h-32 xs:w-40 xs:h-40 sm:w-48 sm:h-48 md:w-56 md:h-56 object-contain max-w-full"
+						width="1024"
+						height="1024"
 						loading="lazy"
 						decoding="async"
 					/>
@@ -201,7 +203,7 @@
 
 			<p class="text-sm xs:text-base text-gray-600 mb-3">Or install via command line:</p>
 			<div class="max-w-full mx-auto">
-				<div class="bg-gray-900 rounded-lg p-3 relative">
+				<div class="bg-gray-900 rounded-lg p-3 relative overflow-x-auto">
 					<div class="flex items-center justify-between mb-2">
 						<span class="text-gray-400 text-xs font-medium">Terminal</span>
 						<button
@@ -242,8 +244,8 @@
 							{/if}
 						</button>
 					</div>
-					<div class="flex items-center space-x-2">
-						<span class="text-green-400 text-sm">$</span>
+					<div class="flex items-center space-x-2 whitespace-nowrap">
+						<span class="text-green-400 text-sm shrink-0">$</span>
 						<code class="text-gray-100 text-sm font-mono"
 							>code --install-extension ControlForgeSystems.controlforge-structured-text</code
 						>
