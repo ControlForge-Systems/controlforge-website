@@ -7,7 +7,7 @@
 	<ol class="flex items-center flex-wrap gap-2 text-sm text-gray-600">
 		{#each items as item, index}
 			{#if index > 0}
-				<li class="flex items-center" aria-hidden="true">
+				<li class="flex items-center shrink-0" aria-hidden="true">
 					<svg class="w-4 h-4 text-gray-400" fill="currentColor" viewBox="0 0 20 20">
 						<path
 							fill-rule="evenodd"
@@ -20,11 +20,11 @@
 
 			<li class="flex items-center">
 				{#if item.current}
-					<span class="font-medium text-gray-900" aria-current="page">
+					<span class="font-semibold text-gray-900 leading-none" aria-current="page">
 						{item.label}
 					</span>
 				{:else}
-					<a href={item.href} class="hover:text-brand-blue transition-colors">
+					<a href={item.href} class="hover:text-brand-blue transition-colors leading-none">
 						{item.label}
 					</a>
 				{/if}
