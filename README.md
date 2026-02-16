@@ -1,53 +1,37 @@
-# ControlForge Systems Website
+# ControlForge Website
 
-Official website for ControlForge Systems - Bringing Industrial Control Programming into the Modern Era.
+Marketing website for ControlForge Structured Text VS Code extension.
 
-![Deploy Status](https://img.shields.io/github/deployments/ControlForge-Systems/controlforge-website/production?label=deploy)
-![License](https://img.shields.io/github/license/ControlForge-Systems/controlforge-website)
+Built with SvelteKit, TypeScript, and Tailwind CSS.
 
-## 📚 Documentation
+## About ControlForge
 
-**All project documentation is located in the [`/docs/`](./docs/) folder.**
+ControlForge is a VS Code extension for IEC 61131-3 Structured Text PLC programming. Provides syntax highlighting, IntelliSense, diagnostics, and code completion for industrial automation development.
 
-- **[Documentation Index](./docs/README.md)** - Complete overview of all documentation
-- **[Styling Guide](./docs/STYLING_GUIDE.md)** - Brand guidelines and component patterns ⭐
+**Extension Repository:** https://github.com/ControlForge-Systems/controlforge
 
-## �🚀 Quick Start
+## Development
 
 ```bash
-# Install dependencies
 pnpm install
-
-# Start development server
 pnpm dev
-
-# Build for production
-pnpm build
-
-# Deploy to production
-pnpm prod:deploy
 ```
 
-## 🛠 Tech Stack
+## Build
 
-- SvelteKit
-- TailwindCSS
-- TypeScript
-- Docker
-- Nginx
+```bash
+pnpm build
+pnpm preview
+```
 
-## 🚀 Deployment
+## Documentation
 
-The site is automatically deployed using Docker and nginx. All commits to the main branch trigger a new deployment.
+- `docs/STYLING_GUIDE.md` - UI/styling patterns and Tailwind v4 usage
+- `docs/IEC61131_SPECIFICATION.md` - IEC 61131-3 Structured Text language specification
 
-## 🤝 Contributing
+## Testing
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 License
-
-Copyright © 2024 ControlForge Systems. All rights reserved.
+```bash
+pnpm test        # Run tests
+pnpm test:ui     # Open Playwright UI
+```
