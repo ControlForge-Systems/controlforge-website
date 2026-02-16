@@ -4,7 +4,7 @@ const path = require('path');
 
 let commit = 'unknown';
 try {
-  commit = execSync('git rev-parse --short HEAD').toString().trim();
+	commit = execSync('git rev-parse --short HEAD').toString().trim();
 } catch (e) {}
 
 const content = `// This file is auto-generated at build time
