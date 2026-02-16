@@ -28,9 +28,3 @@ pnpm preview
 
 - `docs/STYLING_GUIDE.md` - UI/styling patterns and Tailwind v4 usage
 - `docs/IEC61131_SPECIFICATION.md` - IEC 61131-3 Structured Text language specification
-
-## Testing
-
-```bash
-pnpm test        # Run tests
-```

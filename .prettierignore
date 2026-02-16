@@ -6,8 +6,6 @@ build
 .svelte-kit
 package
 coverage
-test-results
-playwright-report
 *.min.js
 *.min.css
 src/lib/build-info.ts
