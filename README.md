@@ -5,14 +5,14 @@ Official website for ControlForge Systems - Bringing Industrial Control Programm
 ![Deploy Status](https://img.shields.io/github/deployments/ControlForge-Systems/controlforge-website/production?label=deploy)
 ![License](https://img.shields.io/github/license/ControlForge-Systems/controlforge-website)
 
-## 📚 Documentation
+## Documentation
 
 **All project documentation is located in the [`/docs/`](./docs/) folder.**
 
 - **[Documentation Index](./docs/README.md)** - Complete overview of all documentation
-- **[Styling Guide](./docs/STYLING_GUIDE.md)** - Brand guidelines and component patterns ⭐
+- **[Styling Guide](./docs/STYLING_GUIDE.md)** - Brand guidelines and component patterns
 
-## �🚀 Quick Start
+## Quick Start
 
 ```bash
 # Install dependencies
@@ -28,7 +28,7 @@ pnpm build
 pnpm prod:deploy
 ```
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - SvelteKit
 - TailwindCSS
@@ -36,11 +36,11 @@ pnpm prod:deploy
 - Docker
 - Nginx
 
-## 🚀 Deployment
+## Deployment
 
 The site is automatically deployed using Docker and nginx. All commits to the main branch trigger a new deployment.
 
-## 🤝 Contributing
+## Contributing
 
 1. Fork the repository
 2. Create your feature branch (`git checkout -b feature/amazing-feature`)
@@ -48,6 +48,6 @@ The site is automatically deployed using Docker and nginx. All commits to the ma
 4. Push to the branch (`git push origin feature/amazing-feature`)
 5. Open a Pull Request
 
-## 📝 License
+## License
 
 Copyright © 2024 ControlForge Systems. All rights reserved.
