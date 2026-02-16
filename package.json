@@ -23,7 +23,8 @@
 		"prod:deploy:copy": "rsync -avz -e 'ssh' ./* homelab:~/ssd-2tb/apps/michael/controlforge-website --include-from='prod.deploy.files.txt' --exclude '*'",
 		"prod:deploy:run": "ssh homelab 'cd ~/ssd-2tb/apps/michael/controlforge-website && docker rm -f controlforge-website 2>/dev/null || true && docker compose -f prod.compose.yml up -d'",
 		"prebuild": "node scripts/generate-build-info.cjs && node scripts/generate-sitemap.cjs",
-		"postinstall": "node scripts/generate-build-info.cjs"
+		"postinstall": "node scripts/generate-build-info.cjs",
+		"prepare": "husky"
 	},
 	"devDependencies": {
 		"@eslint/js": "^10.0.1",
@@ -39,6 +40,8 @@
 		"eslint": "^10.0.0",
 		"eslint-plugin-svelte": "^3.15.0",
 		"globals": "^17.3.0",
+		"husky": "^9.1.7",
+		"lint-staged": "^16.2.7",
 		"prettier": "^3.2.5",
 		"prettier-plugin-svelte": "^3.2.2",
 		"rollup-plugin-visualizer": "^6.0.3",
@@ -57,5 +60,14 @@
 	"type": "module",
 	"dependencies": {
 		"@sveltejs/adapter-static": "^3.0.1"
+	},
+	"lint-staged": {
+		"*.{ts,svelte}": [
+			"eslint --fix",
+			"prettier --write"
+		],
+		"*.{js,json,md,css}": [
+			"prettier --write"
+		]
 	}
 }
