@@ -1,38 +1,44 @@
 # VS Code Integration Components
 
-> Guide for using VS Code-like components in the ControlForge documentation
+Guide for using VS Code-like components in the ControlForge documentation.
 
 ## Available Components
 
 ### 1. CodeExample Component (`CodeExample.svelte`)
+
 Monaco Editor-based component for syntax highlighting:
+
 - Structured Text syntax highlighting
 - Custom theme matching the extension
 - Lightweight and fast loading
 
 **Usage:**
+
 ```svelte
-<CodeExample 
-  title="Timer Example"
-  code={`PROGRAM Main
+<CodeExample
+	title="Timer Example"
+	code={`PROGRAM Main
 VAR
   Timer1: TON;
 END_VAR
 Timer1(IN := TRUE, PT := T#5s);
 END_PROGRAM`}
-  height="200px"
+	height="200px"
 />
 ```
 
 ### 2. VSCodeDemo Component (`VSCodeDemo.svelte`)
+
 Complete VS Code interface simulation:
+
 - VS Code-style window with controls
 - Multiple file tabs
 - Status bar with extension info
 
 **Usage:**
-```svelte
-<VSCodeDemo 
+
+````svelte
+<VSCodeDemo
   title="ControlForge Extension Demo"
   height="500px"
   files={[
@@ -46,32 +52,30 @@ Complete VS Code interface simulation:
 ### Dependencies
 ```bash
 npm install monaco-editor
-```
+````
 
 ### Vite Configuration
+
 ```typescript
 export default defineConfig({
-  plugins: [sveltekit()],
-  optimizeDeps: {
-    include: ['monaco-editor']
-  },
-  define: {
-    global: 'globalThis'
-  }
+	plugins: [sveltekit()],
+	optimizeDeps: {
+		include: ['monaco-editor']
+	},
+	define: {
+		global: 'globalThis'
+	}
 });
 ```
 
 ### Usage in Pages
+
 ```svelte
 <script lang="ts">
-  import CodeExample from '$lib/components/CodeExample.svelte';
+	import CodeExample from '$lib/components/CodeExample.svelte';
 </script>
 
-<CodeExample 
-  title="Your Example"
-  code="// Your Structured Text code here"
-  height="300px"
-/>
+<CodeExample title="Your Example" code="// Your Structured Text code here" height="300px" />
 ```
 
 ---
@@ -79,6 +83,7 @@ export default defineConfig({
 ## Language Features
 
 ### Structured Text Support
+
 - **Keywords**: `IF`, `THEN`, `ELSE`, `FOR`, `WHILE`, `FUNCTION`, etc.
 - **Data types**: `BOOL`, `INT`, `REAL`, `STRING`, etc.
 - **Operators**: `:=`, `AND`, `OR`, `NOT`, etc.
@@ -86,8 +91,9 @@ export default defineConfig({
 - **Number formats**: decimal, hexadecimal (`16#`), binary (`2#`)
 
 ### Custom Theme
+
 - Blue keywords
-- Green comments  
+- Green comments
 - Red strings
 - Matches ControlForge extension appearance
 
@@ -96,10 +102,12 @@ export default defineConfig({
 ## Usage Guidelines
 
 ### When to Use Each Component
+
 - **CodeExample**: Most code snippets (lightweight and reliable)
 - **VSCodeDemo**: Feature showcases and extension capabilities
 
 ### Best Practices
+
 - Keep code examples concise and focused
 - Provide clear titles for examples
 - Use appropriate heights for visibility
@@ -107,4 +115,4 @@ export default defineConfig({
 
 ---
 
-*These components provide interactive code examples that enhance the documentation experience.*
+_These components provide interactive code examples that enhance the documentation experience._
