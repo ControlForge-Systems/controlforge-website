@@ -14,11 +14,6 @@
 						>
 					</li>
 					<li>
-						<a href="/docs/examples" class="text-gray-600 hover:text-brand-blue transition-colors"
-							>Examples</a
-						>
-					</li>
-					<li>
 						<a
 							href="/docs/best-practices"
 							class="text-gray-600 hover:text-brand-blue transition-colors">Best Practices</a
