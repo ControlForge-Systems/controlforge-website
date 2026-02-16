@@ -16,9 +16,10 @@ test.describe('Git Hooks', () => {
 			expect(isExecutable).toBeTruthy();
 		}
 
-		// Check content includes lint-staged
+		// Check content includes lint and format
 		const content = fs.readFileSync(preCommitPath, 'utf-8');
-		expect(content).toContain('lint-staged');
+		expect(content).toContain('lint');
+		expect(content).toContain('format');
 	});
 
 	test('pre-push hook exists and is executable', async () => {
@@ -40,24 +41,6 @@ test.describe('Git Hooks', () => {
 		expect(content).toContain('build');
 	});
 
-	test('lint-staged configuration exists in package.json', async () => {
-		const packageJsonPath = path.join(process.cwd(), 'package.json');
-		const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
-
-		// Check lint-staged config exists
-		expect(packageJson['lint-staged']).toBeDefined();
-
-		// Check it has TypeScript/Svelte config
-		const lintStaged = packageJson['lint-staged'];
-		expect(lintStaged['*.{ts,svelte}']).toBeDefined();
-		expect(lintStaged['*.{ts,svelte}']).toContain('eslint --fix');
-		expect(lintStaged['*.{ts,svelte}']).toContain('prettier --write');
-
-		// Check it has general file config
-		expect(lintStaged['*.{js,json,md,css}']).toBeDefined();
-		expect(lintStaged['*.{js,json,md,css}']).toContain('prettier --write');
-	});
-
 	test('prepare script exists in package.json', async () => {
 		const packageJsonPath = path.join(process.cwd(), 'package.json');
 		const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
@@ -71,6 +54,5 @@ test.describe('Git Hooks', () => {
 		const packageJson = JSON.parse(fs.readFileSync(packageJsonPath, 'utf-8'));
 
 		expect(packageJson.devDependencies.husky).toBeDefined();
-		expect(packageJson.devDependencies['lint-staged']).toBeDefined();
 	});
 });

@@ -3,12 +3,12 @@
 > **IMPORTANT NOTICE FOR AI ASSISTANTS (GitHub Copilot, etc.)**  
 > This document is the authoritative source for IEC 61131-3 Structured Text language specifications in the ControlForge project.
 > Before suggesting code changes or additions related to IEC 61131-3 Structured Text:
+>
 > 1. Consult this specification document for correct syntax, keywords, operators, and standard elements
 > 2. Ensure all suggestions conform to this specification
 > 3. When adding new language features, update this document accordingly
 > 4. Never introduce syntax or elements that conflict with this specification
 > 5. For function block instance member completion, refer to the tables of standard function blocks and their members
-
 
 This document contains standard definitions for the IEC 61131-3 Structured Text programming language, providing a centralized reference for use throughout the ControlForge Structured Text extension.
 
@@ -112,33 +112,33 @@ ANY_REAL, ANY_INT, ANY_BIT, ANY_STRING, ANY_DATE
 
 ### Timer Function Blocks
 
-| Function Block | Members |
-|---------------|---------|
-| TON | IN, PT, Q, ET |
-| TOF | IN, PT, Q, ET |
-| TP | IN, PT, Q, ET |
+| Function Block | Members       |
+| -------------- | ------------- |
+| TON            | IN, PT, Q, ET |
+| TOF            | IN, PT, Q, ET |
+| TP             | IN, PT, Q, ET |
 
 ### Counter Function Blocks
 
-| Function Block | Members |
-|---------------|---------|
-| CTU | CU, R, PV, Q, CV |
-| CTD | CD, LD, PV, Q, CV |
-| CTUD | CU, CD, R, LD, PV, QU, QD, CV |
+| Function Block | Members                       |
+| -------------- | ----------------------------- |
+| CTU            | CU, R, PV, Q, CV              |
+| CTD            | CD, LD, PV, Q, CV             |
+| CTUD           | CU, CD, R, LD, PV, QU, QD, CV |
 
 ### Edge Detection Function Blocks
 
 | Function Block | Members |
-|---------------|---------|
-| R_TRIG | CLK, Q |
-| F_TRIG | CLK, Q |
+| -------------- | ------- |
+| R_TRIG         | CLK, Q  |
+| F_TRIG         | CLK, Q  |
 
 ### Bistable Function Blocks
 
-| Function Block | Members |
-|---------------|---------|
-| RS | S, R1, Q1 |
-| SR | S1, R, Q1 |
+| Function Block | Members   |
+| -------------- | --------- |
+| RS             | S, R1, Q1 |
+| SR             | S1, R, Q1 |
 
 ## Standard Functions
 
