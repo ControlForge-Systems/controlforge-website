@@ -6,6 +6,8 @@ node_modules
 /build
 /.svelte-kit
 /package
+src/lib/build-info.ts
+static/sitemap.xml
 
 # Environment variables
 .env

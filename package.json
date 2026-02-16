@@ -16,6 +16,7 @@
 		"lint:eslint:fix": "eslint . --fix",
 		"format": "prettier --write .",
 		"test": "playwright test",
+		"test:no-webkit": "SKIP_WEBKIT=1 playwright test",
 		"test:ui": "playwright test --ui",
 		"validate": "./scripts/pre-deployment-check.sh",
 		"prod:deploy": "pnpm prod:build && pnpm prod:deploy:copy && pnpm prod:deploy:run",

@@ -1,5 +1,6 @@
 import { createHighlighterCore, type HighlighterCore } from 'shiki/core';
 import { createOnigurumaEngine } from 'shiki/engine/oniguruma';
+import type { LanguageInput } from 'shiki';
 import githubLight from 'shiki/themes/github-light.mjs';
 import structuredTextGrammar from '$lib/grammars/structured-text.tmLanguage.json';
 
@@ -24,7 +25,7 @@ export async function getHighlighter(): Promise<HighlighterCore> {
 	// Initialize once
 	initPromise = createHighlighterCore({
 		themes: [githubLight],
-		langs: [structuredTextGrammar as any],
+		langs: [structuredTextGrammar as LanguageInput],
 		engine: createOnigurumaEngine(import('shiki/wasm'))
 	}).then((highlighter) => {
 		highlighterInstance = highlighter;
