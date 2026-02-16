@@ -33,7 +33,4 @@ pnpm preview
 
 ```bash
 pnpm test        # Run tests
-pnpm test:ui     # Open Playwright UI
 ```
-
-**WebKit Dependencies:** Playwright WebKit requires Ubuntu-based system libraries. On Fedora/RHEL/non-Debian systems, use `pnpm test:no-webkit` to skip WebKit tests locally. CI runs full cross-browser suite.
