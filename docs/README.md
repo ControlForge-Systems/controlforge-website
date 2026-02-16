@@ -10,12 +10,11 @@ _This folder contains all project documentation, development guidelines, and ope
 
 ### For Styling/UI Changes
 
-1. **[STYLING_GUIDE.md](./STYLING_GUIDE.md)** - REQUIRED READING
+**[STYLING_GUIDE.md](./STYLING_GUIDE.md)** - REQUIRED READING
 
-### For Feature Development
+### For Language Specification
 
-1. [VS_CODE_INTEGRATION.md](./VS_CODE_INTEGRATION.md)
-2. [IEC61131_SPECIFICATION.md](./IEC61131_SPECIFICATION.md)
+[IEC61131_SPECIFICATION.md](./IEC61131_SPECIFICATION.md)
 
 ---
 
@@ -24,7 +23,6 @@ _This folder contains all project documentation, development guidelines, and ope
 | Document                                                 | Purpose                                          | When to Use                |
 | -------------------------------------------------------- | ------------------------------------------------ | -------------------------- |
 | **[STYLING_GUIDE.md](./STYLING_GUIDE.md)**               | Brand guidelines, component patterns, typography | Every UI/style change      |
-| [VS_CODE_INTEGRATION.md](./VS_CODE_INTEGRATION.md)       | VS Code component guidelines                     | Adding/modifying demos     |
 | [IEC61131_SPECIFICATION.md](./IEC61131_SPECIFICATION.md) | Technical language specification                 | Language-specific features |
 
 ---
