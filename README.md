@@ -1,53 +1,37 @@
-# ControlForge Systems Website
+# ControlForge Website
 
-Official website for ControlForge Systems - Bringing Industrial Control Programming into the Modern Era.
+Marketing website for ControlForge Structured Text VS Code extension.
 
-![Deploy Status](https://img.shields.io/github/deployments/ControlForge-Systems/controlforge-website/production?label=deploy)
-![License](https://img.shields.io/github/license/ControlForge-Systems/controlforge-website)
+Built with SvelteKit, TypeScript, and Tailwind CSS.
+
+## About ControlForge
+
+ControlForge is a VS Code extension for IEC 61131-3 Structured Text PLC programming. Provides syntax highlighting, IntelliSense, diagnostics, and code completion for industrial automation development.
+
+**Extension Repository:** https://github.com/ControlForge-Systems/controlforge
+
+## Development
+
+```bash
+pnpm install
+pnpm dev
+```
+
+## Build
+
+```bash
+pnpm build
+pnpm preview
+```
 
 ## Documentation
 
-**All project documentation is located in the [`/docs/`](./docs/) folder.**
+- `docs/STYLING_GUIDE.md` - UI/styling patterns and Tailwind v4 usage
+- `docs/IEC61131_SPECIFICATION.md` - IEC 61131-3 Structured Text language specification
 
-- **[Documentation Index](./docs/README.md)** - Complete overview of all documentation
-- **[Styling Guide](./docs/STYLING_GUIDE.md)** - Brand guidelines and component patterns
-
-## Quick Start
+## Testing
 
 ```bash
-# Install dependencies
-pnpm install
-
-# Start development server
-pnpm dev
-
-# Build for production
-pnpm build
-
-# Deploy to production
-pnpm prod:deploy
+pnpm test        # Run tests
+pnpm test:ui     # Open Playwright UI
 ```
-
-## Tech Stack
-
-- SvelteKit
-- TailwindCSS
-- TypeScript
-- Docker
-- Nginx
-
-## Deployment
-
-The site is automatically deployed using Docker and nginx. All commits to the main branch trigger a new deployment.
-
-## Contributing
-
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## License
-
-Copyright © 2024 ControlForge Systems. All rights reserved.
