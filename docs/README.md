@@ -17,11 +17,6 @@ _This folder contains all project documentation, development guidelines, and ope
 1. [VS_CODE_INTEGRATION.md](./VS_CODE_INTEGRATION.md)
 2. [IEC61131_SPECIFICATION.md](./IEC61131_SPECIFICATION.md)
 
-### For Production Deployment
-
-1. [PRODUCTION_CHECKLIST.md](./PRODUCTION_CHECKLIST.md) - REQUIRED
-2. [DEPLOYMENT.md](./DEPLOYMENT.md)
-
 ---
 
 ## Documentation Index
@@ -31,9 +26,6 @@ _This folder contains all project documentation, development guidelines, and ope
 | **[STYLING_GUIDE.md](./STYLING_GUIDE.md)**               | Brand guidelines, component patterns, typography | Every UI/style change      |
 | [VS_CODE_INTEGRATION.md](./VS_CODE_INTEGRATION.md)       | VS Code component guidelines                     | Adding/modifying demos     |
 | [IEC61131_SPECIFICATION.md](./IEC61131_SPECIFICATION.md) | Technical language specification                 | Language-specific features |
-| [PRODUCTION_CHECKLIST.md](./PRODUCTION_CHECKLIST.md)     | Pre-deployment validation                        | Before every release       |
-| [DEPLOYMENT.md](./DEPLOYMENT.md)                         | Deployment procedures                            | Production deployments     |
-| [CHUNK_OPTIMIZATION.md](./CHUNK_OPTIMIZATION.md)         | Performance optimization                         | Build/performance issues   |
 
 ---
 
