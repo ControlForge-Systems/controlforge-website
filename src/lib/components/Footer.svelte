@@ -1,6 +1,6 @@
 <footer class="bg-gray-100 border-t border-gray-200">
 	<div class="container mx-auto px-4 py-8 sm:py-12">
-		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8">
+		<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8">
 			<!-- Product -->
 			<div>
 				<h3 class="font-semibold text-gray-900 mb-3 sm:mb-4">Product</h3>
@@ -11,11 +11,6 @@
 					<li>
 						<a href="/docs" class="text-gray-600 hover:text-brand-blue transition-colors"
 							>Documentation</a
-						>
-					</li>
-					<li>
-						<a href="/docs/examples" class="text-gray-600 hover:text-brand-blue transition-colors"
-							>Examples</a
 						>
 					</li>
 					<li>
@@ -63,29 +58,22 @@
 					</li>
 					<li>
 						<a
-							href="https://github.com/ControlForge-Systems/controlforge-structured-text/issues"
-							target="_blank"
-							rel="noopener noreferrer"
-							class="text-gray-600 hover:text-brand-blue transition-colors"
-						>
-							Report Issue
-						</a>
-					</li>
-				</ul>
-			</div>
-
-			<!-- Community -->
-			<div>
-				<h3 class="font-semibold text-gray-900 mb-3 sm:mb-4">Community</h3>
-				<ul class="space-y-2 text-sm">
-					<li>
-						<a
 							href="https://github.com/ControlForge-Systems/controlforge-structured-text/blob/main/CHANGELOG.md"
 							target="_blank"
 							rel="noopener noreferrer"
 							class="text-gray-600 hover:text-brand-blue transition-colors"
 						>
 							Changelog
+						</a>
+					</li>
+					<li>
+						<a
+							href="https://github.com/ControlForge-Systems/controlforge-structured-text/issues"
+							target="_blank"
+							rel="noopener noreferrer"
+							class="text-gray-600 hover:text-brand-blue transition-colors"
+						>
+							Report Issue
 						</a>
 					</li>
 				</ul>

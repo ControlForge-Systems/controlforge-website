@@ -1,16 +1,9 @@
 <script lang="ts">
 	import { page } from '$app/stores';
 	import { browser } from '$app/environment';
-	import { onMount } from 'svelte';
-	import { createFocusTrap } from 'focus-trap';
-	import type { FocusTrap } from 'focus-trap';
 	import OptimizedImage from './OptimizedImage.svelte';
 
 	let isMenuOpen = $state(false);
-	let mobileMenuEl: HTMLElement | null = $state(null);
-	let focusTrap: FocusTrap | null = null;
-	let hamburgerButton: HTMLButtonElement | null = $state(null);
-	let deactivatingTrap = false;
 
 	const navItems = [
 		{ href: '/', label: 'Home', type: 'main' },
@@ -36,35 +29,15 @@
 		isMenuOpen = false;
 	}
 
-	function destroyFocusTrap() {
-		if (focusTrap && !deactivatingTrap) {
-			deactivatingTrap = true;
-			focusTrap.deactivate();
-			focusTrap = null;
-			deactivatingTrap = false;
+	// Close on Escape
+	function handleKeydown(e: KeyboardEvent) {
+		if (e.key === 'Escape' && isMenuOpen) {
+			closeMenu();
 		}
 	}
-
-	// Setup focus trap when menu opens
-	$effect(() => {
-		if (!browser) return;
-
-		if (isMenuOpen && mobileMenuEl) {
-			focusTrap = createFocusTrap(mobileMenuEl, {
-				escapeDeactivates: true,
-				clickOutsideDeactivates: true,
-				returnFocusOnDeactivate: true,
-				allowOutsideClick: true,
-				onDeactivate: () => {
-					isMenuOpen = false;
-				}
-			});
-			focusTrap.activate();
-		} else {
-			destroyFocusTrap();
-		}
-	});
 </script>
+
+<svelte:window onkeydown={handleKeydown} />
 
 <header class="bg-gray-900 text-white">
 	<div class="container mx-auto px-4">
@@ -101,7 +74,6 @@
 
 			<!-- Mobile hamburger button - Only show on screens smaller than md -->
 			<button
-				bind:this={hamburgerButton}
 				class="block md:hidden p-2 rounded hover:bg-gray-700 transition-colors"
 				onclick={toggleMenu}
 				aria-label="Toggle navigation menu"
@@ -148,7 +120,6 @@
 	<!-- Mobile Navigation Menu - Only show when isMenuOpen is true -->
 	{#if isMenuOpen}
 		<div
-			bind:this={mobileMenuEl}
 			class="md:hidden bg-gray-800 border-t border-gray-700"
 			id="mobile-menu"
 			role="dialog"
