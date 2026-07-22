@@ -1,0 +1,27 @@
+# Cloudflare Pages headers
+# Replaces the security/caching headers previously set in nginx/default.conf.
+# https://developers.cloudflare.com/pages/configuration/headers/
+
+/*
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: strict-origin-when-cross-origin
+  Strict-Transport-Security: max-age=31536000; includeSubDomains; preload
+  Permissions-Policy: geolocation=(), microphone=(), camera=(), payment=()
+  Content-Security-Policy: default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://www.googletagmanager.com https://www.google-analytics.com https://ssl.google-analytics.com https://tagmanager.google.com; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://www.googletagmanager.com; img-src 'self' data: https://www.google-analytics.com https://www.googletagmanager.com https://fonts.gstatic.com https://img.shields.io; style-src 'self' 'unsafe-inline' https://www.googletagmanager.com https://fonts.googleapis.com; font-src 'self' https://fonts.gstatic.com;
+
+# Content-hashed build assets - safe to cache forever
+/_app/immutable/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Static images and fonts served from the site root
+/*.png
+  Cache-Control: public, max-age=31536000, immutable
+/*.webp
+  Cache-Control: public, max-age=31536000, immutable
+/*.svg
+  Cache-Control: public, max-age=31536000, immutable
+/*.ico
+  Cache-Control: public, max-age=31536000, immutable
+/*.woff2
+  Cache-Control: public, max-age=31536000, immutable

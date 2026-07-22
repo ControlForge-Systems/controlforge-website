@@ -24,6 +24,32 @@ pnpm build
 pnpm preview
 ```
 
+## Deployment
+
+The site is a static build hosted on **Cloudflare Pages** (project
+`controlforge-website`), served at https://controlforge.dev.
+
+```bash
+pnpm validate      # optional: pre-deployment checks against ./build
+pnpm prod:deploy   # production build + deploy to controlforge.dev
+```
+
+Other targets:
+
+- `pnpm deploy:pages` - deploy the existing `build/` output to production
+- `pnpm deploy:preview` - deploy to a preview URL instead of production
+
+Deploys use the local `cf` wrapper (`~/.local/bin/cf`), which supplies the
+Cloudflare API token and account id to Wrangler.
+
+### Configuration
+
+- `static/_headers` - security headers and cache-control (previously nginx)
+- `static/_redirects` - path-level redirects only; domain-level redirects such
+  as www -> apex live in the zone's Redirect Rules on the Cloudflare dashboard
+- Compression (brotli/gzip) is applied automatically by Cloudflare - there is
+  no pre-compression step
+
 ## Documentation
 
 - `docs/STYLING_GUIDE.md` - UI/styling patterns and Tailwind v4 usage

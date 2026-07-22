@@ -74,8 +74,8 @@ print_section "File Structure Validation"
 # Check for essential files
 essential_files=(
     "package.json"
-    "prod.compose.yml"
-    "nginx/default.conf"
+    "static/_headers"
+    "static/_redirects"
     ".gitignore"
 )
 
@@ -171,15 +171,21 @@ for image in "${images[@]}"; do
 done
 
 # =========================================
-# Configuration Validation
+# Cloudflare Pages Configuration Validation
 # =========================================
-print_section "Configuration Validation"
+print_section "Cloudflare Pages Configuration"
 
-# Check nginx config
-if nginx -t -c nginx/default.conf 2>/dev/null; then
-    print_status "Nginx configuration valid" "OK"
+# _headers and _redirects must reach the build output root to take effect
+if [ -f "build/_headers" ]; then
+    print_status "_headers present in build output" "OK"
 else
-    print_status "Nginx configuration has issues" "WARNING"
+    print_status "_headers missing from build output" "ERROR"
+fi
+
+if [ -f "build/_redirects" ]; then
+    print_status "_redirects present in build output" "OK"
+else
+    print_status "_redirects missing from build output" "ERROR"
 fi
 
 # =========================================
@@ -187,18 +193,27 @@ fi
 # =========================================
 print_section "Security Validation"
 
-# Check for security headers in nginx config
-if grep -q "X-Content-Type-Options" nginx/default.conf; then
-    print_status "Security headers configured in nginx" "OK"
-else
-    print_status "Security headers missing in nginx config" "ERROR"
-fi
+security_headers=(
+    "X-Content-Type-Options"
+    "X-Frame-Options"
+    "Strict-Transport-Security"
+    "Content-Security-Policy"
+    "Referrer-Policy"
+)
 
-# Check for HTTPS redirect
-if grep -q "return 301 https" nginx/default.conf; then
-    print_status "HTTPS redirect configured" "OK"
+for header in "${security_headers[@]}"; do
+    if grep -q "$header" build/_headers 2>/dev/null; then
+        print_status "$header configured" "OK"
+    else
+        print_status "$header missing from _headers" "ERROR"
+    fi
+done
+
+# Check www -> apex canonical redirect
+if grep -q "www.controlforge.dev" build/_redirects 2>/dev/null; then
+    print_status "www -> apex redirect configured" "OK"
 else
-    print_status "HTTPS redirect not configured" "WARNING"
+    print_status "www -> apex redirect not configured" "WARNING"
 fi
 
 # =========================================

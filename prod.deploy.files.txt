@@ -1,4 +1,0 @@
-build/***
-prod.compose.yml
-/nginx/***
-Dockerfile
