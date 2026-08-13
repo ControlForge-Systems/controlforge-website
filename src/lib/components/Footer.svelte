@@ -115,6 +115,15 @@
 					class="hover:text-brand-blue transition-colors">MIT License</a
 				>
 			</p>
+			<p class="mt-2 text-xs">
+				Built by
+				<a
+					href="https://michaeldistel.com"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="hover:text-brand-blue transition-colors">Michael Distel</a
+				>
+			</p>
 		</div>
 	</div>
 </footer>
